@@ -40,6 +40,7 @@ public class Main extends Application {
         } while (minutes >= 0);
     }
 
+
     public static void main(String[] args) {
         launch(args);
     }
