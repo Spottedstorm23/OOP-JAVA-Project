@@ -17,6 +17,29 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    public static void timer(int minutes, int seconds) {
+        //Timer zählt entsprechende Minuten und Sekunden runter
+        //by Lukas 2h
+        do {
+            do {
+                try
+                {
+                    Thread.sleep(1000); //Schläft 1 Sekunde
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                String dezminutes = (minutes < 10) ? "0" + minutes : "" + minutes;
+                String dezseconds = (seconds < 10) ? "0" + seconds : "" + seconds;
+                System.out.println(dezminutes + ":" + dezseconds);
+                seconds -= 1;
+            } while (seconds >= 0);
+            minutes -= 1;
+            seconds = 59;
+        } while (minutes >= 0);
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
