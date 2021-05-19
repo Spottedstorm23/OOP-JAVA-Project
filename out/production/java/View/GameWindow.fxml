@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -37,9 +36,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Modus:" textFill="WHITE" />
-                  <Label text="Cheesy Chase" textFill="WHITE" GridPane.columnIndex="1" />
-                  <Label text="00:00" textFill="WHITE" GridPane.columnIndex="3">
+                  <Label accessibleText="Current Mode:" text="Modus:" textFill="WHITE" />
+                  <Label fx:id="labelCurrentMode" accessibleText="Cheesy Chase" text="Cheesy Chase" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Label fx:id="labelTimer" accessibleText="Timer: 00:00" onMouseClicked="#onMouseClickedTimer" text="00:00" textFill="WHITE" GridPane.columnIndex="3">
                      <font>
                         <Font size="33.0" />
                      </font>
@@ -61,17 +60,12 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                     <image>
-                        <Image url="@../../../../../../Downloads/Projekt_-Maus._Kopie.png" />
-                     </image>
-                  </ImageView>
-                  <Label text="Highscore:" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <Label accessibleText="Highscore" text="Highscore:" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="100.000" textFill="WHITE" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                  <Label fx:id="labelHighscore" accessibleText="100.000" text="100.000" textFill="WHITE" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
@@ -79,12 +73,12 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Score:" textFill="WHITE" GridPane.columnIndex="5">
+                  <Label accessibleText="Current Score:" text="Score:" textFill="WHITE" GridPane.columnIndex="5">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <Label text="0" textFill="WHITE" GridPane.columnIndex="6">
+                  <Label fx:id="labelScore" accessibleText="0" text="0" textFill="WHITE" GridPane.columnIndex="6">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin>
@@ -92,6 +86,9 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="imageMouse1" accessibleText="Life Mouse 1" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                  <ImageView fx:id="imageMouse1" accessibleText="Life Mouse 2" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+                  <ImageView fx:id="imageMouse1" accessibleText="Life Mouse 3" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
                </children>
             </GridPane>
          </children>
