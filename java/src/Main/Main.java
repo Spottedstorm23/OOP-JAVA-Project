@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml")); // Geht aus dem Main-Package raus und dann ins View-Package rein
+        Parent root = FXMLLoader.load(getClass().getResource("../View/Menu.fxml")); // Geht aus dem Main-Package raus und dann ins View-Package rein
         primaryStage.setTitle("Cheesy Chase");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
