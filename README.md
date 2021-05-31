@@ -36,7 +36,7 @@ As long as there is now wall in the way. (You are no Ghost! Not yet at least).
 ***
 
 ### 1.5 How to Score
-Collect small cheese to gain ``insert Points``. A pile of cheese givs you even more. So keep an eye ot for ``insert Points``.
+Collect small cheese to gain 10 points. A pile of cheese givs you even more. So keep an eye ot for 50 points.
 
 ***
 <br>
