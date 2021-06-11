@@ -1,9 +1,16 @@
 package Main;
 
+import Controller.Maps;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -21,6 +28,13 @@ public class Main extends Application {
         primaryStage.setTitle("Cheesy Chase");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
+
+        StackPane rootlvl = new StackPane();
+        Scene level = new Scene(rootlvl,950,650);
+        primaryStage.setScene(level);
+        Maps map = new Maps();
+        updateLvl(rootlvl, map.getMap());
+
         primaryStage.show();
     }
 
@@ -91,6 +105,41 @@ public class Main extends Application {
         }
     }
 
+    public void updateLvl(StackPane root, byte[][] map){
+        Group group = new Group();
+        int x = 0;
+        for(x = 0; x < 13; x++){
+            int y = 0;
+            for(y = 0; y < 19; y++){
+                int cord_y = x*50;
+                int cord_x = y*50;
+                Rectangle r = new Rectangle(cord_x,cord_y,50,50);
+
+                switch (map[x][y]){
+                    case 0: {
+                        r.setFill(Color.color(20/ 255.0F,47/ 255.0F,82/ 255.0F));
+                        break;
+                    }
+                    case 1:{
+                        r.setFill(Color.color(221/ 255.0F,227/ 255.0F,236/ 255.0F));
+                        break;
+                    }
+                   /* case 2:{ Image cheese = new Image("src/View/images/Projekt_-_KaeseHG.png");
+                       r.setFill(new ImagePattern(cheese));
+                       break;
+                    }
+                    case 3:{
+                        Image cheesepile = new Image("src/View/images/Projekt_-_KaesehaufenHG.png");
+                       r.setFill(new ImagePattern(cheesepile));
+                       break;
+                    }*/
+                }
+                group.getChildren().add(r);
+            }
+            System.out.println("");
+        }
+        root.getChildren().add(group);
+    }
 
     public static void main(String[] args) {
         launch(args);

@@ -68,6 +68,6 @@ public class Maps {
     };
 
     public byte[][] getMap() {
-        return map1.clone();
+        return map2.clone();
     }
 }
