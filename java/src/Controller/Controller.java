@@ -1,6 +1,8 @@
 package Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Controller {
+    /* GameWindow.fxml */
     @FXML
     private ImageView imageMouse1;
     @FXML
@@ -28,6 +31,19 @@ public class Controller {
 
     @FXML
     private AnchorPane paneBoard;
+
+    /* Menu.fxml */
+    @FXML
+    private Button latestButton;
+    @FXML
+    private Button chaseModeButton;
+    @FXML
+    private Button escapeModeButton;
+    @FXML
+    private Button tutorialButton;
+    @FXML
+    private Button exitButton;
+
 
     public void initialize() throws IOException {
 
@@ -48,5 +64,25 @@ public class Controller {
         BufferedImage image = ImageIO.read(new File("../View/images/Projekt_-Maus_Kopie.png"));
         Image imageI = new Image(String.valueOf(image));
         imageMouse1 = new ImageView(imageI); // new Image("../View/images/Projekt_-Maus_Kopie.png"));
+    }
+
+    public void startButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void latestScoresButtonClicked(ActionEvent actionEvent) {
+
+    }
+
+    public void chaseModeButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void escapeModeButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void tutorialButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void exitButtonClicked(ActionEvent actionEvent) {
+
     }
 }
