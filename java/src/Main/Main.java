@@ -106,6 +106,8 @@ public class Main extends Application {
     }
 
     public void updateLvl(StackPane root, byte[][] map){
+        //Shows Level
+        //by Cora
         Group group = new Group();
         int x = 0;
         for(x = 0; x < 13; x++){
