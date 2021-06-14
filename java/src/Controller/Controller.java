@@ -2,12 +2,15 @@ package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -36,6 +39,8 @@ public class Controller {
     @FXML
     private Button latestButton;
     @FXML
+    private Button startButton;
+    @FXML
     private Button chaseModeButton;
     @FXML
     private Button escapeModeButton;
@@ -43,6 +48,8 @@ public class Controller {
     private Button tutorialButton;
     @FXML
     private Button exitButton;
+    @FXML
+    private AnchorPane menuPane;
 
 
     public void initialize() throws IOException {
@@ -66,7 +73,9 @@ public class Controller {
         imageMouse1 = new ImageView(imageI); // new Image("../View/images/Projekt_-Maus_Kopie.png"));
     }
 
-    public void startButtonClicked(ActionEvent actionEvent) {
+    public void startButtonClicked(ActionEvent actionEvent) throws IOException {
+        AnchorPane menuPane = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml"));
+        System.out.println("StartButton");
     }
 
     public void latestScoresButtonClicked(ActionEvent actionEvent) {
@@ -74,15 +83,18 @@ public class Controller {
     }
 
     public void chaseModeButtonClicked(ActionEvent actionEvent) {
+
     }
 
     public void escapeModeButtonClicked(ActionEvent actionEvent) {
     }
 
     public void tutorialButtonClicked(ActionEvent actionEvent) {
+
     }
 
     public void exitButtonClicked(ActionEvent actionEvent) {
-
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 }
