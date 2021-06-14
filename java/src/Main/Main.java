@@ -126,15 +126,19 @@ public class Main extends Application {
                         r.setFill(Color.color(221/ 255.0F,227/ 255.0F,236/ 255.0F));
                         break;
                     }
-                   /* case 2:{ Image cheese = new Image("src/View/images/Projekt_-_KaeseHG.png");
+                   case 2:{ Image cheese = new Image("./View/images/Projekt_-_KaeseHG.png");
                        r.setFill(new ImagePattern(cheese));
                        break;
                     }
-                    case 3:{
-                        Image cheesepile = new Image("src/View/images/Projekt_-_KaesehaufenHG.png");
+                    case 3:{ Image cheesepile = new Image("./View/images/Projekt_-_KaesehaufenHG.png");
                        r.setFill(new ImagePattern(cheesepile));
                        break;
-                    }*/
+                    }
+                    //Just for Visualisierung, bis wir wissen wie wir die Maus implementieren wollen
+                    case 4:{Image mouse = new Image("./View/images/Projekt_-_MausHG.png");
+                        r.setFill(new ImagePattern(mouse));
+                        break;
+                    }
                 }
                 group.getChildren().add(r);
             }

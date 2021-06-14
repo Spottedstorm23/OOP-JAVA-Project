@@ -48,9 +48,9 @@ public class Controller {
     public void initialize() throws IOException {
 
         /*
-        FileInputStream inputStream = new FileInputStream("..\\View\\images\\Projekt_-Kase_Kopie.png");
+        FileInputStream inputStream = new FileInputStream("..\\View\\images\\Projekt_-Kase.png");
         Image image = new Image(inputStream);
-        imageMouse1 = new ImageView(image); // new Image("../View/images/Projekt_-Kase_Kopie.png"));
+        imageMouse1 = new ImageView(image); // new Image("../View/images/Projekt_-Kase.png"));
          */
 
 
