@@ -29,11 +29,13 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
 
+        /*
         StackPane rootlvl = new StackPane();
         Scene level = new Scene(rootlvl,950,650);
         primaryStage.setScene(level);
         Maps map = new Maps();
         updateLvl(rootlvl, map.getMap());
+         */
 
         primaryStage.show();
     }

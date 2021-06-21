@@ -9,15 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Controller {
@@ -28,12 +25,12 @@ public class Controller {
     private ImageView imageMouse2;
     @FXML
     private ImageView imageMouse3;
-
     @FXML
     private Label labelCurrentMode;
-
     @FXML
     private AnchorPane paneBoard;
+    @FXML
+    private AnchorPane gameBoardPane;
 
     /* Menu.fxml */
     @FXML
@@ -51,18 +48,7 @@ public class Controller {
     @FXML
     private AnchorPane menuPane;
 
-
     public void initialize() throws IOException {
-
-        /*
-        FileInputStream inputStream = new FileInputStream("..\\View\\images\\Projekt_-Kase_Kopie.png");
-        Image image = new Image(inputStream);
-        imageMouse1 = new ImageView(image); // new Image("../View/images/Projekt_-Kase_Kopie.png"));
-         */
-
-
-
-
     }
 
 
@@ -74,8 +60,11 @@ public class Controller {
     }
 
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
-        AnchorPane menuPane = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml"));
+
+        AnchorPane gameBoardPane = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml"));
         System.out.println("StartButton");
+        menuPane.getChildren().addAll(gameBoardPane);
+
     }
 
     public void latestScoresButtonClicked(ActionEvent actionEvent) {
@@ -90,7 +79,6 @@ public class Controller {
     }
 
     public void tutorialButtonClicked(ActionEvent actionEvent) {
-
     }
 
     public void exitButtonClicked(ActionEvent actionEvent) {
