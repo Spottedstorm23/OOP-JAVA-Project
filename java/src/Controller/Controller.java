@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
@@ -48,6 +49,12 @@ public class Controller {
     @FXML
     private AnchorPane menuPane;
 
+    /* tutorial.fxml */
+    @FXML
+    private AnchorPane tutorialPane;
+
+    @FXML
+    private VBox tutorialVBox;
     public void initialize() throws IOException {
     }
 
@@ -78,7 +85,10 @@ public class Controller {
     public void escapeModeButtonClicked(ActionEvent actionEvent) {
     }
 
-    public void tutorialButtonClicked(ActionEvent actionEvent) {
+    public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
+       VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
+        System.out.println("tutorialButton");
+        menuPane.getChildren().addAll(tutorialVBox);
     }
 
     public void exitButtonClicked(ActionEvent actionEvent) {
