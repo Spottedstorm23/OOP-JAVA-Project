@@ -8,36 +8,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="tutorialVBox" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+<VBox fx:id="tutorialVBox" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
   <children>
-    <AnchorPane fx:id="tutorialPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2c2f33;" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="tutorialPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;" VBox.vgrow="ALWAYS">
       <children>
-            <Text fill="WHITE" layoutX="22.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Cheesy chase is a 2D-maze game. The Challenge is to collect all pieces of cheese scattered on the map. You can control the mouse with cursor keys or (with) WASD through a maze. don't let the timer out of your sight,because a timer keeps continuously running down." textAlignment="JUSTIFY" wrappingWidth="357.33673095703125">
+            <Text fill="#bfbfbf" layoutX="22.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Cheesy chase is a 2D-maze game. The Challenge is to collect all pieces of cheese scattered on the map. You can control the mouse with cursor keys or (with) WASD through a maze. don't let the timer out of your sight,because a timer keeps continuously running down." textAlignment="JUSTIFY" wrappingWidth="357.33673095703125">
                <font>
                   <Font name="Harrington" size="20.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="218.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The big pices of cheese will give you 100 points, the small ones only 50. Can you manage to collect all the pieces cheese and achieve a new high score." textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
+            <Text fill="#bfbfbf" layoutX="218.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The big pices of cheese will give you 100 points, the small ones only 50. Can you manage to collect all the pieces cheese and achieve a new high score." textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
                <font>
                   <Font name="Harrington" size="20.0" />
                </font>
             </Text>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="19.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Projekt_-%20_Kaesehaufen.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="407.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="424.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Projekt_-_Maus.png" />
                </image>
             </ImageView>
-            <Text fill="#f2f1f1" layoutX="17.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutorial">
+            <Text fill="#bfbfbf" layoutX="17.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutorial">
                <font>
                   <Font name="Harrington" size="40.0" />
                </font>
             </Text>
-            <Button fx:id="exitTutorialButton" cancelButton="true" layoutX="578.0" layoutY="360.0" mnemonicParsing="false" onAction="#exitTutorialButtonClicked" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Close" textFill="#bfbfbf">
+            <Button fx:id="exitTutorialButton" cancelButton="true" layoutX="526.0" layoutY="354.0" mnemonicParsing="false" onAction="#exitTutorialButtonClicked" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Close" textFill="#bfbfbf">
                <font>
                   <Font name="Harrington" size="12.0" />
                </font></Button>

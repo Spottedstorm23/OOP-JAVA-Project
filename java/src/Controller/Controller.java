@@ -54,8 +54,6 @@ public class Controller {
     @FXML
     private Button exitButton;
     @FXML
-    private Button exitTutorialButton;
-    @FXML
     private AnchorPane menuPane;
 
     /* tutorial.fxml */
@@ -63,7 +61,8 @@ public class Controller {
     private AnchorPane tutorialPane;
     @FXML
     private VBox tutorialVBox;
-
+    @FXML
+    private Button exitTutorialButton;
     /* LatestScores.fxml */
     @FXML
     private AnchorPane paneLatestScores;
@@ -142,8 +141,29 @@ public class Controller {
         tutorial.setResizable(false);
         tutorial.initModality(Modality.APPLICATION_MODAL);
         tutorial.setScene(sceneTutorial);
+        tutorial.initStyle(StageStyle.TRANSPARENT);
+        tutorial.setY(500);//Muss am fenster gebountet  werden
+        tutorial.setX(600);
+
         tutorial.show();
+
+    /*  Auf unser Zeug anwenden:
+                public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() - xOffset);
+                primaryStage.setY(event.getScreenY() - yOffset);
+
+     */
+
+
     }
+   //Menu
     public void exitTutorialButtonClicked(ActionEvent actionEvent){
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
