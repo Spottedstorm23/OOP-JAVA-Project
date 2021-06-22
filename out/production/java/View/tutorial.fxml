@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,19 +17,19 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <Text layoutX="199.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The big pices of cheese will give you 100 points, the small ones only 50. Can you manage to collect all the pieces cheese and achieve a new high score." textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
+            <Text layoutX="218.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The big pices of cheese will give you 100 points, the small ones only 50. Can you manage to collect all the pieces cheese and achieve a new high score." textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Projekt_-_Kasehaufen.png" />
+                  <Image url="@images/Projekt_-%20_Kaesehaufen.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="407.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Projekt_-Maus.png" />
+                  <Image url="@images/Projekt_-_Maus.png" />
                </image>
             </ImageView>
             <Text layoutX="17.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tutorial">
@@ -36,6 +37,7 @@
                   <Font size="40.0" />
                </font>
             </Text>
+            <Button fx:id="exitTutorialButton" cancelButton="true" layoutX="578.0" layoutY="360.0" mnemonicParsing="false" onAction="#exitTutorialButtonClicked" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Close" textFill="#bfbfbf" />
       </children>
     </AnchorPane>
   </children>
