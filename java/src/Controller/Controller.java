@@ -89,20 +89,14 @@ public class Controller {
 
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
 
-
-        Stage tutorial = new Stage();
-
-
-
-        Scene sceneTutorial = new Scene(tutorialVBox,200,100);
-
-        tutorial.setTitle("Tutorial");
-        tutorial.show();
-        tutorial.setScene(sceneTutorial);
-
-        /*VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
+        VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
+        Scene sceneTutorial = new Scene(tutorialVBox,600,400);
         System.out.println("tutorialButton");
-        menuPane.getChildren().addAll(tutorialVBox);*/
+        Stage tutorial = new Stage();
+        tutorial.setTitle("Tutorial");
+        tutorial.setScene(sceneTutorial);
+        tutorial.show();
+
     }
 
     public void exitButtonClicked(ActionEvent actionEvent) {
