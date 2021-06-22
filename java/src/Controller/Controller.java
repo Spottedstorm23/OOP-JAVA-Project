@@ -3,6 +3,7 @@ package Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -55,6 +56,7 @@ public class Controller {
 
     @FXML
     private VBox tutorialVBox;
+
     public void initialize() throws IOException {
     }
 
@@ -86,9 +88,21 @@ public class Controller {
     }
 
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-       VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
+
+
+        Stage tutorial = new Stage();
+
+
+
+        Scene sceneTutorial = new Scene(tutorialVBox,200,100);
+
+        tutorial.setTitle("Tutorial");
+        tutorial.show();
+        tutorial.setScene(sceneTutorial);
+
+        /*VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
         System.out.println("tutorialButton");
-        menuPane.getChildren().addAll(tutorialVBox);
+        menuPane.getChildren().addAll(tutorialVBox);*/
     }
 
     public void exitButtonClicked(ActionEvent actionEvent) {
