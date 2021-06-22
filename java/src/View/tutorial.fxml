@@ -37,7 +37,7 @@
                   <Font size="40.0" />
                </font>
             </Text>
-            <Button fx:id="exitTutorialButton" cancelButton="true" layoutX="578.0" layoutY="360.0" mnemonicParsing="false" onAction="#exitTutorialButtonClicked" text="Close" />
+            <Button fx:id="exitTutorialButton" cancelButton="true" layoutX="578.0" layoutY="360.0" mnemonicParsing="false" onAction="#exitTutorialButtonClicked" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Close" textFill="#bfbfbf" />
       </children>
     </AnchorPane>
   </children>
