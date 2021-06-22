@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameBoardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="875.0" prefWidth="1100.0" style="-fx-background-color: #2c2f33;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+<AnchorPane fx:id="gameBoardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="875.0" prefWidth="1100.0" style="-fx-background-color: #2c2f33;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -38,7 +38,7 @@
                <children>
                   <Label accessibleText="Current Mode:" text="Modus:" textFill="WHITE" />
                   <Label fx:id="labelCurrentMode" accessibleText="Cheesy Chase" text="Cheesy Chase" textFill="WHITE" GridPane.columnIndex="1" />
-                  <Label fx:id="labelTimer" accessibleText="Timer: 00:00" onMouseClicked="#onMouseClickedTimer" text="00:00" textFill="WHITE" GridPane.columnIndex="3">
+                  <Label fx:id="labelTimer" accessibleText="Timer: 00:00" text="00:00" textFill="WHITE" GridPane.columnIndex="3">
                      <font>
                         <Font size="33.0" />
                      </font>

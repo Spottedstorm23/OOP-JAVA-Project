@@ -13,12 +13,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.Buffer;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Controller {
     /* GameWindow.fxml */
@@ -77,6 +82,14 @@ public class Controller {
     @FXML
     private Button closeScoresButton;
 
+    // static String pathToLatestScoresTxt = "latestScoresTxt.txt";
+    // The system cannot find the path specified
+
+    // static String pathToLatestScoresTxt = "C:\\Users\\ThielS\\Videos\\java\\OOP-JAVA-Project\\0java\\src\\Resources\\latestScoresTxt.txt";
+    // The system cannot find the path specified
+
+    File latestScores = new File("../Resources/latestScores.txt");
+
     public void initialize() throws IOException {
     }
 
@@ -97,9 +110,13 @@ public class Controller {
         System.out.println("latestScoresButton");
         Scene latestScoresScene = new Scene(paneLatestScores);
         Stage latestScoresStage = new Stage();
+        // latestScoresStage.initStyle(StageStyle.TRANSPARENT);
         latestScoresStage.setResizable(false);
         latestScoresStage.initModality(Modality.APPLICATION_MODAL);
         latestScoresStage.setScene(latestScoresScene);
+
+        readLatestScores();
+
         latestScoresStage.show();
     }
 
@@ -142,4 +159,36 @@ public class Controller {
         Stage stage = (Stage) closeScoresButton.getScene().getWindow();
         stage.close();
     }
+
+    // LatestScores
+    public void readLatestScores() throws IOException {
+        // last1ScoreLabel
+
+        Scanner sc = new Scanner(latestScores);
+
+        while (sc.hasNextLine()){
+            System.out.println(sc.nextLine());
+        }
+
+        /*
+        try (FileReader txtReader = new FileReader("latestScoresTxt.txt")){
+            try (BufferedReader br = new BufferedReader(txtReader)){
+                for (String line = br.readLine(); line!= null; line= br.readLine()){
+                    System.out.println(line);
+                    last1ScoreLabel.setText(line);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         */
+
+
+    }
+
+
 }
