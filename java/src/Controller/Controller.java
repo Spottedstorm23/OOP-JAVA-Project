@@ -54,6 +54,8 @@ public class Controller {
     @FXML
     private Button exitButton;
     @FXML
+    private Button exitTutorialButton;
+    @FXML
     private AnchorPane menuPane;
 
     /* tutorial.fxml */
@@ -142,7 +144,10 @@ public class Controller {
         tutorial.setScene(sceneTutorial);
         tutorial.show();
     }
-
+    public void exitTutorialButtonClicked(ActionEvent actionEvent){
+        Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
+        stage.close();
+}
     // Menu
     public void exitButtonClicked(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
