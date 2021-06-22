@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
@@ -53,54 +54,92 @@ public class Controller {
     /* tutorial.fxml */
     @FXML
     private AnchorPane tutorialPane;
-
     @FXML
     private VBox tutorialVBox;
+
+    /* LatestScores.fxml */
+    @FXML
+    private AnchorPane paneLatestScores;
+    @FXML
+    private Label last1ScoreLabel;
+    @FXML
+    private Label last2ScoreLabel;
+    @FXML
+    private Label last3ScoreLabel;
+    @FXML
+    private Label last4ScoreLabel;
+    @FXML
+    private Label last5ScoreLabel;
+    @FXML
+    private Label gameModeScoresLabel;
+    @FXML
+    private Button changeModeScoresButton;
+    @FXML
+    private Button closeScoresButton;
 
     public void initialize() throws IOException {
     }
 
 
-    public void onMouseClickedTimer(MouseEvent mouseEvent) throws IOException {
-        System.out.println("Klick");
-        BufferedImage image = ImageIO.read(new File("../View/images/Projekt_-Maus_Kopie.png"));
-        Image imageI = new Image(String.valueOf(image));
-        imageMouse1 = new ImageView(imageI); // new Image("../View/images/Projekt_-Maus_Kopie.png"));
-    }
-
+    // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
 
         AnchorPane gameBoardPane = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml"));
         System.out.println("StartButton");
         menuPane.getChildren().addAll(gameBoardPane);
+        // gameBoardPane wird direkt auf die menuPane draufgeklatscht --> theoretisch befindet es sich noch drunter!
 
     }
 
-    public void latestScoresButtonClicked(ActionEvent actionEvent) {
-
+    // Menu
+    public void latestScoresButtonClicked(ActionEvent actionEvent) throws IOException {
+        AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
+        System.out.println("latestScoresButton");
+        Scene latestScoresScene = new Scene(paneLatestScores);
+        Stage latestScoresStage = new Stage();
+        latestScoresStage.setResizable(false);
+        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
+        latestScoresStage.setScene(latestScoresScene);
+        latestScoresStage.show();
     }
 
+    // Menu
     public void chaseModeButtonClicked(ActionEvent actionEvent) {
 
     }
 
+    // Menu
     public void escapeModeButtonClicked(ActionEvent actionEvent) {
     }
 
+    // Menu
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-
         VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
-        Scene sceneTutorial = new Scene(tutorialVBox,600,400);
-        System.out.println("tutorialButton");
+
+        Scene sceneTutorial = new Scene(tutorialVBox);
+
         Stage tutorial = new Stage();
         tutorial.setTitle("Tutorial");
+        tutorial.setResizable(false);
+        tutorial.initModality(Modality.APPLICATION_MODAL);
         tutorial.setScene(sceneTutorial);
         tutorial.show();
-
     }
 
+    // Menu
     public void exitButtonClicked(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
+    // LatestScores
+    public void changeModeScoresButtonClicked(ActionEvent actionEvent) {
+        System.out.println("changeModeScoresButtonClicked");
+    }
+
+    // LatestScores
+    public void closeScoresButtonClicked(ActionEvent actionEvent) {
+        Stage stage = (Stage) closeScoresButton.getScene().getWindow();
         stage.close();
     }
 }
