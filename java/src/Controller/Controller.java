@@ -146,14 +146,25 @@ public class Controller {
         tutorial.initModality(Modality.APPLICATION_MODAL);
         tutorial.setScene(sceneTutorial);
         tutorial.initStyle(StageStyle.TRANSPARENT);
+
+       double tutorialvboxhight = (tutorialVBox.getHeight()); // uebergeben auf Var -> hilft nicht :(
+
+
         tutorial.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-320);//verschiebung auf X-Achse
         tutorial.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-200);//verschiebung auf Y- Achse
+
+        //tutorial.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((tutorialVBox.getWidth())/2));//verschiebung auf X-Achse
+        //tutorial.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((tutorialVBox.getHeight())/2));//verschiebung auf Y- Achse
+
         tutorial.show();//ZEIGT DAS DING - NICH LÖSCHEN !!!!!!!!!!!!!!!
 
-        System.out.println(Toolkit.getDefaultToolkit()
-                .getScreenSize().width + " x " + Toolkit.getDefaultToolkit()
-                .getScreenSize().height);
-}
+        System.out.println(Toolkit.getDefaultToolkit().getScreenSize().width + " x "
+                + Toolkit.getDefaultToolkit().getScreenSize().height);                  //=> 1920 x 1080
+        System.out.println(tutorialVBox.getWidth()+" x "+(tutorialVBox.getHeight())); //=> 640.0 x 400.0
+        System.out.println(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((tutorialVBox.getHeight())/2));//=>340
+        System.out.println(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-200); //=>340
+        System.out.println(tutorialvboxhight); //=> 0.0
+    }
 
 
    //Menu/
