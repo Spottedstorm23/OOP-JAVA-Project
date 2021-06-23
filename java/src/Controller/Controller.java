@@ -156,7 +156,7 @@ public class Controller {
 }
 
 
-   //Menu
+   //Menu/
     public void exitTutorialButtonClicked(ActionEvent actionEvent){
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
