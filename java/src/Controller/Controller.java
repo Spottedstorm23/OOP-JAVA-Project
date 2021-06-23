@@ -21,13 +21,12 @@ import java.awt.image.BufferedImage;
 
 import java.io.*;
 import java.nio.Buffer;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Toolkit;
+import java.util.List;
 
 public class Controller {
     /* GameWindow.fxml */
@@ -87,26 +86,18 @@ public class Controller {
     @FXML
     private Button closeScoresButton;
 
-    // static String pathToLatestScoresTxt = "latestScoresTxt.txt";
-    // The system cannot find the path specified
-
-    // static String pathToLatestScoresTxt = "C:\\Users\\ThielS\\Videos\\java\\OOP-JAVA-Project\\0java\\src\\Resources\\latestScoresTxt.txt";
-    // The system cannot find the path specified
-
-    File latestScores = new File("../Resources/latestScores.txt");
+    File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
+    // https://stackoverflow.com/questions/36068557/how-to-get-the-path-of-a-file-in-my-java-project-when-running-java-from-batch-fi
 
     public void initialize() throws IOException {
     }
 
-
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
-
         AnchorPane gameBoardPane = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml"));
         System.out.println("StartButton");
         menuPane.getChildren().addAll(gameBoardPane);
         // gameBoardPane wird direkt auf die menuPane draufgeklatscht --> theoretisch befindet es sich noch drunter!
-
     }
 
     // Menu
@@ -115,10 +106,15 @@ public class Controller {
         System.out.println("latestScoresButton");
         Scene latestScoresScene = new Scene(paneLatestScores);
         Stage latestScoresStage = new Stage();
-        // latestScoresStage.initStyle(StageStyle.TRANSPARENT);
+        latestScoresStage.initStyle(StageStyle.TRANSPARENT);
         latestScoresStage.setResizable(false);
         latestScoresStage.initModality(Modality.APPLICATION_MODAL);
         latestScoresStage.setScene(latestScoresScene);
+        // paneLatestScores.setStyle("-fx-border-color: #bfbfbf;"); // setzt HG grau
+        // https://stackoverflow.com/questions/31560908/i-want-to-make-border-around-three-sides-of-anchorpane-not-four
+        //paneLatestScores.setStyle("-fx-background-color: #2c2f33;"); // setzt HG schwarz, border weg
+        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((paneLatestScores.getPrefWidth())/2));//verschiebung auf X-Achse
+        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((paneLatestScores.getPrefHeight())/2));//verschiebung auf Y- Achse
 
         readLatestScores();
 
@@ -164,11 +160,12 @@ public class Controller {
     }
 
 
-   //Menu/
+    // Tutorial
     public void exitTutorialButtonClicked(ActionEvent actionEvent){
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
-}
+    }
+
     // Menu
     public void exitButtonClicked(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
@@ -188,13 +185,22 @@ public class Controller {
 
     // LatestScores
     public void readLatestScores() throws IOException {
+        last1ScoreLabel = new Label("999");
+        last2ScoreLabel = new Label("999");
+        last3ScoreLabel = new Label("999");
+        last4ScoreLabel = new Label("999");
+        last5ScoreLabel = new Label("999");
+        // https://www.geeksforgeeks.org/different-ways-reading-text-file-java/#:~:text=Here%20are%20some%20of%20the%20many%20ways%20of,strings%20using%20regular%20expressions.%20...%20More%20items...%20
         // last1ScoreLabel
 
+        /*
         Scanner sc = new Scanner(latestScores);
 
         while (sc.hasNextLine()){
             System.out.println(sc.nextLine());
+            last1ScoreLabel.setText(sc);
         }
+         */
 
         /*
         try (FileReader txtReader = new FileReader("latestScoresTxt.txt")){
@@ -213,6 +219,19 @@ public class Controller {
         }
          */
 
+        BufferedReader br = new BufferedReader(new FileReader(latestScoresFile));
+
+        // Array of Labels
+        Label[] labelArray = {last1ScoreLabel, last2ScoreLabel, last3ScoreLabel, last4ScoreLabel, last5ScoreLabel};
+
+        System.out.println(labelArray[2].getText().toString()+"\n\n");
+
+        for (int j = 0; j<5; j++) {
+            String line = br.readLine();
+            System.out.println(line);
+            labelArray[j].setText(line);
+            System.out.println(labelArray[j]);
+        }
 
     }
 
