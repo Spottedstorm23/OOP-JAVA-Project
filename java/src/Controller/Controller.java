@@ -170,14 +170,13 @@ public class Controller {
         stage.close();
         music.stop();
 
-
-
     }
 
     // Menu
     public void exitButtonClicked(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+        System.exit(0);
     }
 
     // LatestScores

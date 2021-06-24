@@ -1,9 +1,5 @@
 package Music;
 
-import jdk.jfr.Experimental;
-import org.omg.CORBA.portable.InputStream;
-import sun.audio.AudioStream;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
