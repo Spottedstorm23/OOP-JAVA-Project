@@ -22,16 +22,21 @@ public static synchronized void music(String track){
                         Clip clip = AudioSystem.getClip();
                         AudioInputStream inputStream =AudioSystem.getAudioInputStream(new File(trackname));
                         clip.open(inputStream);
-                       clip.loop(clip.LOOP_CONTINUOUSLY);
+                        clip.loop(clip.LOOP_CONTINUOUSLY);
 
-                        Thread.sleep(clip.getMicrosecondLength()/1000);
+                        Thread.sleep(clip.getMicrosecondLength()/1000); //NICHT RAUSMACHEN !
                         }catch (Exception e){
                     e.printStackTrace();
 
                 }
             }
+
       }
   }).start();
 }
+
+    public static void stop() {
+
+    }
 }
 //https://www.youtube.com/watch?v=xUqQl3-Fhyg

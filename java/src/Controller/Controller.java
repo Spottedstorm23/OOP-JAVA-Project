@@ -160,7 +160,7 @@ public class Controller {
 
 */
         music music = new music();
-        music.music("C:/Users/Maximilian Holtz/Downloads/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
+        music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
     }
 
 
@@ -168,9 +168,8 @@ public class Controller {
     public void exitTutorialButtonClicked(ActionEvent actionEvent){
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
+        music.stop();
 
-        music music = new music();
-        music.music("C:/Users/Maximilian Holtz/Downloads/Aufnahme (online-audio-converter.com).wav");
 
 
     }
