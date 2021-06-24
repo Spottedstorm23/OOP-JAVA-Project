@@ -168,6 +168,11 @@ public class Controller {
     public void exitTutorialButtonClicked(ActionEvent actionEvent){
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
+
+        music music = new music();
+        music.music("C:/Users/Maximilian Holtz/Downloads/Aufnahme (online-audio-converter.com).wav");
+
+
     }
 
     // Menu
