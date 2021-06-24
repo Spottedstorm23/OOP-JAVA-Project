@@ -1,5 +1,6 @@
 package Controller;
 
+import Music.music;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -132,6 +133,8 @@ public class Controller {
 
     // Menu
     public void tutorialButtonClicked(ActionEvent actionEvent ) throws IOException {
+
+
         VBox tutorialVBox  = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
 
         Scene sceneTutorial = new Scene(tutorialVBox);
@@ -156,7 +159,8 @@ public class Controller {
         System.out.println(tutorialVBox.getHeight()); //=> 400
 
 */
-
+        music music = new music();
+        music.music("C:/Users/Maximilian Holtz/Downloads/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
     }
 
 
