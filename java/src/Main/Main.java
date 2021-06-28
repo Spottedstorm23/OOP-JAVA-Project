@@ -34,14 +34,14 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
 
 
-        Pane levelPane = new Pane();
+        /*Pane levelPane = new Pane();
         Scene level = new Scene(levelPane, 950, 650);
        // primaryStage.setScene(level);
         Maps map = new Maps();
         byte [][] levelmap = map.getMap();
         drawLvl(levelPane, levelmap);
         updateCheese(levelPane, levelmap);
-        drawMouse(levelPane);
+        drawMouse(levelPane);*/
 
         primaryStage.show();
 

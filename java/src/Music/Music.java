@@ -16,7 +16,7 @@ public /*static*/ synchronized void music(String track){
       @Override
       public void run() {
 
-          while(playMusic == true){
+          while(playMusic){
                 try{
                         Clip clip = AudioSystem.getClip();
                         AudioInputStream inputStream =AudioSystem.getAudioInputStream(new File(trackname));
@@ -33,6 +33,12 @@ public /*static*/ synchronized void music(String track){
       }
   }).start();
 }
+
+    public boolean setPlayMusic(boolean state) {
+        Music music = new Music();
+        music.playMusic = state;
+        return music.playMusic;
+    }
 
     public static  void stop(String track) {
 
