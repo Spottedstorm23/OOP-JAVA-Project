@@ -12,11 +12,11 @@ public class Highscore {
         //Kreiert die Highscore.txt und füllt sie mit Nullen auf
 
         try {
-            File bigFile = new File("highscore.txt");
+            File bigFile = new File("./Other/highscore.txt");
 
             if (bigFile.createNewFile()) {
                 System.out.println("File created: " + bigFile.getName());
-                File scoreFile = new File("highscore.txt");
+                File scoreFile = new File("./Other/highscore.txt");
                 try {
                     FileWriter scoreWriter = new FileWriter(scoreFile);
 
@@ -41,7 +41,7 @@ public class Highscore {
 
         short[] score = new short[5];
         try {
-            File scoreFile = new File("highscore.txt");
+            File scoreFile = new File("./Other/highscore.txt");
             Scanner scoreScanner = new Scanner(scoreFile);
             for (int i = 0; i < 5; i++)
             {
@@ -58,7 +58,7 @@ public class Highscore {
         //Schreibt den gegebenen newScore in den highscore.txt, falls newScore größer als der Alte ist
 
         /* Check ob die Datei exisitiert, wenn nicht erstellen */
-        File scoreFile = new File("highscore.txt");
+        File scoreFile = new File("./Other/highscore.txt");
 
         if (scoreFile.exists() == false) {
             createFile();
