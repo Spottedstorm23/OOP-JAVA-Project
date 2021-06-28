@@ -5,15 +5,18 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
-public class music {
-public static synchronized void music(String track){
+
+public class Music {
+    public boolean playMusic = false;
+public /*static*/ synchronized void music(String track){
 
   final String trackname = track;
 
   new Thread(new Runnable() {
       @Override
       public void run() {
-            while(true){
+
+          while(playMusic == true){
                 try{
                         Clip clip = AudioSystem.getClip();
                         AudioInputStream inputStream =AudioSystem.getAudioInputStream(new File(trackname));
@@ -31,8 +34,9 @@ public static synchronized void music(String track){
   }).start();
 }
 
-    public static void stop() {
+    public static  void stop(String track) {
 
-    }
+        }
+
 }
 //https://www.youtube.com/watch?v=xUqQl3-Fhyg

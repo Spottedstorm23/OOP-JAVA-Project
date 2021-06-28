@@ -1,33 +1,22 @@
 package Controller;
 
-import Music.music;
+import Music.Music;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
 import java.io.*;
-import java.nio.Buffer;
-import java.util.*;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.Toolkit;
-import java.util.List;
 
 public class Controller {
     /* GameWindow.fxml */
@@ -158,17 +147,25 @@ public class Controller {
         System.out.println(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-200); //=>340
         System.out.println(tutorialVBox.getHeight()); //=> 400
 
-*/
-        //music music = new music();
-       // music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
+*/      Music music = new Music();
+        music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
+
+        setPlayMusic(true);
     }
 
-
+    public boolean setPlayMusic(boolean state) {
+        Music music = new Music();
+        music.playMusic = state;
+return music.playMusic;
+          }
     // Tutorial
     public void exitTutorialButtonClicked(ActionEvent actionEvent){
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
-        music.stop();
+
+        Music music = new Music();
+        music.playMusic = false;
+
 
     }
 
