@@ -2,6 +2,7 @@ package Main;
 
 import Controller.Controller;
 import Controller.Maps;
+import Music.music;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -39,7 +40,7 @@ public class Main extends Application {
 
         Pane levelPane = new Pane();
         Scene level = new Scene(levelPane, 950, 650);
-        primaryStage.setScene(level);
+       // primaryStage.setScene(level);
         Maps map = new Maps();
         byte [][] levelmap = map.getMap();
         drawLvl(levelPane, levelmap);
@@ -47,6 +48,10 @@ public class Main extends Application {
         drawMouse(levelPane);
 
         primaryStage.show();
+
+        music music = new music();
+        music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
+
     }
 
     public static void timer(int minutes, int seconds) {

@@ -159,8 +159,8 @@ public class Controller {
         System.out.println(tutorialVBox.getHeight()); //=> 400
 
 */
-        music music = new music();
-        music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
+        //music music = new music();
+       // music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
     }
 
 
