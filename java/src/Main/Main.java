@@ -73,50 +73,6 @@ public class Main extends Application {
         } while (minutes >= 0);
     }
 
-    static short ReadHighscore() {
-        //Liest aktuelle Highscore aus highscore.txt und gibt diese als short zurück
-        //by Lukas
-        try {
-            File scoreFile = new File("highscore.txt");
-            Scanner scoreScanner = new Scanner(scoreFile);
-            short score = 0;
-            try {
-                score = scoreScanner.nextShort();
-            } catch (InputMismatchException e) {
-                return -1; //Im Dokument steht alles, aber keine Zahl...
-            }
-            scoreScanner.close();
-            return score;
-        } catch (FileNotFoundException e) {
-            return -2; //Das Dokument exisitiert nicht
-        }
-    }
-
-    static void WriteHighscore(int newScore) {
-        //Schreibt den gegebenen newScore in den highscore.txt, falls newScore größer als der Alte ist
-        //by Lukas
-        short oldScore = ReadHighscore();
-        if (newScore > oldScore) {
-            File scoreFile = new File("highscore.txt");
-            if (scoreFile.exists() == false) {
-                try {
-                    scoreFile.createNewFile();
-                } catch (IOException e) {
-                    System.out.println("Kann Dokument nicht kreieren");
-                    e.printStackTrace();
-                }
-            }
-            try {
-                FileWriter scoreWriter = new FileWriter(scoreFile);
-                scoreWriter.write(String.valueOf(newScore));
-                scoreWriter.close();
-            } catch (IOException e) {
-                System.out.println("Kann nicht in Dokument schreiben");
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void drawLvl(Pane root, byte[][] map) {
         //Draws Level -> only Path and Wall
         //by Cora
