@@ -23,14 +23,10 @@ public class Music2 {
             }
         }
         if (!isPlaying) {
-            try {
-                if (audioStream != null) {
-                    AudioPlayer.player.stop(audioStream);
-                }
-                System.out.println("stopping");
-            } catch (IOException e) {
-                System.err.println("music isn´t stop D:");
+            if (audioStream != null) {
+                AudioPlayer.player.stop(audioStream);
             }
+            System.out.println("stopping");
         }
     }
 }
