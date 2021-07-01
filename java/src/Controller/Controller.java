@@ -78,7 +78,11 @@ public class Controller {
 
     File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
     // https://stackoverflow.com/questions/36068557/how-to-get-the-path-of-a-file-in-my-java-project-when-running-java-from-batch-fi
-
+    public boolean setPlayMusic(boolean state) {
+        Music music = new Music();
+        music.playMusic = state;
+        return music.playMusic;
+    }
     public void initialize() throws IOException {
     }
 
@@ -122,8 +126,9 @@ public class Controller {
 
     // Menu
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-
-
+        Music music = new Music();
+        //music.setPlayMusic(true);
+        music.playMusic = true;
         VBox tutorialVBox = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
 
         Scene sceneTutorial = new Scene(tutorialVBox);
@@ -148,10 +153,11 @@ public class Controller {
         System.out.println(tutorialVBox.getHeight()); //=> 400
 
 */
-        Music music = new Music();
-        music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis (online-audio-converter.com).wav");
+       // Music music = new Music();
+        music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis.wav");
 
-        music.setPlayMusic(true);
+     //   music.setPlayMusic(true);
+        System.out.println(music.playMusic);
     }
 
 
@@ -159,7 +165,11 @@ public class Controller {
     // Tutorial
     public void exitTutorialButtonClicked(ActionEvent actionEvent) {
         Music music = new Music();
-        music.setPlayMusic(false);
+       music.setPlayMusic(false);
+        music.playMusic = false;
+
+        System.out.println(music.playMusic);
+       // close  stage
         Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
         stage.close();
 

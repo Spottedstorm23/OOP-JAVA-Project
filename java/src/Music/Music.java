@@ -7,7 +7,8 @@ import java.io.File;
 
 
 public class Music {
-    public boolean playMusic = false;
+    public boolean playMusic;
+    public boolean state;
 public /*static*/ synchronized void music(String track){
 
   final String trackname = track;
@@ -16,7 +17,7 @@ public /*static*/ synchronized void music(String track){
       @Override
       public void run() {
 
-          while(playMusic){
+          if(playMusic == true){
                 try{
                         Clip clip = AudioSystem.getClip();
                         AudioInputStream inputStream =AudioSystem.getAudioInputStream(new File(trackname));
@@ -26,18 +27,22 @@ public /*static*/ synchronized void music(String track){
                         Thread.sleep(clip.getMicrosecondLength()/1000); //NICHT RAUSMACHEN !
                         }catch (Exception e){
                     e.printStackTrace();
-
+                    System.out.println(playMusic);
                 }
             }
 
-      }
-  }).start();
-}
+
+          }
+
+
+  }).start();}
+
 
     public boolean setPlayMusic(boolean state) {
         Music music = new Music();
         music.playMusic = state;
         return music.playMusic;
+
     }
 
     public static  void stop(String track) {
@@ -45,4 +50,4 @@ public /*static*/ synchronized void music(String track){
         }
 
 }
-//https://www.youtube.com/watch?v=xUqQl3-Fhyg
+//https://www.yutube.com/watch?v=xUqQl3-Fhygo
