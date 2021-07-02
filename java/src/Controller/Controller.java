@@ -76,6 +76,8 @@ public class Controller {
     @FXML
     private Button closeScoresButton;
 
+    public static LatestScoresController latestScoresController = new LatestScoresController();
+
     File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
     // https://stackoverflow.com/questions/36068557/how-to-get-the-path-of-a-file-in-my-java-project-when-running-java-from-batch-fi
 
@@ -92,6 +94,7 @@ public class Controller {
 
     // Menu
     public void latestScoresButtonClicked(ActionEvent actionEvent) throws IOException {
+        /*
         AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
         System.out.println("latestScoresButton");
         Scene latestScoresScene = new Scene(paneLatestScores);
@@ -109,6 +112,12 @@ public class Controller {
         readLatestScores();
 
         latestScoresStage.show();
+
+         */
+
+        Controller.latestScoresController.displayLatestScores();
+        // https://stackoverflow.com/questions/63185120/java-how-to-call-method-in-another-class
+
     }
 
     // Menu
