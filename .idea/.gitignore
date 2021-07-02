@@ -10,4 +10,5 @@
 /httpRequests/
 
 #Ignore out-directory
-/out
+./out/
+
