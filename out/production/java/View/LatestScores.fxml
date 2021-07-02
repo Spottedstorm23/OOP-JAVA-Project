@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneLatestScores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="600.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LatestScoresController">
+<AnchorPane fx:id="paneLatestScores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="600.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
    <children>
       <GridPane fx:id="latestScoresGridPane" layoutX="63.0" layoutY="97.0" prefHeight="259.0" prefWidth="484.0">
         <columnConstraints>

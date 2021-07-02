@@ -7,8 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,6 +59,7 @@ public class Controller {
     @FXML
     private Button exitTutorialButton;
     /* LatestScores.fxml */
+    /*
     @FXML
     private AnchorPane paneLatestScores;
     @FXML
@@ -75,11 +78,29 @@ public class Controller {
     private Button changeModeScoresButton;
     @FXML
     private Button closeScoresButton;
+    */
+    @FXML
+    private AnchorPane paneLatestScores;
+    @FXML
+    private TextField latestScoresTextField1;
+    @FXML
+    private TextField latestScoresTextField2;
+    @FXML
+    private TextField latestScoresTextField3;
+    @FXML
+    private TextField latestScoresTextField4;
+    @FXML
+    private TextField latestScoresTextField5;
+    @FXML
+    private Label gameModeScoresLabel;
+    @FXML
+    private Button changeModeScoresButton;
+    @FXML
+    private Button closeScoresButton;
+    @FXML
+    private GridPane latestScoresGridPane;
 
     public static LatestScoresController latestScoresController = new LatestScoresController();
-
-    File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
-    // https://stackoverflow.com/questions/36068557/how-to-get-the-path-of-a-file-in-my-java-project-when-running-java-from-batch-fi
 
     public void initialize() throws IOException {
     }
@@ -108,16 +129,40 @@ public class Controller {
         //paneLatestScores.setStyle("-fx-background-color: #2c2f33;"); // setzt HG schwarz, border weg
         latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((paneLatestScores.getPrefWidth()) / 2));//verschiebung auf X-Achse
         latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((paneLatestScores.getPrefHeight()) / 2));//verschiebung auf Y- Achse
-
-        readLatestScores();
-
+        // readLatestScores();
         latestScoresStage.show();
-
          */
 
-        Controller.latestScoresController.displayLatestScores();
+        /*
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
+        menuPane = fxmlLoader.load();
+        LatestScoresController latestScoresController = fxmlLoader.getController();
+         */
+
+        // Controller.latestScoresController.displayLatestScores();
         // https://stackoverflow.com/questions/63185120/java-how-to-call-method-in-another-class
 
+
+        System.out.println("displayLatestScores()");
+        // AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
+        AnchorPane paneLatestScores = fxmlLoader.load();
+        LatestScoresController latestScoresController = fxmlLoader.getController();
+
+        System.out.println("latestScoresButton");
+        Scene latestScoresScene = new Scene(paneLatestScores);
+        Stage latestScoresStage = new Stage();
+        latestScoresStage.initStyle(StageStyle.TRANSPARENT);
+        latestScoresStage.setResizable(false);
+        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
+        latestScoresStage.setScene(latestScoresScene);
+        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((paneLatestScores.getPrefWidth())/2));//verschiebung auf X-Achse
+        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((paneLatestScores.getPrefHeight())/2));//verschiebung auf Y- Achse
+
+        //readLatestScores();
+
+        latestScoresStage.show();
     }
 
     // Menu
@@ -184,67 +229,32 @@ public class Controller {
         System.exit(0);
     }
 
-    // LatestScores
+    public void displayLatestScores() throws IOException {
+        System.out.println("displayLatestScores()");
+        // AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
+        AnchorPane paneLatestScores = fxmlLoader.load();
+        Controller latestScoresController = fxmlLoader.getController();
+
+        System.out.println("latestScoresButton");
+        Scene latestScoresScene = new Scene(paneLatestScores);
+        Stage latestScoresStage = new Stage();
+        latestScoresStage.initStyle(StageStyle.TRANSPARENT);
+        latestScoresStage.setResizable(false);
+        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
+        latestScoresStage.setScene(latestScoresScene);
+        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((paneLatestScores.getPrefWidth())/2));//verschiebung auf X-Achse
+        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((paneLatestScores.getPrefHeight())/2));//verschiebung auf Y- Achse
+
+        //readLatestScores();
+
+        latestScoresStage.show();
+    }
+
     public void changeModeScoresButtonClicked(ActionEvent actionEvent) {
-        System.out.println("changeModeScoresButtonClicked");
     }
 
-    // LatestScores
     public void closeScoresButtonClicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) closeScoresButton.getScene().getWindow();
-        stage.close();
     }
-
-    // LatestScores
-    public void readLatestScores() throws IOException {
-        last1ScoreLabel = new Label("999");
-        last2ScoreLabel = new Label("999");
-        last3ScoreLabel = new Label("999");
-        last4ScoreLabel = new Label("999");
-        last5ScoreLabel = new Label("999");
-        // https://www.geeksforgeeks.org/different-ways-reading-text-file-java/#:~:text=Here%20are%20some%20of%20the%20many%20ways%20of,strings%20using%20regular%20expressions.%20...%20More%20items...%20
-        // last1ScoreLabel
-
-        /*
-        Scanner sc = new Scanner(latestScores);
-
-        while (sc.hasNextLine()){
-            System.out.println(sc.nextLine());
-            last1ScoreLabel.setText(sc);
-        }
-         */
-
-        /*
-        try (FileReader txtReader = new FileReader("latestScoresTxt.txt")){
-            try (BufferedReader br = new BufferedReader(txtReader)){
-                for (String line = br.readLine(); line!= null; line= br.readLine()){
-                    System.out.println(line);
-                    last1ScoreLabel.setText(line);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
-
-        BufferedReader br = new BufferedReader(new FileReader(latestScoresFile));
-
-        // Array of Labels
-        Label[] labelArray = {last1ScoreLabel, last2ScoreLabel, last3ScoreLabel, last4ScoreLabel, last5ScoreLabel};
-
-        System.out.println(labelArray[2].getText().toString() + "\n\n");
-
-        for (int j = 0; j < 5; j++) {
-            String line = br.readLine();
-            System.out.println(line);
-            labelArray[j].setText(line);
-            System.out.println(labelArray[j]);
-        }
-
-    }
-
 }

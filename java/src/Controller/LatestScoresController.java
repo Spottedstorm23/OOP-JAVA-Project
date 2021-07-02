@@ -44,7 +44,13 @@ public class LatestScoresController {
     File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
 
     public void displayLatestScores() throws IOException {
-        AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
+        System.out.println("displayLatestScores()");
+        // AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
+        AnchorPane paneLatestScores = fxmlLoader.load();
+        LatestScoresController latestScoresController = fxmlLoader.getController();
+
         System.out.println("latestScoresButton");
         Scene latestScoresScene = new Scene(paneLatestScores);
         Stage latestScoresStage = new Stage();
