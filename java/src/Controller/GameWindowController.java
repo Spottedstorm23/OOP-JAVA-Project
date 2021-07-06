@@ -1,5 +1,6 @@
 package Controller;
 
+import Other.Timer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -23,7 +24,7 @@ public class GameWindowController {
     private AnchorPane gameBoardPane;
 
     public void initialize() throws IOException {
-        // hier Lukas xD
+        Timer.timer();
     }
 
 
