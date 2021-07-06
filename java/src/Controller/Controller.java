@@ -4,6 +4,7 @@ import Music.Music;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,49 +59,6 @@ public class Controller {
     private VBox tutorialVBox;
     @FXML
     private Button exitTutorialButton;
-    /* LatestScores.fxml */
-    /*
-    @FXML
-    private AnchorPane paneLatestScores;
-    @FXML
-    private Label last1ScoreLabel;
-    @FXML
-    private Label last2ScoreLabel;
-    @FXML
-    private Label last3ScoreLabel;
-    @FXML
-    private Label last4ScoreLabel;
-    @FXML
-    private Label last5ScoreLabel;
-    @FXML
-    private Label gameModeScoresLabel;
-    @FXML
-    private Button changeModeScoresButton;
-    @FXML
-    private Button closeScoresButton;
-    */
-    @FXML
-    private AnchorPane paneLatestScores;
-    @FXML
-    private TextField latestScoresTextField1;
-    @FXML
-    private TextField latestScoresTextField2;
-    @FXML
-    private TextField latestScoresTextField3;
-    @FXML
-    private TextField latestScoresTextField4;
-    @FXML
-    private TextField latestScoresTextField5;
-    @FXML
-    private Label gameModeScoresLabel;
-    @FXML
-    private Button changeModeScoresButton;
-    @FXML
-    private Button closeScoresButton;
-    @FXML
-    private GridPane latestScoresGridPane;
-
-    public static LatestScoresController latestScoresController = new LatestScoresController();
 
     public void initialize() throws IOException {
     }
@@ -115,53 +73,17 @@ public class Controller {
 
     // Menu
     public void latestScoresButtonClicked(ActionEvent actionEvent) throws IOException {
-        /*
-        AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
-        System.out.println("latestScoresButton");
-        Scene latestScoresScene = new Scene(paneLatestScores);
-        Stage latestScoresStage = new Stage();
-        latestScoresStage.initStyle(StageStyle.TRANSPARENT);
-        latestScoresStage.setResizable(false);
-        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
-        latestScoresStage.setScene(latestScoresScene);
-        // paneLatestScores.setStyle("-fx-border-color: #bfbfbf;"); // setzt HG grau
-        // https://stackoverflow.com/questions/31560908/i-want-to-make-border-around-three-sides-of-anchorpane-not-four
-        //paneLatestScores.setStyle("-fx-background-color: #2c2f33;"); // setzt HG schwarz, border weg
-        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((paneLatestScores.getPrefWidth()) / 2));//verschiebung auf X-Achse
-        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((paneLatestScores.getPrefHeight()) / 2));//verschiebung auf Y- Achse
-        // readLatestScores();
-        latestScoresStage.show();
-         */
-
-        /*
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
-        menuPane = fxmlLoader.load();
-        LatestScoresController latestScoresController = fxmlLoader.getController();
-         */
-
-        // Controller.latestScoresController.displayLatestScores();
-        // https://stackoverflow.com/questions/63185120/java-how-to-call-method-in-another-class
-
-
         System.out.println("displayLatestScores()");
-        // AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
-        AnchorPane paneLatestScores = fxmlLoader.load();
-        LatestScoresController latestScoresController = fxmlLoader.getController();
-
-        System.out.println("latestScoresButton");
-        Scene latestScoresScene = new Scene(paneLatestScores);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        LatestScoresController lsc = new LatestScoresController();
+        fxmlLoader.setLocation(getClass().getResource("../View/LatestScores.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene latestScoresScene = new Scene(root);
         Stage latestScoresStage = new Stage();
         latestScoresStage.initStyle(StageStyle.TRANSPARENT);
         latestScoresStage.setResizable(false);
         latestScoresStage.initModality(Modality.APPLICATION_MODAL);
         latestScoresStage.setScene(latestScoresScene);
-        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((paneLatestScores.getPrefWidth())/2));//verschiebung auf X-Achse
-        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((paneLatestScores.getPrefHeight())/2));//verschiebung auf Y- Achse
-
-        //readLatestScores();
-
         latestScoresStage.show();
     }
 
@@ -208,7 +130,6 @@ public class Controller {
         System.out.println(music.isPlaying);
     }
 
-
     // Tutorial
     public void exitTutorialButtonClicked(ActionEvent actionEvent) throws IOException {
         Music music = new Music();
@@ -227,34 +148,5 @@ public class Controller {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
         System.exit(0);
-    }
-
-    public void displayLatestScores() throws IOException {
-        System.out.println("displayLatestScores()");
-        // AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
-        AnchorPane paneLatestScores = fxmlLoader.load();
-        Controller latestScoresController = fxmlLoader.getController();
-
-        System.out.println("latestScoresButton");
-        Scene latestScoresScene = new Scene(paneLatestScores);
-        Stage latestScoresStage = new Stage();
-        latestScoresStage.initStyle(StageStyle.TRANSPARENT);
-        latestScoresStage.setResizable(false);
-        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
-        latestScoresStage.setScene(latestScoresScene);
-        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((paneLatestScores.getPrefWidth())/2));//verschiebung auf X-Achse
-        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((paneLatestScores.getPrefHeight())/2));//verschiebung auf Y- Achse
-
-        //readLatestScores();
-
-        latestScoresStage.show();
-    }
-
-    public void changeModeScoresButtonClicked(ActionEvent actionEvent) {
-    }
-
-    public void closeScoresButtonClicked(ActionEvent actionEvent) {
     }
 }

@@ -43,29 +43,9 @@ public class LatestScoresController {
 
     File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
 
-    public void displayLatestScores() throws IOException {
-        System.out.println("displayLatestScores()");
-        // AnchorPane paneLatestScores = FXMLLoader.load(getClass().getResource("../View/LatestScores.fxml"));
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/LatestScores.fxml"));
-        AnchorPane paneLatestScores = fxmlLoader.load();
-        LatestScoresController latestScoresController = fxmlLoader.getController();
-
-        System.out.println("latestScoresButton");
-        Scene latestScoresScene = new Scene(paneLatestScores);
-        Stage latestScoresStage = new Stage();
-        latestScoresStage.initStyle(StageStyle.TRANSPARENT);
-        latestScoresStage.setResizable(false);
-        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
-        latestScoresStage.setScene(latestScoresScene);
-        latestScoresStage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width)/2)-((paneLatestScores.getPrefWidth())/2));//verschiebung auf X-Achse
-        latestScoresStage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((paneLatestScores.getPrefHeight())/2));//verschiebung auf Y- Achse
-
+    public void initialize() throws IOException {
         readLatestScores();
-
-        latestScoresStage.show();
     }
-
 
     // LatestScores
     public void changeModeScoresButtonClicked(ActionEvent actionEvent) {
@@ -81,14 +61,11 @@ public class LatestScoresController {
     // LatestScores
     public void readLatestScores() throws IOException {
         // https://www.geeksforgeeks.org/different-ways-reading-text-file-java/#:~:text=Here%20are%20some%20of%20the%20many%20ways%20of,strings%20using%20regular%20expressions.%20...%20More%20items...%20
-
         BufferedReader br = new BufferedReader(new FileReader(latestScoresFile));
 
         // Array of TFs
         TextField[] textFieldArray = {latestScoresTextField1, latestScoresTextField2,
                 latestScoresTextField3, latestScoresTextField4, latestScoresTextField5};
-
-        System.out.println(textFieldArray[2].getText() +"\n\n");
 
         for (int j = 0; j<5; j++) {
             String line = br.readLine();
@@ -97,5 +74,4 @@ public class LatestScoresController {
             System.out.println(textFieldArray[j]);
         }
     }
-
 }
