@@ -34,4 +34,12 @@ public class GameWindowController {
         labelTimer.setText("00:01");
     }
 
+    private String getLabelTimerText(){
+        return this.labelTimer.getText();
+    }
+
+    private void setLabelTimerText(String labeltext) {
+        labelTimer.setText(labeltext);
+    }
+
 }
