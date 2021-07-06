@@ -65,10 +65,23 @@ public class Controller {
 
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
+        System.out.println("startButtonClicked()");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        //GameWindowController gwc = new GameWindowController();
+        fxmlLoader.setLocation(getClass().getResource("../View/GameWindow.fxml"));
+        Parent rootGame = fxmlLoader.load();
+        Scene latestScoresScene = new Scene(rootGame);
+        Stage latestScoresStage = new Stage();
+        latestScoresStage.setResizable(false);
+        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
+        latestScoresStage.setScene(latestScoresScene);
+        latestScoresStage.show();
+        /*
         AnchorPane gameBoardPane = FXMLLoader.load(getClass().getResource("../View/GameWindow.fxml"));
         System.out.println("StartButton");
         menuPane.getChildren().addAll(gameBoardPane);
         // gameBoardPane wird direkt auf die menuPane draufgeklatscht --> theoretisch befindet es sich noch drunter!
+         */
     }
 
     // Menu
