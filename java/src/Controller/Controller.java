@@ -1,25 +1,20 @@
 package Controller;
 
-import Music.Music;
+import Music.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.*;
-
-import java.awt.Toolkit;
+import java.awt.*;
+import java.io.IOException;
 
 public class Controller {
     /* Menu.fxml */
@@ -45,6 +40,8 @@ public class Controller {
     private VBox tutorialVBox;
     @FXML
     private Button exitTutorialButton;
+
+    private Music music = new Music();
 
     public void initialize() throws IOException {
     }
@@ -90,7 +87,6 @@ public class Controller {
 
     // Menu
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-        Music music = new Music();
         VBox tutorialVBox = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
 
         Scene sceneTutorial = new Scene(tutorialVBox);
@@ -124,7 +120,6 @@ public class Controller {
 
     // Tutorial
     public void exitTutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-        Music music = new Music();
         music.playMusic(false);
 
         System.out.println(music.isPlaying);
