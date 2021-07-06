@@ -22,20 +22,6 @@ import java.io.*;
 import java.awt.Toolkit;
 
 public class Controller {
-    /* GameWindow.fxml */
-    @FXML
-    private ImageView imageMouse1;
-    @FXML
-    private ImageView imageMouse2;
-    @FXML
-    private ImageView imageMouse3;
-    @FXML
-    private Label labelCurrentMode;
-    @FXML
-    private AnchorPane paneBoard;
-    @FXML
-    private AnchorPane gameBoardPane;
-
     /* Menu.fxml */
     @FXML
     private Button latestButton;
