@@ -22,10 +22,16 @@ public class GameWindowController {
     private AnchorPane paneBoard;
     @FXML
     private AnchorPane gameBoardPane;
+    @FXML
+    private Label labelTimer;
 
     public void initialize() throws IOException {
         Timer.timer();
+        changeTimerDisplay();
     }
 
+    private void changeTimerDisplay() {
+        labelTimer.setText("00:01");
+    }
 
 }
