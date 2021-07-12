@@ -1,6 +1,8 @@
 package View;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -41,6 +43,8 @@ public class View {
         //Draws Level -> only Path and Wall
         //by Cora
         Group group = new Group();
+        group.setId("level");
+
         int y = 0;
         for (y = 0; y < 13; y++) {
             int x = 0;
@@ -74,12 +78,24 @@ public class View {
             System.out.println("");
         }
         root.getChildren().add(group);
+        root.getChildren().set(0, group);
     }
 
     public void updateCheese(Pane root, byte[][] map) {
         //Updates Cheespiles on the Map
         //by Cora
         Group groupCheese = new Group();
+        groupCheese.setId("cheese");
+
+        ObservableList<Node> list = root.getChildren();
+
+        if(list.size() > 1) {
+            Object last = list.get(1);
+
+            if (last.toString().equals("Group[id=cheese]")) {
+                list.remove(last);
+            }
+        }
         int y = 0;
         for (y = 0; y < 13; y++) {
             int x = 0;
@@ -107,6 +123,7 @@ public class View {
             System.out.println("");
         }
         root.getChildren().add(groupCheese);
+        root.getChildren().set(1, groupCheese);
     }
 
 
@@ -115,9 +132,19 @@ public class View {
         //by Cora
         int mouseX = getMouseX();
         int mouseY = getMouseY();
+        Group mouse = new Group();
+        mouse.setId("mouse");
+
+        ObservableList<Node> list = root.getChildren();
+        Object last = list.get(list.size()-1);
+        if (last.toString().equals("Group[id=mouse]"))   {
+            list.remove(last);
+        }
+
         Rectangle r_mouse = new Rectangle(mouseX, mouseY, 50, 50);
         Image mousepic = new Image("./View/images/Projekt_-_Maus.png");
         r_mouse.setFill(new ImagePattern(mousepic));
-        root.getChildren().add(r_mouse);
+        mouse.getChildren().add(r_mouse);
+        list.add(mouse);
     }
 }
