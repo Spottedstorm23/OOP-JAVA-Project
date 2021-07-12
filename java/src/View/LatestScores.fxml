@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneLatestScores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="600.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LatestScoresController">
+<AnchorPane fx:id="paneLatestScores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="600.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LatestScoresController">
    <children>
       <GridPane fx:id="latestScoresGridPane" layoutX="63.0" layoutY="97.0" prefHeight="259.0" prefWidth="484.0">
         <columnConstraints>
@@ -25,86 +25,86 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Number of last game" textFill="WHITE">
+            <Label text="Number of last game" textFill="#bfbfbf">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <Label text="Score" textFill="WHITE" GridPane.columnIndex="1">
+            <Label text="Score" textFill="#bfbfbf" GridPane.columnIndex="1">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <Label text="1" textFill="WHITE" GridPane.rowIndex="1">
+            <Label text="1" textFill="#bfbfbf" GridPane.rowIndex="1">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <Label text="2" textFill="WHITE" GridPane.rowIndex="2">
+            <Label text="2" textFill="#bfbfbf" GridPane.rowIndex="2">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <Label text="3" textFill="WHITE" GridPane.rowIndex="3">
+            <Label text="3" textFill="#bfbfbf" GridPane.rowIndex="3">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <Label text="4" textFill="WHITE" GridPane.rowIndex="4">
+            <Label text="4" textFill="#bfbfbf" GridPane.rowIndex="4">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <Label text="5" textFill="WHITE" GridPane.rowIndex="5">
+            <Label text="5" textFill="#bfbfbf" GridPane.rowIndex="5">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="latestScoresTextField1" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 1" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #FFFFFF;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="latestScoresTextField1" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 1" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #bfbfbf;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </TextField>
-            <TextField fx:id="latestScoresTextField2" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 2" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #FFFFFF;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="latestScoresTextField2" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 2" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #bfbfbf;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </TextField>
-            <TextField fx:id="latestScoresTextField3" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 3" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #FFFFFF;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="latestScoresTextField3" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 3" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #bfbfbf;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </TextField>
-            <TextField fx:id="latestScoresTextField4" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 4" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #FFFFFF;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="latestScoresTextField4" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 4" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #bfbfbf;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </TextField>
-            <TextField fx:id="latestScoresTextField5" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 5" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #FFFFFF;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="latestScoresTextField5" alignment="BASELINE_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="192.0" promptText="Score Game 5" style="-fx-background-color: #2c2f33; -fx-text-inner-color: #bfbfbf;" text="999" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Harrington" size="17.0" />
                </font>
             </TextField>
          </children>
       </GridPane>
-      <Label layoutX="153.0" layoutY="45.0" text="Game mode:" textFill="WHITE">
+      <Label layoutX="153.0" layoutY="45.0" text="Game mode:" textFill="#bfbfbf">
          <font>
-            <Font size="24.0" />
+            <Font name="Harrington" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="gameModeScoresLabel" layoutX="321.0" layoutY="45.0" text="Cheesy Chase" textFill="WHITE">
+      <Label fx:id="gameModeScoresLabel" layoutX="321.0" layoutY="45.0" text="Cheesy Chase" textFill="#bfbfbf">
          <font>
-            <Font size="24.0" />
+            <Font name="Harrington" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="changeModeScoresButton" layoutX="126.0" layoutY="376.0" mnemonicParsing="false" onAction="#changeModeScoresButtonClicked" text="Change game mode">
+      <Button fx:id="changeModeScoresButton" layoutX="126.0" layoutY="376.0" mnemonicParsing="false" onAction="#changeModeScoresButtonClicked" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Change game mode" textFill="#bfbfbf">
          <font>
-            <Font size="15.0" />
+            <Font name="Harrington" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="closeScoresButton" layoutX="386.0" layoutY="376.0" mnemonicParsing="false" onAction="#closeScoresButtonClicked" text="Close">
+      <Button fx:id="closeScoresButton" layoutX="386.0" layoutY="376.0" mnemonicParsing="false" onAction="#closeScoresButtonClicked" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Close" textFill="#bfbfbf">
          <font>
-            <Font size="15.0" />
+            <Font name="Harrington" size="15.0" />
          </font>
       </Button>
    </children>
