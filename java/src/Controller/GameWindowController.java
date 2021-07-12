@@ -1,6 +1,7 @@
 package Controller;
 
 import Other.Timer;
+import View.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -25,9 +26,17 @@ public class GameWindowController {
     @FXML
     private Label labelTimer;
 
+    View view = new View();
+    Maps map = new Maps();
+
     public void initialize() throws IOException {
-        Timer.timer();
-        changeTimerDisplay();
+       /* Timer.timer();
+        changeTimerDisplay();*/
+
+        byte [][] levelmap = map.getMap();
+        view.drawLvl(paneBoard, levelmap);
+        view.updateCheese(paneBoard, levelmap);
+        view.drawMouse(paneBoard);
     }
 
     private void changeTimerDisplay() {
