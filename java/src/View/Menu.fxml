@@ -44,11 +44,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="875.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+<VBox prefHeight="875.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
   <children>
     <AnchorPane fx:id="menuPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2c2f33;" VBox.vgrow="ALWAYS">
          <children>
-            <GridPane layoutX="7.0" layoutY="7.0" prefHeight="875.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <GridPane layoutX="-6.0" prefHeight="875.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="552.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="686.0" minWidth="10.0" prefWidth="686.0" />
@@ -150,7 +150,7 @@
                               <Font name="Harrington" size="25.0" />
                            </font>
                         </Button>
-                        <Button fx:id="escapeModeButton" mnemonicParsing="false" onAction="#escapeModeButtonClicked" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Escape the Cats" textFill="#bfbfbf" GridPane.columnIndex="2">
+                        <Button fx:id="escapeModeButton" disable="true" mnemonicParsing="false" onAction="#escapeModeButtonClicked" prefHeight="50.0" prefWidth="327.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Escape the Cats" textFill="#bfbfbf" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="30.0" right="30.0" />
                            </GridPane.margin>
@@ -210,6 +210,11 @@
                   </ImageView>
                </children>
             </GridPane>
+            <Button fx:id="exitButton1" layoutX="971.0" layoutY="830.0" mnemonicParsing="false" onAction="#musicButtonClicked" prefHeight="0.0" prefWidth="118.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Music" textFill="#bfbfbf">
+               <font>
+                  <Font name="Harrington" size="17.0" />
+               </font>
+            </Button>
          </children>
     </AnchorPane>
   </children>

@@ -1,27 +1,12 @@
 package Main;
 
-import Controller.Maps;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 public class Main extends Application {
-
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -29,7 +14,6 @@ public class Main extends Application {
         primaryStage.setTitle("Cheesy Chase");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
-
 
         /*Pane levelPane = new Pane();
         Scene level = new Scene(levelPane, 950, 650);
@@ -69,11 +53,6 @@ public class Main extends Application {
             seconds = 59;
         } while (minutes >= 0);
     }
-
-
-
-
-
 
     public static void main(String[] args) {
         launch(args);

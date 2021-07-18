@@ -41,7 +41,7 @@
                <children>
                   <Label accessibleText="Current Mode:" text="Modus:" textFill="WHITE" />
                   <Label fx:id="labelCurrentMode" accessibleText="Cheesy Chase" text="Cheesy Chase" textFill="WHITE" GridPane.columnIndex="1" />
-                  <Label fx:id="labelTimer" accessibleText="Timer: 00:00" text="00:00" textFill="WHITE" GridPane.columnIndex="3">
+                  <Label fx:id="labelTimer" accessibleText="Timer: 00:00" text="0" textFill="WHITE" GridPane.columnIndex="3">
                      <font>
                         <Font size="33.0" />
                      </font>

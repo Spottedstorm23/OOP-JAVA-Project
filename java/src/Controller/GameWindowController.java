@@ -34,20 +34,15 @@ public class GameWindowController {
     public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
     public void initialize() throws IOException {
-       /* Timer.timer();
-        changeTimerDisplay();*/
-
         byte [][] levelmap = map.getMap();
         view.drawLvl(paneBoard, levelmap);
         view.updateCheese(paneBoard, levelmap);
         view.drawMouse(paneBoard);
-        //setLabelTimerText("00:01");
+
+        setLabelTimerText(""+timer_count);
         timer();
     }
 
-    private void changeTimerDisplay() {
-        labelTimer.setText("00:01");
-    }
     public void timer() {
         TimerTask tt = new TimerTask() {
             @Override
@@ -73,11 +68,6 @@ public class GameWindowController {
     }
 
     public void setLabelTimerText(String labeltext) {
-        try {
-            System.out.println(labelTimer.getClass());
             labelTimer.setText(labeltext);
-        } catch (Exception e){
-
-        }
     }
 }

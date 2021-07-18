@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -43,13 +46,19 @@ public class Controller {
     @FXML
     private Button exitTutorialButton;
 
-    private Music music = new Music();
+    private int status = 1;
 
-    public void initialize() throws IOException {
+    private Music2 music = new Music2();;
+
+    public Controller() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    }
+
+    public void initialize(){
     }
 
 // Game Menu
     public void keyTyped(KeyEvent w) {}
+
     public void keyPressed(KeyEvent w) throws IOException {
         if (w.getKeyCode()==KeyEvent.VK_ESCAPE){
 
@@ -71,6 +80,7 @@ public class Controller {
 
         }
     };
+
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
         System.out.println("startButtonClicked()");
@@ -111,48 +121,18 @@ public class Controller {
     }
 
     // Menu
-    public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-        VBox tutorialVBox = FXMLLoader.load(getClass().getResource("../View/tutorial.fxml"));
-
-        Scene sceneTutorial = new Scene(tutorialVBox);
-
-        Stage tutorial = new Stage();
-        tutorial.setTitle("Tutorial");
-        tutorial.setResizable(false);
-        tutorial.initModality(Modality.APPLICATION_MODAL);
-        tutorial.setScene(sceneTutorial);
-        tutorial.initStyle(StageStyle.TRANSPARENT);
-
-        tutorial.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((tutorialVBox.getPrefWidth()) / 2));//verschiebung auf X-Achse
-        tutorial.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((tutorialVBox.getPrefHeight()) / 2));//verschiebung auf Y- Achse
-
-        tutorial.show();//ZEIGT DAS DING - NICH LÖSCHEN !!!!!!!!!!!!!!!
-/*
-        System.out.println(Toolkit.getDefaultToolkit().getScreenSize().width + " x "
-                + Toolkit.getDefaultToolkit().getScreenSize().height);                  //=> 1920 x 1080
-        System.out.println(tutorialVBox.getWidth()+" x "+(tutorialVBox.getHeight())); //=> 640.0 x 400.0
-        System.out.println(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-((tutorialVBox.getHeight())/2));//=>340
-        System.out.println(((Toolkit.getDefaultToolkit().getScreenSize().height)/2)-200); //=>340
-        System.out.println(tutorialVBox.getHeight()); //=> 400
-
-*/
-
-        music.playMusic(true);
-
-
-        System.out.println(music.isPlaying);
-    }
-
-    // Tutorial
-    public void exitTutorialButtonClicked(ActionEvent actionEvent) throws IOException {
-        music.playMusic(false);
-
-        System.out.println(music.isPlaying);
-        // close  stage
-        Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
-        stage.close();
-
-
+    public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+        System.out.println("tutorial");
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../View/tutorial.fxml"));
+        Parent root = fxmlLoader.load();
+        Scene tutorialScene = new Scene(root);
+        Stage tutorialStage = new Stage();
+        tutorialStage.initStyle(StageStyle.TRANSPARENT);
+        tutorialStage.setResizable(false);
+        tutorialStage.initModality(Modality.APPLICATION_MODAL);
+        tutorialStage.setScene(tutorialScene);
+        tutorialStage.show();
     }
 
     // Menu
@@ -160,5 +140,20 @@ public class Controller {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
         System.exit(0);
+    }
+
+    public void musicButtonClicked(ActionEvent actionEvent) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        switch (status){
+            case 1: {
+                this.music.stop();
+                status = 0;
+                break;
+            }
+            case 0: {
+                this.music.start();
+                status = 1;
+                break;
+            }
+        }
     }
 }
