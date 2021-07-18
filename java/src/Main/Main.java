@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -14,6 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Cheesy Chase");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
 
         /*Pane levelPane = new Pane();
         Scene level = new Scene(levelPane, 950, 650);

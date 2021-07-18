@@ -48,7 +48,8 @@ public class Controller {
 
     private int status = 1;
 
-    private Music2 music = new Music2();;
+    private Music2 music = new Music2();
+    private GameWindowController gwc = new GameWindowController();
 
     public Controller() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
     }
@@ -84,15 +85,18 @@ public class Controller {
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
         System.out.println("startButtonClicked()");
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../View/GameWindow.fxml"));
         Parent rootGame = fxmlLoader.load();
-        Scene latestScoresScene = new Scene(rootGame);
-        Stage latestScoresStage = new Stage();
-        latestScoresStage.setResizable(false);
-        latestScoresStage.initModality(Modality.APPLICATION_MODAL);
-        latestScoresStage.setScene(latestScoresScene);
-        latestScoresStage.show();
+        Scene gameScene = new Scene(rootGame);
+        Stage gameStage = new Stage();
+        gameStage.setResizable(false);
+        gameStage.initModality(Modality.APPLICATION_MODAL);
+        gameStage.initStyle(StageStyle.TRANSPARENT);
+        gameStage.setScene(gameScene);
+        gameStage.show();
+
 
     }
 
