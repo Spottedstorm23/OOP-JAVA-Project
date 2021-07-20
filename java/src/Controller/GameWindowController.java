@@ -1,16 +1,19 @@
 package Controller;
 
+import Movement.KeyHandler;
 import View.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,7 +22,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.TimerTask;
@@ -43,101 +45,17 @@ public class GameWindowController {
     @FXML
     private Button exitButton;
 
-    Scene gwcScene;
 
-
+    KeyHandler keyHandler = new KeyHandler();
     View view = new View();
     Maps map = new Maps();
 
     public static int timer_count = 120;  //Zählt die Ticks für den Timer
     public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
+
+
     public void initialize() throws IOException {
-        /*
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        gwcScene.setFill(Color.TRANSPARENT);
-        stage.setScene(gwcScene);
-
-         */
-
-        /*
-        KeyListener listener = new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println(e);
-                if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
-
-                    System.out.println("GameMenu.fxml");
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
-                    Parent root = null;
-                    try {
-                        root = fxmlLoader.load();
-                    } catch (IOException eo) {
-                        eo.printStackTrace();
-                    }
-                    Scene tutorialScene = new Scene(root);
-                    Stage tutorialStage = new Stage();
-                    tutorialStage.initStyle(StageStyle.TRANSPARENT);
-                    tutorialStage.setResizable(false);
-                    tutorialStage.initModality(Modality.APPLICATION_MODAL);
-                    tutorialStage.setScene(tutorialScene);
-                    tutorialStage.show();
-
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        };
-
-         */
-        /*
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.addKeyListener(listener);
-        stage.
-
-         */
-        // Scene scene = (Scene) exitButton.getScene();
-        // scene.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
-        /*
-        gwcScene.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() {
-            @Override
-            public void handle(javafx.scene.input.KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP: System.out.println("UP");
-                    case DOWN: System.out.println("DOWN");
-                    case LEFT: System.out.println("LEFT");
-                    case RIGHT: System.out.println("RIGHT");
-                    case ESCAPE: {
-                        System.out.println("GameMenu.fxml");
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
-                        Parent root = null;
-                        try {
-                            root = fxmlLoader.load();
-                        } catch (IOException eo) {
-                            eo.printStackTrace();
-                        }
-                        Scene tutorialScene = new Scene(root);
-                        Stage tutorialStage = new Stage();
-                        tutorialStage.initStyle(StageStyle.TRANSPARENT);
-                        tutorialStage.setResizable(false);
-                        tutorialStage.initModality(Modality.APPLICATION_MODAL);
-                        tutorialStage.setScene(tutorialScene);
-                        tutorialStage.show();
-                    }
-                }
-            }
-        });
-         */
 
         byte [][] levelmap = map.getMap();
         view.drawLvl(paneBoard, levelmap);
@@ -145,8 +63,11 @@ public class GameWindowController {
         view.drawMouse(paneBoard);
 
         setLabelTimerText(""+timer_count);
-        timer();
+        //timer();
+
+
     }
+
 
     /*
     private void execute() throws IOException {
@@ -194,8 +115,54 @@ public class GameWindowController {
 
 
     public void quitButtonClicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
+    }
+
+    public void handleOnKeyPressed(KeyEvent keyEvent) {
+
+    }
+
+    public void handleOnKeyReleased(KeyEvent keyEvent) {
+        System.out.println("taste losgelassen:" + keyEvent.getText());
+        //gameMenuStage.hide();
+
+    }
+
+    public void handleOnKeyTyped(KeyEvent keyEvent) {
+        Node node = (Node) keyEvent.getSource();
+        final Stage stage = (Stage) node.getScene().getWindow();
+        Runnable closeGameCallback = new Runnable() {
+            @Override
+            public void run() {
+                //TODO stop Gamelogic/Timer here
+                stage.close();
+            }
+        };
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException eo) {
+            eo.printStackTrace();
+            throw new RuntimeException("Could not load GameMenu", eo);
+        }
+        Scene gameMenuScene = new Scene(root);
+        Stage gameMenuStage = new Stage();
+        gameMenuStage.initStyle(StageStyle.TRANSPARENT);
+        gameMenuStage.setResizable(false);
+        gameMenuStage.initModality(Modality.APPLICATION_MODAL);
+        gameMenuStage.setScene(gameMenuScene);
+        GameMenuController gameMenuController = fxmlLoader.getController();
+        gameMenuController.setReturnMenuCallback(closeGameCallback);
+
+
+
+        gameMenuStage.show();
+
     }
 
     /*

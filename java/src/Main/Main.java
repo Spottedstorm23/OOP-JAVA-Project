@@ -17,19 +17,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
 
-        /*Pane levelPane = new Pane();
-        Scene level = new Scene(levelPane, 950, 650);
-       // primaryStage.setScene(level);
-        Maps map = new Maps();
-        byte [][] levelmap = map.getMap();
-        drawLvl(levelPane, levelmap);
-        updateCheese(levelPane, levelmap);
-        drawMouse(levelPane);*/
-
         primaryStage.show();
-
-       // music music = new music();
-       // music.music("java/src/Music/data/Here_Come_The_Raindrops_-_Reed_Mathis.wav");
 
     }
 
@@ -60,3 +48,5 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+

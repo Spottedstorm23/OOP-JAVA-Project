@@ -96,8 +96,6 @@ public class Controller {
         gameStage.initStyle(StageStyle.TRANSPARENT);
         gameStage.setScene(gameScene);
         gameStage.show();
-
-
     }
 
     // Menu
