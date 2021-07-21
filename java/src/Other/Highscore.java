@@ -5,9 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Highscore {
-    //by Lukas, für alles was mit den Highscores relatet ist
-    File scoreFile = new File("Resources/highscore.txt");
+public class Highscore {    //by Lukas, für alles was mit den Highscores relatet ist
 
     public void createFile() {
         //Kreiert die Highscore.txt und füllt sie mit Nullen auf
@@ -39,15 +37,6 @@ public class Highscore {
 
     public short[] readHighscore() {
         //Liest aktuelle Highscores aus highscore.txt und gibt diese als short[] zurück
-        // File scoreFile = new File("Resources/highscore.txt");
-
-        checkForFile();
-        /*
-        if (scoreFile.exists() == false) {
-            createFile();
-        }
-
-         */
 
         short[] score = new short[5];
         try {
@@ -68,14 +57,11 @@ public class Highscore {
         //Schreibt den gegebenen newScore in den highscore.txt, falls newScore größer als der Alte ist
 
         /* Check ob die Datei exisitiert, wenn nicht erstellen */
-        /*
         File scoreFile = new File("Resources/highscore.txt");
 
         if (scoreFile.exists() == false) {
             createFile();
         }
-         */
-        checkForFile();
 
         /* Auslesen der Alten Werte */
         Highscore newClassObj = new Highscore();
@@ -115,10 +101,5 @@ public class Highscore {
         }
     }
 
-    private void checkForFile(){
-        if (scoreFile.exists() == false) {
-            createFile();
-        }
-    }
 
 }
