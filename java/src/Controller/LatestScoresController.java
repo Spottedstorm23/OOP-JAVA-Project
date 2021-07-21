@@ -1,5 +1,7 @@
 package Controller;
 
+import Other.Highscore;
+import Other.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +43,7 @@ public class LatestScoresController {
     @FXML
     private GridPane latestScoresGridPane;
 
-    File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
+    //File latestScoresFile = new File(getClass().getResource("../Resources/latestScoresTxt.txt").getFile());
 
     public void initialize() throws IOException {
         readLatestScores();
@@ -61,17 +63,25 @@ public class LatestScoresController {
     // LatestScores
     public void readLatestScores() throws IOException {
         // https://www.geeksforgeeks.org/different-ways-reading-text-file-java/#:~:text=Here%20are%20some%20of%20the%20many%20ways%20of,strings%20using%20regular%20expressions.%20...%20More%20items...%20
-        BufferedReader br = new BufferedReader(new FileReader(latestScoresFile));
+        //BufferedReader br = new BufferedReader(new FileReader(latestScoresFile));
 
         // Array of TFs
         TextField[] textFieldArray = {latestScoresTextField1, latestScoresTextField2,
                 latestScoresTextField3, latestScoresTextField4, latestScoresTextField5};
 
+        /*
         for (int j = 0; j<5; j++) {
             String line = br.readLine();
             System.out.println(line);
             textFieldArray[j].setText(line);
             System.out.println(textFieldArray[j]);
+        }
+        */
+        //mitHilfe von Lukas :D
+        Highscore highscoreObject = new Highscore();
+        short scores[] = highscoreObject.readHighscore();
+        for (short j = 0; j < scores.length; j++) {
+            textFieldArray[j].setText(String.valueOf(scores[j]));
         }
     }
 }

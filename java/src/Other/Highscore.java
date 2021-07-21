@@ -8,15 +8,15 @@ import java.util.Scanner;
 public class Highscore {
     //by Lukas, für alles was mit den Highscores relatet ist
 
-    public static void createFile() {
+    public void createFile() {
         //Kreiert die Highscore.txt und füllt sie mit Nullen auf
 
         try {
-            File bigFile = new File("./Other/highscore.txt");
+            File bigFile = new File(getClass().getResource("../Resources/highscore.txt").getFile());;
 
             if (bigFile.createNewFile()) {
                 System.out.println("File created: " + bigFile.getName());
-                File scoreFile = new File("./Other/highscore.txt");
+                File scoreFile = new File(getClass().getResource("../Resources/highscore.txt").getFile());
                 try {
                     FileWriter scoreWriter = new FileWriter(scoreFile);
 
@@ -41,7 +41,7 @@ public class Highscore {
 
         short[] score = new short[5];
         try {
-            File scoreFile = new File("./Other/highscore.txt");
+            File scoreFile = new File(getClass().getResource("../Resources/highscore.txt").getFile());
             Scanner scoreScanner = new Scanner(scoreFile);
             for (int i = 0; i < 5; i++)
             {
@@ -54,11 +54,11 @@ public class Highscore {
         return score;
     }
 
-    static void writeHighscore(int newScore) {
+    public void writeHighscore(int newScore) {
         //Schreibt den gegebenen newScore in den highscore.txt, falls newScore größer als der Alte ist
 
         /* Check ob die Datei exisitiert, wenn nicht erstellen */
-        File scoreFile = new File("./Other/highscore.txt");
+        File scoreFile = new File("Resources/highscore.txt");
 
         if (scoreFile.exists() == false) {
             createFile();
