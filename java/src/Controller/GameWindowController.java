@@ -1,6 +1,8 @@
 package Controller;
 
 import Movement.KeyHandler;
+import Other.Highscore;
+import Other.Timer;
 import View.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -56,9 +58,11 @@ public class GameWindowController {
         view.drawLvl(paneBoard, levelmap);
         view.updateCheese(paneBoard, levelmap);
         view.drawMouse(paneBoard);
-
         setLabelTimerText("" + timer_count);
         //timer();
+        Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
+        setLabelTimerText(timerObject.SecToDisplay(timer_count));
+        timer();
 
 
     }
@@ -81,6 +85,11 @@ public class GameWindowController {
      */
 
     public void timer() {
+    //by Lukas, Label by Selina
+    //Der globale Timer, welcher beim GameStart gestartet wird
+
+        Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
+
         TimerTask tt = new TimerTask() {
             @Override
             public void run() {
@@ -94,6 +103,8 @@ public class GameWindowController {
                     System.out.println(timer_count);
                     setLabelTimerText("" + timer_count);
                     System.out.println(labelTimer);
+                    String display = timerObject.SecToDisplay(timer_count);
+                    setLabelTimerText(display);
                 });
             }
 
