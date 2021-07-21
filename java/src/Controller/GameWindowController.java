@@ -6,6 +6,7 @@ import Other.Timer;
 import View.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -66,7 +67,6 @@ public class GameWindowController {
 
 
     }
-
 
     /*
     private void execute() throws IOException {

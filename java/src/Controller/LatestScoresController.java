@@ -77,7 +77,9 @@ public class LatestScoresController {
             System.out.println(textFieldArray[j]);
         }
         */
-        //mitHilfe von Lukas :D
+
+
+        //mit Hilfe von Lukas :D
         Highscore highscoreObject = new Highscore();
         short scores[] = highscoreObject.readHighscore();
         for (short j = 0; j < scores.length; j++) {
