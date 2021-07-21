@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -37,6 +39,8 @@ public class Controller {
     private Button exitButton;
     @FXML
     private AnchorPane menuPane;
+    @FXML
+    private ImageView musicImage;
 
     /* tutorial.fxml */
     @FXML
@@ -149,11 +153,13 @@ public class Controller {
             case 1: {
                 this.music.stop();
                 status = 0;
+                musicImage.setImage(new Image("View/images/Projekt_-_MusicOff.png"));
                 break;
             }
             case 0: {
                 this.music.start();
                 status = 1;
+                musicImage.setImage(new Image("View/images/Projekt_-_MusicOn.png"));
                 break;
             }
         }
