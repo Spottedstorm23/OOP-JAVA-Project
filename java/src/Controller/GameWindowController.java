@@ -41,8 +41,6 @@ public class GameWindowController {
     @FXML
     private Button exitButton;
 
-
-    KeyHandler keyHandler = new KeyHandler();
     View view = new View();
     Maps map = new Maps();
 
@@ -123,11 +121,10 @@ public class GameWindowController {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             setEscPressed(true);
         }
+
     }
 
     public void handleOnKeyReleased(KeyEvent keyEvent) {
-        System.out.println("taste losgelassen:" + keyEvent.getText());
-        //gameMenuStage.hide();
 
     }
 

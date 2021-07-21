@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class GameMenuController {
+    //eigener Controller weil bei Zuordnung zum GameWindowController die Initialize() eine Nullpointer zurückgibt
+    //beim Öffnen vom GameMenu wäre eine neue Instanz des GameWindowControllers erstellt worden (-> Aufruf Initialize())
+    //Grund: GameMenu kann nicht auf Elemente von GameWindow zugreifen
 
     @FXML
     private Button resumeGameButton;
