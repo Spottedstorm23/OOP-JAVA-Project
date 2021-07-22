@@ -5,7 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Highscore {    //by Lukas, für alles was mit den Highscores relatet ist
+public class Highscore {
+    //by Lukas, für alles was mit den Highscores relatet ist
 
     public void createFile() {
         //Kreiert die Highscore.txt und füllt sie mit Nullen auf
@@ -57,7 +58,7 @@ public class Highscore {    //by Lukas, für alles was mit den Highscores relate
         //Schreibt den gegebenen newScore in den highscore.txt, falls newScore größer als der Alte ist
 
         /* Check ob die Datei exisitiert, wenn nicht erstellen */
-        File scoreFile = new File("Resources/highscore.txt");
+        File scoreFile = new File(getClass().getResource("../Resources/highscore.txt").getFile());
 
         // checkForFile(scoreFile);
         if (scoreFile.exists() == false) {
@@ -79,6 +80,7 @@ public class Highscore {    //by Lukas, für alles was mit den Highscores relate
 
         /* Wenn es sich tatsächlich um einen Top5 Score handelt, dann... */
         if ( line > -1 ) {
+
             //Neuen Array mit neuen Scores erstellen
             for (byte i = (byte)(Score.length - 1); i > line; i--) {
                 Score[i] = Score[i - 1];
@@ -92,7 +94,7 @@ public class Highscore {    //by Lukas, für alles was mit den Highscores relate
                 for (byte i = 0; i < (byte)(Score.length); i++) {
                     scoreWriter.write(String.valueOf(Score[i]));
                     scoreWriter.write("\n");
-                    //System.out.println(Score[i]);
+                    System.out.println(Score[i]);
                 }
                 scoreWriter.close();
             } catch (IOException e) {

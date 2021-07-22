@@ -1,5 +1,6 @@
 package Controller;
 
+import Other.Highscore;
 import Other.Timer;
 import View.View;
 import javafx.application.Platform;
@@ -52,13 +53,15 @@ public class GameWindowController {
     public static int timer_count;  //Zählt die Ticks für den Timer
     // public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
+    int score = 0;
+
     // neu
     private GameMenuController gameMenuController = new GameMenuController();
 
     public void initialize() throws IOException {
         newLevel();
         setLabelTimerText("" + timer_count);
-        timer_count = 300;
+        timer_count = 10;
         //timer();
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count));
@@ -78,7 +81,13 @@ public class GameWindowController {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    if (timer_count <= 0 || getEscPressedStatus() == true) {
+                    if (timer_count <= 0) {
+                        Highscore highscoreObject = new Highscore();
+                        highscoreObject.writeHighscore(score);
+                        t.cancel();
+                        t.purge();
+                        return;
+                    } else if (getEscPressedStatus() == true) {
                         t.cancel();
                         t.purge();
                         return;
@@ -86,7 +95,6 @@ public class GameWindowController {
                     timer_count--;
                     String display = timerObject.SecToDisplay(timer_count);
                     setLabelTimerText(display);
-                    System.out.println(labelTimer.getText() + "\n");
                 });
             }
         };
@@ -149,27 +157,27 @@ public class GameWindowController {
     public void handleOnKeyTyped(KeyEvent keyEvent) {
         switch (keyPressed) {
             case "left": {
-                System.out.println("left");
+                //System.out.println("left");
                 moveLeft();
                 break;
             }
             case "right": {
-                System.out.println("right");
+                //System.out.println("right");
                 moveRight();
                 break;
             }
             case "down": {
-                System.out.println("down");
+                //System.out.println("down");
                 moveDown();
                 break;
             }
             case "up": {
-                System.out.println("up");
+                //System.out.println("up");
                 moveUp();
                 break;
             }
             case "zero": {
-                System.out.println("zero");
+                //System.out.println("zero");
                 break;
             }
         }
@@ -238,14 +246,14 @@ public class GameWindowController {
 
             switch (levelmap[y][x]) {
                 case 2: {
-                    //add score +50
+                    score+=50;
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
                     break;
                 }
                 case 3: {
-                    //add score +100
+                    score+=100;
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
