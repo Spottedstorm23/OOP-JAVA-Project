@@ -68,7 +68,6 @@ public class LatestScoresController {
         // Array of TFs
         TextField[] textFieldArray = {latestScoresTextField1, latestScoresTextField2,
                 latestScoresTextField3, latestScoresTextField4, latestScoresTextField5};
-
         /*
         for (int j = 0; j<5; j++) {
             String line = br.readLine();
@@ -77,8 +76,6 @@ public class LatestScoresController {
             System.out.println(textFieldArray[j]);
         }
         */
-
-
         //mit Hilfe von Lukas :D
         Highscore highscoreObject = new Highscore();
         short scores[] = highscoreObject.readHighscore();

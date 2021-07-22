@@ -42,6 +42,10 @@ public class GameWindowController {
     private Label labelTimer;
     @FXML
     private Button exitButton;
+    @FXML
+    private Label labelHighscore;
+    @FXML
+    private Label labelScore;
 
     View view = new View();
     byte[][] levelmap;
@@ -61,11 +65,13 @@ public class GameWindowController {
     public void initialize() throws IOException {
         newLevel();
         setLabelTimerText("" + timer_count);
-        timer_count = 300;
+        timer_count = 10;
         //timer();
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count));
         timer();
+
+        setLabelHighscore();
     }
 
     public void timer() {
@@ -273,6 +279,7 @@ public class GameWindowController {
                     break;
                 }
             }
+            labelScore.setText(String.valueOf(score));
         }
     }
 
@@ -389,4 +396,9 @@ public class GameWindowController {
 
     }
 
+    public void setLabelHighscore() {
+        Highscore highscoreObject = new Highscore();
+        short scores[] = highscoreObject.readHighscore();
+        labelHighscore.setText(String.valueOf(scores[0]));
+    }
 }
