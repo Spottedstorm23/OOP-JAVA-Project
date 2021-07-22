@@ -48,6 +48,7 @@ public class GameWindowController {
     Maps map = new Maps();
 
     boolean escPressed = false;
+    String keyPressed;
 
     public static int timer_count = 120;  //Zählt die Ticks für den Timer
     public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
@@ -100,9 +101,8 @@ public class GameWindowController {
                         return;
                     }
                     timer_count--;
-                    System.out.println(timer_count);
+                    // System.out.println(timer_count);
                     setLabelTimerText("" + timer_count);
-                    System.out.println(labelTimer);
                     String display = timerObject.SecToDisplay(timer_count);
                     setLabelTimerText(display);
                 });
@@ -132,6 +132,32 @@ public class GameWindowController {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             setEscPressed(true);
         }
+        switch (keyEvent.getCode()){
+            case A:
+            case LEFT: {
+                keyPressed = "left";
+                break;
+            }
+            case S:
+            case DOWN: {
+                keyPressed = "down";
+                break;
+            }
+            case D:
+            case RIGHT: {
+                keyPressed = "right";
+                break;
+            }
+            case W:
+            case UP: {
+                keyPressed = "up";
+                break;
+            }
+            default: {
+                keyPressed = "zero";
+                break;
+            }
+        }
 
     }
 
@@ -140,41 +166,70 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        if (escPressed) {
-            setEscPressed(false);
-            Node node = (Node) keyEvent.getSource();
-            final Stage stage = (Stage) node.getScene().getWindow();
-            Runnable closeGameCallback = new Runnable() {
-                @Override
-                public void run() {
-                    //TODO stop Gamelogic/Timer here
-                    stage.close();
-                }
-            };
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
-            Parent root;
-            try {
-                root = fxmlLoader.load();
-            } catch (IOException eo) {
-                eo.printStackTrace();
-                throw new RuntimeException("Could not load GameMenu", eo);
+        System.out.println(keyEvent);
+        switch (keyPressed){
+            case "left": {
+                System.out.println("left");
+                break;
             }
-            Scene gameMenuScene = new Scene(root);
-            Stage gameMenuStage = new Stage();
-            gameMenuStage.initStyle(StageStyle.TRANSPARENT);
-            gameMenuStage.setResizable(false);
-            gameMenuStage.initModality(Modality.APPLICATION_MODAL);
-            gameMenuStage.setScene(gameMenuScene);
-            GameMenuController gameMenuController = fxmlLoader.getController();
-            gameMenuController.setReturnMenuCallback(closeGameCallback);
-            gameMenuStage.show();
+            case "right": {
+                System.out.println("right");
+                break;
+            }
+            case "down": {
+                System.out.println("down");
+                break;
+            }
+            case "up": {
+                System.out.println("up");
+                break;
+            }
+            case "zero": {
+                System.out.println("zero");
+                break;
+            }
+        }
 
+        if (escPressed) {
+            openGameMenu(keyEvent);
         }
     }
 
     public boolean setEscPressed(boolean status) {
         this.escPressed = status;
         return escPressed;
+    }
+
+    private void openGameMenu(KeyEvent keyEvent) {
+
+        setEscPressed(false);
+        Node node = (Node) keyEvent.getSource();
+        final Stage stage = (Stage) node.getScene().getWindow();
+        Runnable closeGameCallback = new Runnable() {
+            @Override
+            public void run() {
+                //TODO stop Gamelogic/Timer here
+                stage.close();
+            }
+        };
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException eo) {
+            eo.printStackTrace();
+            throw new RuntimeException("Could not load GameMenu", eo);
+        }
+        Scene gameMenuScene = new Scene(root);
+        Stage gameMenuStage = new Stage();
+        gameMenuStage.initStyle(StageStyle.TRANSPARENT);
+        gameMenuStage.setResizable(false);
+        gameMenuStage.initModality(Modality.APPLICATION_MODAL);
+        gameMenuStage.setScene(gameMenuScene);
+        GameMenuController gameMenuController = fxmlLoader.getController();
+        gameMenuController.setReturnMenuCallback(closeGameCallback);
+        gameMenuStage.show();
+
     }
 }

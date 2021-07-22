@@ -59,6 +59,7 @@ public class Highscore {    //by Lukas, für alles was mit den Highscores relate
         /* Check ob die Datei exisitiert, wenn nicht erstellen */
         File scoreFile = new File("Resources/highscore.txt");
 
+        // checkForFile(scoreFile);
         if (scoreFile.exists() == false) {
             createFile();
         }
@@ -101,5 +102,9 @@ public class Highscore {    //by Lukas, für alles was mit den Highscores relate
         }
     }
 
-
+    private void checkForFile(File file){
+        if (file.exists() == false) {
+            createFile();
+        }
+    }
 }

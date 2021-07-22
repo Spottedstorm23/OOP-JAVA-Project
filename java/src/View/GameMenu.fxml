@@ -17,9 +17,6 @@
                <font>
                   <Font name="Harrington" size="34.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="CROSSHAIR" />
-               </cursor>
             </Label>
             <Button fx:id="resumeGameButton" cancelButton="true" layoutX="175.0" layoutY="136.0" mnemonicParsing="false" onAction="#resumeGameButtonClicked" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Resume" textFill="#bfbfbf">
                <font>
