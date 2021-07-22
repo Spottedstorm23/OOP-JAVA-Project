@@ -1,12 +1,9 @@
 package Controller;
 
-import Movement.KeyHandler;
-import Other.Highscore;
 import Other.Timer;
 import View.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -50,28 +47,31 @@ public class GameWindowController {
     boolean escPressed = false;
     String keyPressed;
 
-    public static int timer_count = 120;  //Zählt die Ticks für den Timer
-    public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
+    public static int timer_count;  //Zählt die Ticks für den Timer
+    // public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
+    // neu
+    private GameMenuController gameMenuController = new GameMenuController();
 
     public void initialize() throws IOException {
-
+        timer_count = 300;
         byte[][] levelmap = map.getMap();
         view.drawLvl(paneBoard, levelmap);
         view.updateCheese(paneBoard, levelmap);
         view.drawMouse(paneBoard);
-        setLabelTimerText("" + timer_count);
         //timer();
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count));
         timer();
-
-
     }
 
     public void timer() {
     //by Lukas, Label by Selina
     //Der globale Timer, welcher beim GameStart gestartet wird
+
+        // neu , test
+        java.util.Timer t = new java.util.Timer();
+
 
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
 
@@ -79,20 +79,17 @@ public class GameWindowController {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    if (timer_count <= 0) {
+                    if (timer_count <= 0 || getEscPressedStatus()==true) {
                         t.cancel();
                         t.purge();
                         return;
                     }
                     timer_count--;
-                    // System.out.println(timer_count);
-                    setLabelTimerText("" + timer_count);
                     String display = timerObject.SecToDisplay(timer_count);
                     setLabelTimerText(display);
+                    System.out.println(labelTimer.getText()+"\n");
                 });
             }
-
-            ;
         };
         t.schedule(tt, 1000, 1000); //Der eigentliche Timer
     }
@@ -104,7 +101,6 @@ public class GameWindowController {
     public void setLabelTimerText(String labeltext) {
         labelTimer.setText(labeltext);
     }
-
 
     public void quitButtonClicked(ActionEvent actionEvent) {
         Node node = (Node) actionEvent.getSource();
@@ -145,7 +141,6 @@ public class GameWindowController {
         if(keyEvent.getCode().isArrowKey()){
             handleOnKeyTyped(keyEvent);
         }
-
     }
 
     public void handleOnKeyReleased(KeyEvent keyEvent) {
@@ -153,7 +148,6 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        //System.out.println(keyEvent);
         switch (keyPressed){
             case "left": {
                 System.out.println("left");
@@ -186,6 +180,9 @@ public class GameWindowController {
         this.escPressed = status;
     }
 
+    public boolean getEscPressedStatus(){
+        return escPressed;
+    }
 
     public void setKeyPressed(String value){
         this.keyPressed = value;
@@ -196,19 +193,27 @@ public class GameWindowController {
 
     }
 
-
     private void openGameMenu(KeyEvent keyEvent) {
-
-        setEscPressed(false);
+        //setEscPressed(false);
         Node node = (Node) keyEvent.getSource();
         final Stage stage = (Stage) node.getScene().getWindow();
+
         Runnable closeGameCallback = new Runnable() {
             @Override
             public void run() {
-                //TODO stop Gamelogic/Timer here
                 stage.close();
             }
         };
+
+        Runnable timerCallback = new Runnable() {
+            @Override
+            public void run() {
+                setEscPressed(false);
+                // java.util.Timer t = new java.util.Timer();
+                timer();
+            }
+        };
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
         Parent root;
@@ -226,7 +231,8 @@ public class GameWindowController {
         gameMenuStage.setScene(gameMenuScene);
         GameMenuController gameMenuController = fxmlLoader.getController();
         gameMenuController.setReturnMenuCallback(closeGameCallback);
+        gameMenuController.setTimerCallback(timerCallback);
         gameMenuStage.show();
-
     }
+
 }

@@ -21,8 +21,11 @@ public class GameMenuController {
     private Button exitGameMenuButton;
 
     private Runnable returnMenuCallback;
+    private boolean exitPressed;
+    private Runnable timerCallback;
 
     public void resumeGameButtonClicked(ActionEvent actionEvent) {
+        timerCallback.run();
         closeMe(actionEvent);
     }
 
@@ -46,5 +49,15 @@ public class GameMenuController {
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
+    }
+
+    public void setExitPressed(boolean exitPressed) {
+        this.exitPressed = exitPressed;
+    }
+    public boolean getExitPressed(){
+        return exitPressed;
+    }
+    public void setTimerCallback(Runnable timerCallback){
+        this.timerCallback = timerCallback;
     }
 }
