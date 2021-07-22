@@ -48,6 +48,7 @@ public class GameWindowController {
     byte[][] levelmap = map.getMap();
 
     boolean escPressed = false;
+    boolean isWall = false;
     String keyPressed;
 
     public static int timer_count;  //Zählt die Ticks für den Timer
@@ -61,7 +62,7 @@ public class GameWindowController {
     public void initialize() throws IOException {
         newLevel();
         setLabelTimerText("" + timer_count);
-        timer_count = 10;
+        timer_count = 300;
         //timer();
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count));
@@ -181,6 +182,7 @@ public class GameWindowController {
                 break;
             }
         }
+        this.isWall = false;
         if (escPressed) {
             openGameMenu(keyEvent);
         }
@@ -200,7 +202,8 @@ public class GameWindowController {
 
 
     public void moveRight() {
-        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[view.getMouseY() / 50][(view.getMouseX() + 50) / 50] != 0)) {
+        checkRightWall();
+        if (!isWall) {
             view.setMouseX(view.getMouseX() + 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -208,7 +211,8 @@ public class GameWindowController {
     }
 
     public void moveLeft() {
-        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[view.getMouseY() / 50][(view.getMouseX() - 25) / 50] != 0)) {
+        checkleftWall();
+        if (!isWall) {
             view.setMouseX(view.getMouseX() - 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -217,7 +221,8 @@ public class GameWindowController {
     }
 
     public void moveUp() {
-        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[(view.getMouseY() - 25) / 50][view.getMouseX() / 50] != 0)) {
+        checkWallAbove();
+        if (!isWall) {
             view.setMouseY(view.getMouseY() - 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -226,7 +231,8 @@ public class GameWindowController {
     }
 
     public void moveDown() {
-        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[(view.getMouseY() + 50) / 50][view.getMouseX() / 50] != 0)) {
+        checkWallBelow();
+        if (!isWall) {
             view.setMouseY(view.getMouseY() + 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -246,14 +252,14 @@ public class GameWindowController {
 
             switch (levelmap[y][x]) {
                 case 2: {
-                    score+=50;
+                    score += 50;
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
                     break;
                 }
                 case 3: {
-                    score+=100;
+                    score += 100;
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
@@ -262,6 +268,75 @@ public class GameWindowController {
             }
         }
     }
+
+    private void checkleftWall() {
+        int y = view.getMouseY();
+        int x = view.getMouseX();
+
+        if (view.getMouseY() % 50 != 0) {
+            if ((levelmap[(y - 25) / 50][(x - 25) / 50] == 0) ||
+                    (levelmap[(y + 50) / 50][(x - 25) / 50] == 0)) {
+                this.isWall = true;
+                return;
+            }
+        }
+
+        if (levelmap[y / 50][(x - 25) / 50] == 0) {
+            this.isWall = true;
+            return;
+        }
+
+    }
+
+    private void checkRightWall() {
+        int y = view.getMouseY();
+        int x = view.getMouseX();
+
+        if (view.getMouseY() % 50 != 0) {
+            if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
+                    (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
+                this.isWall = true;
+            }
+        }
+        if ((levelmap[y / 50][(x + 50) / 50] == 0)) {
+            this.isWall = true;
+            return;
+        }
+
+    }
+
+    private void checkWallAbove() {
+        int y = view.getMouseY();
+        int x = view.getMouseX();
+
+        if (view.getMouseX() % 50 != 0) {
+            if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
+                    (levelmap[(y - 25) / 50][(x - 25) / 50] == 0)) {
+                this.isWall = true;
+                return;
+            }
+        }
+        if (levelmap[(y - 25) / 50][x / 50] == 0) {
+            this.isWall = true;
+        }
+
+    }
+
+    private void checkWallBelow() {
+        int y = view.getMouseY();
+        int x = view.getMouseX();
+        if (view.getMouseX() % 50 != 0) {
+            if ((levelmap[(y + 50) / 50][(x - 25) / 50] == 0) ||
+                    (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
+                this.isWall = true;
+                return;
+            }
+        }
+        if (levelmap[(y + 50) / 50][x / 50] == 0) {
+            this.isWall = true;
+        }
+    }
+
 
     private void openGameMenu(KeyEvent keyEvent) {
         //setEscPressed(false);
