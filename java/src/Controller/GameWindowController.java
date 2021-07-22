@@ -43,6 +43,7 @@ public class GameWindowController {
 
     View view = new View();
     Maps map = new Maps();
+    byte[][] levelmap = map.getMap();
 
     boolean escPressed = false;
     String keyPressed;
@@ -54,11 +55,9 @@ public class GameWindowController {
     private GameMenuController gameMenuController = new GameMenuController();
 
     public void initialize() throws IOException {
+        newLevel();
+        setLabelTimerText("" + timer_count);
         timer_count = 300;
-        byte[][] levelmap = map.getMap();
-        view.drawLvl(paneBoard, levelmap);
-        view.updateCheese(paneBoard, levelmap);
-        view.drawMouse(paneBoard);
         //timer();
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count));
@@ -74,7 +73,6 @@ public class GameWindowController {
 
 
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
-
         TimerTask tt = new TimerTask() {
             @Override
             public void run() {
@@ -108,11 +106,11 @@ public class GameWindowController {
         stage.close();
     }
 
-    public void handleOnKeyPressed(KeyEvent keyEvent) {
+    public void handleOnKeyPressed(KeyEvent keyEvent) throws InterruptedException {
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             setEscPressed(true);
         }
-        switch (keyEvent.getCode()){
+        switch (keyEvent.getCode()) {
             case A:
             case LEFT: {
                 setKeyPressed("left");
@@ -138,7 +136,7 @@ public class GameWindowController {
                 break;
             }
         }
-        if(keyEvent.getCode().isArrowKey()){
+        if (keyEvent.getCode().isArrowKey()) {
             handleOnKeyTyped(keyEvent);
         }
     }
@@ -151,18 +149,22 @@ public class GameWindowController {
         switch (keyPressed){
             case "left": {
                 System.out.println("left");
+                moveLeft();
                 break;
             }
             case "right": {
                 System.out.println("right");
+                moveRight();
                 break;
             }
             case "down": {
                 System.out.println("down");
+                moveDown();
                 break;
             }
             case "up": {
                 System.out.println("up");
+                moveUp();
                 break;
             }
             case "zero": {
@@ -170,7 +172,6 @@ public class GameWindowController {
                 break;
             }
         }
-
         if (escPressed) {
             openGameMenu(keyEvent);
         }
@@ -184,13 +185,65 @@ public class GameWindowController {
         return escPressed;
     }
 
-    public void setKeyPressed(String value){
+    public void setKeyPressed(String value) {
         this.keyPressed = value;
     }
 
 
-    public void collectCheese(){
+    public void moveRight() {
+        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+            view.setMouseX(view.getMouseX() + 25);
+            view.drawMouse(paneBoard);
+        }
+    }
 
+    public void moveLeft() {
+        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+            view.setMouseX(view.getMouseX() - 25);
+            view.drawMouse(paneBoard);
+        }
+    }
+
+    public void moveUp() {
+        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+            view.setMouseY(view.getMouseY() - 25);
+            view.drawMouse(paneBoard);
+        }
+    }
+
+    public void moveDown() {
+        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+            view.setMouseY(view.getMouseY() + 25);
+            view.drawMouse(paneBoard);
+        }
+    }
+
+    public void newLevel() {
+        view.drawLvl(paneBoard, levelmap);
+        view.updateCheese(paneBoard, levelmap);
+        view.drawMouse(paneBoard);
+    }
+
+    public void collectCheese() {
+        int x = view.getMouseX() / 50;
+        int y = view.getMouseY() / 50;
+
+        switch (levelmap[y][x]) {
+            case 2: {
+                //add score +50
+                this.levelmap[y][x] = 1;
+                view.reduceCheeseCount();
+                view.updateCheese(paneBoard, levelmap);
+                break;
+            }
+            case 3: {
+                //add score +100
+                this.levelmap[y][x] = 1;
+                view.reduceCheeseCount();
+                view.updateCheese(paneBoard, levelmap);
+                break;
+            }
+        }
     }
 
     private void openGameMenu(KeyEvent keyEvent) {
@@ -233,6 +286,7 @@ public class GameWindowController {
         gameMenuController.setReturnMenuCallback(closeGameCallback);
         gameMenuController.setTimerCallback(timerCallback);
         gameMenuStage.show();
+
     }
 
 }

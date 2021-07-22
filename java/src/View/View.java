@@ -14,10 +14,14 @@ public class View {
     //Important
     int mouseX;
     int mouseY;
-    int cheeseCount = 0;
+    int cheeseCount;
 
-    public void setCheeseCount(){
+    public void addCheeseCount(){
         cheeseCount = cheeseCount + 1;
+    }
+
+    public void reduceCheeseCount(){
+        cheeseCount = cheeseCount - 1;
     }
 
     public int getCheeseCount(){
@@ -50,6 +54,7 @@ public class View {
         //by Cora
         Group group = new Group();
         group.setId("level");
+        this.cheeseCount = 0;
 
         int y = 0;
         for (y = 0; y < 13; y++) {
@@ -74,7 +79,7 @@ public class View {
                     }
                     case 2:
                     case 3: {
-                        setCheeseCount();
+                        addCheeseCount();
                     }
                     default: {
                         // Case for Pathcolor

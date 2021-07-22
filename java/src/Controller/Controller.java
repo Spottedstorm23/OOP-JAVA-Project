@@ -61,31 +61,6 @@ public class Controller {
     public void initialize(){
     }
 
-// Game Menu
-    public void keyTyped(KeyEvent w) {}
-
-    public void keyPressed(KeyEvent w) throws IOException {
-        if (w.getKeyCode()==KeyEvent.VK_ESCAPE){
-
-            VBox tutorialVBox = FXMLLoader.load(getClass().getResource("../View/GameMenu.fxml"));
-
-            Scene sceneTutorial = new Scene(tutorialVBox);
-
-            Stage tutorial = new Stage();
-            tutorial.setTitle("Tutorial");
-            tutorial.setResizable(false);
-            tutorial.initModality(Modality.APPLICATION_MODAL);
-            tutorial.setScene(sceneTutorial);
-            tutorial.initStyle(StageStyle.TRANSPARENT);
-
-            tutorial.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((tutorialVBox.getPrefWidth()) / 2));//verschiebung auf X-Achse
-            tutorial.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((tutorialVBox.getPrefHeight()) / 2));//verschiebung auf Y- Achse
-
-            tutorial.show();
-
-        }
-    };
-
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
         System.out.println("startButtonClicked()");

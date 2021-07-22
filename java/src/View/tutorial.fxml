@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +18,7 @@
             </Text>
             <Text fill="#bfbfbf" layoutX="227.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Each Pile of Cheese will add 100 Points to your score, smaller ones give you 50 points.Are you able to collect everything and beat the highscore?" textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
                <font>
-                  <Font name="Harrington" size="20.0" />
+                  <Font name="Harri" size="20.0" />
                </font>
             </Text>
             <ImageView fitHeight="140.0" fitWidth="138.0" layoutX="35.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
