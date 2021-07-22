@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -282,6 +283,7 @@ public class GameWindowController {
         gameMenuStage.setResizable(false);
         gameMenuStage.initModality(Modality.APPLICATION_MODAL);
         gameMenuStage.setScene(gameMenuScene);
+        gameMenuStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
         GameMenuController gameMenuController = fxmlLoader.getController();
         gameMenuController.setReturnMenuCallback(closeGameCallback);
         gameMenuController.setTimerCallback(timerCallback);
