@@ -15,6 +15,7 @@ public class View {
     int mouseX;
     int mouseY;
     int cheeseCount;
+    boolean isMouseLeft = true;
 
     public void addCheeseCount() {
         cheeseCount = cheeseCount + 1;
@@ -38,6 +39,9 @@ public class View {
         return mouseX;
     }
 
+    public void setMouseLeft(boolean state) {
+        this.isMouseLeft = state;
+    }
 
     public void setMouseY(int y) {
         //sets Mouse Coordinate X
@@ -163,7 +167,13 @@ public class View {
         }
 
         Rectangle r_mouse = new Rectangle(mouseX, mouseY, 50, 50);
-        Image mousepic = new Image("./View/images/Projekt_-_Maus.png");
+        Image mousepic;
+        if (isMouseLeft) {
+            mousepic = new Image("./View/images/Projekt_-_Maus.png");
+
+        } else {
+            mousepic = new Image("./View/images/Projekt_-_MausR.png");
+        }
         r_mouse.setFill(new ImagePattern(mousepic));
         mouse.getChildren().add(r_mouse);
         list.add(mouse);

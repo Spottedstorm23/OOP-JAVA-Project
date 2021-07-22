@@ -206,6 +206,7 @@ public class GameWindowController {
     public void moveRight() {
         checkRightWall();
         if (!isWall) {
+            view.setMouseLeft(false);
             view.setMouseX(view.getMouseX() + 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -215,6 +216,7 @@ public class GameWindowController {
     public void moveLeft() {
         checkleftWall();
         if (!isWall) {
+            view.setMouseLeft(true);
             view.setMouseX(view.getMouseX() - 25);
             view.drawMouse(paneBoard);
             collectCheese();
