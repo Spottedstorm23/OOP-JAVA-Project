@@ -10,6 +10,7 @@ public class Highscore {
 
     public void createFile() {
         //Kreiert die Highscore.txt und füllt sie mit Nullen auf
+        //ACHTUNG FUNKTIONIERT NICHT!
 
         try {
             File bigFile = new File(getClass().getResource("../Resources/highscore.txt").getFile());;
@@ -60,7 +61,6 @@ public class Highscore {
         /* Check ob die Datei exisitiert, wenn nicht erstellen */
         File scoreFile = new File(getClass().getResource("../Resources/highscore.txt").getFile());
 
-        // checkForFile(scoreFile);
         if (scoreFile.exists() == false) {
             createFile();
         }
@@ -101,12 +101,6 @@ public class Highscore {
                 System.out.println("Kann nicht in Dokument schreiben");
                 e.printStackTrace();
             }
-        }
-    }
-
-    private void checkForFile(File file){
-        if (file.exists() == false) {
-            createFile();
         }
     }
 }
