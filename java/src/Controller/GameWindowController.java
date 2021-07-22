@@ -44,8 +44,7 @@ public class GameWindowController {
     private Button exitButton;
 
     View view = new View();
-    Maps map = new Maps();
-    byte[][] levelmap = map.getMap();
+    byte[][] levelmap;
 
     boolean escPressed = false;
     boolean isWall = false;
@@ -186,6 +185,9 @@ public class GameWindowController {
         if (escPressed) {
             openGameMenu(keyEvent);
         }
+        if(view.getCheeseCount() == 0){
+            newLevel();
+        }
     }
 
     public void setEscPressed(boolean status) {
@@ -240,8 +242,11 @@ public class GameWindowController {
     }
 
     public void newLevel() {
-        view.drawLvl(paneBoard, levelmap);
-        view.updateCheese(paneBoard, levelmap);
+        Maps map = new Maps();
+        byte [][] newLevelMap = map.getMap();
+        this.levelmap = newLevelMap;
+        view.drawLvl(paneBoard, newLevelMap);
+        view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
     }
 

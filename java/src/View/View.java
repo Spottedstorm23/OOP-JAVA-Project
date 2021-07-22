@@ -16,15 +16,15 @@ public class View {
     int mouseY;
     int cheeseCount;
 
-    public void addCheeseCount(){
+    public void addCheeseCount() {
         cheeseCount = cheeseCount + 1;
     }
 
-    public void reduceCheeseCount(){
+    public void reduceCheeseCount() {
         cheeseCount = cheeseCount - 1;
     }
 
-    public int getCheeseCount(){
+    public int getCheeseCount() {
         return cheeseCount;
     }
 
@@ -92,8 +92,15 @@ public class View {
             }
             System.out.println("");
         }
-        root.getChildren().add(group);
-        root.getChildren().set(0, group);
+
+        ObservableList<Node> list = root.getChildren();
+        if (list.size() > 0) {
+            Object last = list.get(0);
+            if (last.toString().equals("Group[id=cheese]")) {
+                list.remove(last);
+            }
+        }
+        root.getChildren().add(0, group);
     }
 
     public void updateCheese(Pane root, byte[][] map) {
@@ -102,7 +109,6 @@ public class View {
         Group groupCheese = new Group();
         groupCheese.setId("cheese");
 
-        ObservableList<Node> list = root.getChildren();
 
         int y = 0;
         for (y = 0; y < 13; y++) {
@@ -130,13 +136,15 @@ public class View {
             }
             System.out.println("");
         }
-        if(list.size() > 1) {
+
+        ObservableList<Node> list = root.getChildren();
+        if (list.size() > 1) {
             Object last = list.get(1);
             if (last.toString().equals("Group[id=cheese]")) {
                 list.remove(last);
             }
         }
-        root.getChildren().add(1,groupCheese);
+        root.getChildren().add(1, groupCheese);
     }
 
 
@@ -149,8 +157,8 @@ public class View {
         mouse.setId("mouse");
 
         ObservableList<Node> list = root.getChildren();
-        Object last = list.get(list.size()-1);
-        if (last.toString().equals("Group[id=mouse]"))   {
+        Object last = list.get(list.size() - 1);
+        if (last.toString().equals("Group[id=mouse]")) {
             list.remove(last);
         }
 
