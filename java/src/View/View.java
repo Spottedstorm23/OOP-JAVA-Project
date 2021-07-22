@@ -104,13 +104,6 @@ public class View {
 
         ObservableList<Node> list = root.getChildren();
 
-        if(list.size() > 1) {
-            Object last = list.get(1);
-
-            if (last.toString().equals("Group[id=cheese]")) {
-                list.remove(last);
-            }
-        }
         int y = 0;
         for (y = 0; y < 13; y++) {
             int x = 0;
@@ -137,8 +130,13 @@ public class View {
             }
             System.out.println("");
         }
-        root.getChildren().add(groupCheese);
-        root.getChildren().set(1, groupCheese);
+        if(list.size() > 1) {
+            Object last = list.get(1);
+            if (last.toString().equals("Group[id=cheese]")) {
+                list.remove(last);
+            }
+        }
+        root.getChildren().add(1,groupCheese);
     }
 
 

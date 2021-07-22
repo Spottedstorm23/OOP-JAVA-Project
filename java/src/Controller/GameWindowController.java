@@ -66,8 +66,8 @@ public class GameWindowController {
     }
 
     public void timer() {
-    //by Lukas, Label by Selina
-    //Der globale Timer, welcher beim GameStart gestartet wird
+        //by Lukas, Label by Selina
+        //Der globale Timer, welcher beim GameStart gestartet wird
 
         // neu , test
         java.util.Timer t = new java.util.Timer();
@@ -78,7 +78,7 @@ public class GameWindowController {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    if (timer_count <= 0 || getEscPressedStatus()==true) {
+                    if (timer_count <= 0 || getEscPressedStatus() == true) {
                         t.cancel();
                         t.purge();
                         return;
@@ -86,7 +86,7 @@ public class GameWindowController {
                     timer_count--;
                     String display = timerObject.SecToDisplay(timer_count);
                     setLabelTimerText(display);
-                    System.out.println(labelTimer.getText()+"\n");
+                    System.out.println(labelTimer.getText() + "\n");
                 });
             }
         };
@@ -147,7 +147,7 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        switch (keyPressed){
+        switch (keyPressed) {
             case "left": {
                 System.out.println("left");
                 moveLeft();
@@ -182,7 +182,7 @@ public class GameWindowController {
         this.escPressed = status;
     }
 
-    public boolean getEscPressedStatus(){
+    public boolean getEscPressedStatus() {
         return escPressed;
     }
 
@@ -192,31 +192,37 @@ public class GameWindowController {
 
 
     public void moveRight() {
-        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[view.getMouseY()/50][(view.getMouseX()+50)/50] != 0)) {
+        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[view.getMouseY() / 50][(view.getMouseX() + 50) / 50] != 0)) {
             view.setMouseX(view.getMouseX() + 25);
             view.drawMouse(paneBoard);
+            collectCheese();
         }
     }
 
     public void moveLeft() {
-        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[view.getMouseY()/50][(view.getMouseX()-25)/50] != 0)) {
+        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[view.getMouseY() / 50][(view.getMouseX() - 25) / 50] != 0)) {
             view.setMouseX(view.getMouseX() - 25);
             view.drawMouse(paneBoard);
+            collectCheese();
+
         }
     }
 
     public void moveUp() {
-        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[(view.getMouseY()-25)/50][view.getMouseX()/50] != 0)) {
+        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[(view.getMouseY() - 25) / 50][view.getMouseX() / 50] != 0)) {
             view.setMouseY(view.getMouseY() - 25);
             view.drawMouse(paneBoard);
+            collectCheese();
+
         }
     }
 
     public void moveDown() {
-        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[(view.getMouseY()+50)/50][view.getMouseX()/50] != 0)) {
+        if ((levelmap[view.getMouseY() / 50][view.getMouseX() / 50] != 0) && (levelmap[(view.getMouseY() + 50) / 50][view.getMouseX() / 50] != 0)) {
             view.setMouseY(view.getMouseY() + 25);
             view.drawMouse(paneBoard);
-       }
+            collectCheese();
+        }
     }
 
     public void newLevel() {
@@ -226,23 +232,25 @@ public class GameWindowController {
     }
 
     public void collectCheese() {
-        int x = view.getMouseX() / 50;
-        int y = view.getMouseY() / 50;
+        if ((view.getMouseY() % 50) == 0 && (view.getMouseX() % 50) == 0) {
+            int x = view.getMouseX() / 50;
+            int y = view.getMouseY() / 50;
 
-        switch (levelmap[y][x]) {
-            case 2: {
-                //add score +50
-                this.levelmap[y][x] = 1;
-                view.reduceCheeseCount();
-                view.updateCheese(paneBoard, levelmap);
-                break;
-            }
-            case 3: {
-                //add score +100
-                this.levelmap[y][x] = 1;
-                view.reduceCheeseCount();
-                view.updateCheese(paneBoard, levelmap);
-                break;
+            switch (levelmap[y][x]) {
+                case 2: {
+                    //add score +50
+                    this.levelmap[y][x] = 1;
+                    view.reduceCheeseCount();
+                    view.updateCheese(paneBoard, levelmap);
+                    break;
+                }
+                case 3: {
+                    //add score +100
+                    this.levelmap[y][x] = 1;
+                    view.reduceCheeseCount();
+                    view.updateCheese(paneBoard, levelmap);
+                    break;
+                }
             }
         }
     }
