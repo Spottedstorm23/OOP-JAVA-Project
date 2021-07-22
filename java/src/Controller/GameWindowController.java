@@ -192,31 +192,31 @@ public class GameWindowController {
 
 
     public void moveRight() {
-        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[view.getMouseY()/50][(view.getMouseX()+50)/50] != 0)) {
             view.setMouseX(view.getMouseX() + 25);
             view.drawMouse(paneBoard);
         }
     }
 
     public void moveLeft() {
-        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[view.getMouseY()/50][(view.getMouseX()-25)/50] != 0)) {
             view.setMouseX(view.getMouseX() - 25);
             view.drawMouse(paneBoard);
         }
     }
 
     public void moveUp() {
-        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[(view.getMouseY()-25)/50][view.getMouseX()/50] != 0)) {
             view.setMouseY(view.getMouseY() - 25);
             view.drawMouse(paneBoard);
         }
     }
 
     public void moveDown() {
-        if (levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) {
+        if ((levelmap[view.getMouseY()/50][view.getMouseX()/50] != 0) && (levelmap[(view.getMouseY()+50)/50][view.getMouseX()/50] != 0)) {
             view.setMouseY(view.getMouseY() + 25);
             view.drawMouse(paneBoard);
-        }
+       }
     }
 
     public void newLevel() {
