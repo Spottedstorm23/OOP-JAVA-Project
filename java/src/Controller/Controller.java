@@ -80,7 +80,7 @@ public class Controller {
 
             tutorial.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((tutorialVBox.getPrefWidth()) / 2));//verschiebung auf X-Achse
             tutorial.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((tutorialVBox.getPrefHeight()) / 2));//verschiebung auf Y- Achse
-
+            tutorial.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
             tutorial.show();
 
         }
@@ -88,8 +88,6 @@ public class Controller {
 
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
-        System.out.println("startButtonClicked()");
-
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../View/GameWindow.fxml"));
         Parent rootGame = fxmlLoader.load();
@@ -99,12 +97,12 @@ public class Controller {
         gameStage.initModality(Modality.APPLICATION_MODAL);
         gameStage.initStyle(StageStyle.TRANSPARENT);
         gameStage.setScene(gameScene);
+        gameStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
         gameStage.show();
     }
 
     // Menu
     public void latestScoresButtonClicked(ActionEvent actionEvent) throws IOException {
-        System.out.println("displayLatestScores()");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../View/LatestScores.fxml"));
         Parent root = fxmlLoader.load();
@@ -114,6 +112,7 @@ public class Controller {
         latestScoresStage.setResizable(false);
         latestScoresStage.initModality(Modality.APPLICATION_MODAL);
         latestScoresStage.setScene(latestScoresScene);
+        latestScoresStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
         latestScoresStage.show();
     }
 
@@ -128,7 +127,6 @@ public class Controller {
 
     // Menu
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
-        System.out.println("tutorial");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../View/tutorial.fxml"));
         Parent root = fxmlLoader.load();
@@ -138,6 +136,7 @@ public class Controller {
         tutorialStage.setResizable(false);
         tutorialStage.initModality(Modality.APPLICATION_MODAL);
         tutorialStage.setScene(tutorialScene);
+        tutorialStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
         tutorialStage.show();
     }
 
