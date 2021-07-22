@@ -69,22 +69,6 @@ public class GameWindowController {
 
     }
 
-    /*
-    private void execute() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../View/GameWindow.fxml"));
-        Parent rootGame = fxmlLoader.load();
-        Scene gameScene = new Scene(rootGame);
-        setGwcScene(gameScene);
-        Stage gameStage = new Stage();
-        gameStage.setResizable(false);
-        gameStage.initModality(Modality.APPLICATION_MODAL);
-        gameStage.initStyle(StageStyle.TRANSPARENT);
-        gameStage.setScene(gameScene);
-        gameStage.show();
-    }
-     */
-
     public void timer() {
     //by Lukas, Label by Selina
     //Der globale Timer, welcher beim GameStart gestartet wird
@@ -135,28 +119,31 @@ public class GameWindowController {
         switch (keyEvent.getCode()){
             case A:
             case LEFT: {
-                keyPressed = "left";
+                setKeyPressed("left");
                 break;
             }
             case S:
             case DOWN: {
-                keyPressed = "down";
+                setKeyPressed("down");
                 break;
             }
             case D:
             case RIGHT: {
-                keyPressed = "right";
+                setKeyPressed("right");
                 break;
             }
             case W:
             case UP: {
-                keyPressed = "up";
+                setKeyPressed("up");
                 break;
             }
             default: {
-                keyPressed = "zero";
+                setKeyPressed("zero");
                 break;
             }
+        }
+        if(keyEvent.getCode().isArrowKey()){
+            handleOnKeyTyped(keyEvent);
         }
 
     }
@@ -166,7 +153,7 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        System.out.println(keyEvent);
+        //System.out.println(keyEvent);
         switch (keyPressed){
             case "left": {
                 System.out.println("left");
@@ -195,10 +182,20 @@ public class GameWindowController {
         }
     }
 
-    public boolean setEscPressed(boolean status) {
+    public void setEscPressed(boolean status) {
         this.escPressed = status;
-        return escPressed;
     }
+
+
+    public void setKeyPressed(String value){
+        this.keyPressed = value;
+    }
+
+
+    public void collectCheese(){
+
+    }
+
 
     private void openGameMenu(KeyEvent keyEvent) {
 

@@ -14,12 +14,19 @@ public class View {
     //Important
     int mouseX;
     int mouseY;
+    int cheeseCount = 0;
 
+    public void setCheeseCount(){
+        cheeseCount = cheeseCount + 1;
+    }
 
-    public int setMouseX(int x) {
+    public int getCheeseCount(){
+        return cheeseCount;
+    }
+
+    public void setMouseX(int x) {
         //sets Mouse Coordinate X
         this.mouseX = x;
-        return mouseX;
     }
 
     public int getMouseX() {
@@ -28,10 +35,9 @@ public class View {
     }
 
 
-    public int setMouseY(int y) {
+    public void setMouseY(int y) {
         //sets Mouse Coordinate X
         this.mouseY = y;
-        return mouseY;
     }
 
     public int getMouseY() {
@@ -65,6 +71,10 @@ public class View {
                         setMouseX(cord_x);
                         setMouseY(cord_y);
                         break;
+                    }
+                    case 2:
+                    case 3: {
+                        setCheeseCount();
                     }
                     default: {
                         // Case for Pathcolor
