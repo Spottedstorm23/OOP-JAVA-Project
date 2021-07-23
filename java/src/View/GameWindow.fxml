@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="gameBoardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleOnKeyPressed" onKeyReleased="#handleOnKeyReleased" onKeyTyped="#handleOnKeyTyped" prefHeight="875.0" prefWidth="1100.0" style="-fx-background-color: #2c2f33;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameWindowController">
+<AnchorPane fx:id="gameBoardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleOnKeyPressed" onKeyReleased="#handleOnKeyReleased" onKeyTyped="#handleOnKeyTyped" prefHeight="875.0" prefWidth="1100.0" style="-fx-background-color: #2c2f33;" stylesheets="@harrington.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameWindowController">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -40,15 +40,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label accessibleText="Current Mode:" text="Modus:" textFill="#bfbfbf">
+                  <Label accessibleText="Current Mode:" style="-fx-font-family: Harrington; -fx-font-size: 15;" text="Modus:" textFill="#bfbfbf">
                      <font>
                         <Font name="Harrington" size="15.0" />
                      </font></Label>
-                  <Label fx:id="labelCurrentMode" accessibleText="Cheesy Chase" prefHeight="19.0" prefWidth="115.0" text="Cheese Chase" textFill="#bfbfbf" GridPane.columnIndex="1">
+                  <Label fx:id="labelCurrentMode" style="-fx-font-family: Harrington; -fx-font-size: 15;"  accessibleText="Cheesy Chase" prefHeight="19.0" prefWidth="115.0" text="Cheese Chase" textFill="#bfbfbf" GridPane.columnIndex="1">
                      <font>
                         <Font name="Harrington" size="15.0" />
                      </font></Label>
-                  <Label fx:id="labelTimer" accessibleText="Timer" text="0" textFill="#bfbfbf" GridPane.columnIndex="3">
+                  <Label fx:id="labelTimer" accessibleText="Timer" style="-fx-font-family: Harrington; -fx-font-size: 33;" text="0" textFill="#bfbfbf" GridPane.columnIndex="3">
                      <font>
                         <Font name="Harrington" size="33.0" />
                      </font>
@@ -70,12 +70,12 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label accessibleText="Highscore" text="Highscore:" textFill="#bfbfbf" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                  <Label accessibleText="Highscore" style="-fx-font-size: 18; -fx-font-family: Harrington;" text="Highscore:" textFill="#bfbfbf" GridPane.columnIndex="5" GridPane.rowIndex="1">
                      <font>
                         <Font name="Harrington" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelHighscore" accessibleText="100.000" text="100.000" textFill="#bfbfbf" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+                  <Label fx:id="labelHighscore" style="-fx-font-size: 18; -fx-font-family: Harrington;" accessibleText="100.000" text="100.000" textFill="#bfbfbf" GridPane.columnIndex="6" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
@@ -83,12 +83,12 @@
                         <Font name="Harrington" size="18.0" />
                      </font>
                   </Label>
-                  <Label accessibleText="Current Score:" text="Score:" textFill="#bfbfbf" GridPane.columnIndex="5">
+                  <Label accessibleText="Current Score:" style="-fx-font-family: Harrington; -fx-font-size: 25;" text="Score:" textFill="#bfbfbf" GridPane.columnIndex="5">
                      <font>
                         <Font name="Harrington" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelScore" accessibleText="0" text="0" textFill="#bfbfbf" GridPane.columnIndex="6">
+                  <Label fx:id="labelScore" style="-fx-font-family: Harrington; -fx-font-size: 25;" accessibleText="0" text="0" textFill="#bfbfbf" GridPane.columnIndex="6">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin>
@@ -103,7 +103,7 @@
             </GridPane>
          </children>
       </GridPane>
-      <Button fx:id="exitButton" layoutX="493.0" layoutY="823.0" mnemonicParsing="false" onAction="#quitButtonClicked" prefHeight="0.0" prefWidth="118.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5;" text="Quit" textFill="#bfbfbf">
+      <Button fx:id="exitButton" layoutX="493.0" layoutY="823.0" mnemonicParsing="false" onAction="#quitButtonClicked" prefHeight="0.0" prefWidth="118.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5; -fx-font-family: Harrington; -fx-font-size: 17;" text="Quit" textFill="#bfbfbf">
          <font>
             <Font name="Harrington" size="17.0" />
          </font>
