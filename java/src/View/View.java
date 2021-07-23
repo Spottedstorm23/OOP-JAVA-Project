@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -100,7 +101,7 @@ public class View {
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 0) {
             Object last = list.get(0);
-            if (last.toString().equals("Group[id=cheese]")) {
+            if (last.toString().equals("Group[id=level]")) {
                 list.remove(last);
             }
         }
@@ -187,5 +188,10 @@ public class View {
         r_mouse.setFill(new ImagePattern(mousepic));
         mouse.getChildren().add(r_mouse);
         list.add(mouse);
+    }
+
+
+    public void clear(AnchorPane root){
+        root.getChildren().removeAll();
     }
 }

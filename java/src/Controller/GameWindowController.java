@@ -258,6 +258,7 @@ public class GameWindowController {
         Maps map = new Maps();
         byte [][] newLevelMap = map.getMap();
         this.levelmap = newLevelMap;
+        view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
