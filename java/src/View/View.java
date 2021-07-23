@@ -15,7 +15,7 @@ public class View {
     int mouseX;
     int mouseY;
     int cheeseCount;
-    boolean isMouseLeft = true;
+    String mouseDirection = "down";
 
     public void addCheeseCount() {
         cheeseCount = cheeseCount + 1;
@@ -39,8 +39,8 @@ public class View {
         return mouseX;
     }
 
-    public void setMouseLeft(boolean state) {
-        this.isMouseLeft = state;
+    public void setmouseDirection(String state) {
+        this.mouseDirection = state;
     }
 
     public void setMouseY(int y) {
@@ -168,11 +168,21 @@ public class View {
 
         Rectangle r_mouse = new Rectangle(mouseX, mouseY, 50, 50);
         Image mousepic;
-        if (isMouseLeft) {
-            mousepic = new Image("./View/images/Projekt_-_Maus.png");
-
-        } else {
-            mousepic = new Image("./View/images/Projekt_-_MausR.png");
+        switch (mouseDirection) {
+            case "left":
+                mousepic = new Image("./View/images/Projekt_-_Maus.png");
+                break;
+            case "right":
+                mousepic = new Image("./View/images/Projekt_-_MausR.png");
+                break;
+            case "up":
+                mousepic = new Image("./View/images/Projekt_-_MausUp.png");
+                break;
+            case "down":
+                mousepic = new Image("./View/images/Projekt_-_MausDown.png");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + mouseDirection);
         }
         r_mouse.setFill(new ImagePattern(mousepic));
         mouse.getChildren().add(r_mouse);

@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.util.TimerTask;
 
 public class GameWindowController {
+
+
     /* GameWindow.fxml */
     @FXML
     private ImageView imageMouse1;
@@ -46,6 +48,7 @@ public class GameWindowController {
     private Label labelHighscore;
     @FXML
     private Label labelScore;
+
 
     View view = new View();
     byte[][] levelmap;
@@ -212,7 +215,7 @@ public class GameWindowController {
     public void moveRight() {
         checkRightWall();
         if (!isWall) {
-            view.setMouseLeft(false);
+            view.setmouseDirection("right");
             view.setMouseX(view.getMouseX() + 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -222,7 +225,7 @@ public class GameWindowController {
     public void moveLeft() {
         checkleftWall();
         if (!isWall) {
-            view.setMouseLeft(true);
+            view.setmouseDirection("left");
             view.setMouseX(view.getMouseX() - 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -233,6 +236,7 @@ public class GameWindowController {
     public void moveUp() {
         checkWallAbove();
         if (!isWall) {
+            view.setmouseDirection("up");
             view.setMouseY(view.getMouseY() - 25);
             view.drawMouse(paneBoard);
             collectCheese();
@@ -243,6 +247,7 @@ public class GameWindowController {
     public void moveDown() {
         checkWallBelow();
         if (!isWall) {
+            view.setmouseDirection("down");
             view.setMouseY(view.getMouseY() + 25);
             view.drawMouse(paneBoard);
             collectCheese();
