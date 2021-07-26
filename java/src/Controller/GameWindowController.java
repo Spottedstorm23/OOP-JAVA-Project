@@ -65,7 +65,7 @@ public class GameWindowController {
     public void initialize() throws IOException {
         newLevel();
         //setLabelTimerText("" + timer_count);
-        timer_count = 300; //In Sekunden * 5
+        timer_count = 1500; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count/5));
         timer();
@@ -355,6 +355,7 @@ public class GameWindowController {
         }
     }
 
+    /*out of order
     private void checkWall() {
         //by Cora
         //checks for walls in direction given by key input
@@ -418,6 +419,36 @@ public class GameWindowController {
                     this.isWall = true;
                     return;
                 }
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+     */
+
+    private void checkWall() {
+        //by Lukas, inspired by Cora
+        //prüft, ob eine Wand im Weg ist
+        int y = view.getMouseY();
+        int x = view.getMouseX();
+
+        switch (keyPressed) {
+            case "left": {
+                if (levelmap[y/50][(x-25)/50] == 0 || levelmap[(y+49)/50][(x-25)/50] == 0) { this.isWall = true; }
+                break;
+            }
+            case "right": {
+                if (levelmap[y/50][(x+50)/50] == 0 || levelmap[(y+49)/50][(x+50)/50] == 0) { this.isWall = true; }
+                break;
+            }
+            case "up": {
+                if (levelmap[(y-25)/50][x/50] == 0 || levelmap[(y-25)/50][(x+49)/50] == 0) { this.isWall = true; }
+                break;
+            }
+            case "down": {
+                if (levelmap[(y+50)/50][x/50] == 0 || levelmap[(y+50)/50][(x+49)/50] == 0) { this.isWall = true; }
                 break;
             }
             default: {
