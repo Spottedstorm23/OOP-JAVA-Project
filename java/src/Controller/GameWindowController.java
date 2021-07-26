@@ -322,6 +322,7 @@ public class GameWindowController {
         view.drawLvl(paneBoard, newLevelMap);
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
+        this.keyPressed = "zero";
     }
 
     public void collectCheese() {
