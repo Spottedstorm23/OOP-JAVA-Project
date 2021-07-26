@@ -65,9 +65,9 @@ public class GameWindowController {
     public void initialize() throws IOException {
         newLevel();
         //setLabelTimerText("" + timer_count);
-        timer_count = 10;
+        timer_count = 300; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
-        setLabelTimerText(timerObject.SecToDisplay(timer_count));
+        setLabelTimerText(timerObject.SecToDisplay(timer_count/5));
         timer();
 
         setLabelHighscore();
@@ -81,8 +81,12 @@ public class GameWindowController {
         java.util.Timer t = new java.util.Timer();
 
 
+
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         TimerTask tt = new TimerTask() {
+
+            byte timer_dummy = 4;  //Damit der Timer sekündlich herunterzählt
+
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -97,13 +101,25 @@ public class GameWindowController {
                         t.purge();
                         return;
                     }
+
                     timer_count--;
-                    String display = timerObject.SecToDisplay(timer_count);
-                    setLabelTimerText(display);
+
+                    if (keyPressed != null) {
+                        move();
+                    }
+
+                    //Aktualisiert den Timer aller 5 Durchgänge
+                    if (timer_dummy == 4){
+                        String display = timerObject.SecToDisplay(timer_count/5);
+                        setLabelTimerText(display);
+                        timer_dummy = 0;
+                    } else {
+                        timer_dummy ++;
+                    }
                 });
             }
         };
-        t.schedule(tt, 1000, 1000); //Der eigentliche Timer
+        t.schedule(tt, 1000, 200); //Der eigentliche Timer
     }
 
     public String getLabelTimerText() {
@@ -188,13 +204,10 @@ public class GameWindowController {
                 break;
             }
         }*/
-        move();
+        //move();
         this.isWall = false;
         if (escPressed) {
             openGameMenu(keyEvent);
-        }
-        if (view.getCheeseCount() == 0) {
-            newLevel();
         }
     }
 
@@ -235,6 +248,9 @@ public class GameWindowController {
                     view.setmouseDirection("down");
                     view.setMouseY(view.getMouseY() + 25);
                     break;
+                }
+                default: {
+                    return;
                 }
             }
             view.drawMouse(paneBoard);
@@ -332,6 +348,10 @@ public class GameWindowController {
                 }
             }
             labelScore.setText(String.valueOf(score));
+
+            if (view.getCheeseCount() == 0) {
+                newLevel();
+            }
         }
     }
 
@@ -398,6 +418,9 @@ public class GameWindowController {
                     this.isWall = true;
                     return;
                 }
+                break;
+            }
+            default: {
                 break;
             }
         }
