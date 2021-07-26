@@ -62,14 +62,10 @@ public class GameWindowController {
 
     int score = 0;
 
-    // neu
-    private GameMenuController gameMenuController = new GameMenuController();
-
     public void initialize() throws IOException {
         newLevel();
-        setLabelTimerText("" + timer_count);
+        //setLabelTimerText("" + timer_count);
         timer_count = 10;
-        //timer();
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count));
         timer();
@@ -96,7 +92,7 @@ public class GameWindowController {
                         t.cancel();
                         t.purge();
                         return;
-                    } else if (getEscPressedStatus() == true) {
+                    } else if (getEscPressedStatus()) {
                         t.cancel();
                         t.purge();
                         return;
@@ -125,6 +121,7 @@ public class GameWindowController {
     }
 
     public void handleOnKeyPressed(KeyEvent keyEvent) throws InterruptedException {
+        // reads keyboard input, sets variable
         if (keyEvent.getCode() == KeyCode.ESCAPE) {
             setEscPressed(true);
         }
@@ -164,7 +161,8 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        switch (keyPressed) {
+        //works with keyvariable -> executes movement & pause
+        /*switch (keyPressed) {
             case "left": {
                 //System.out.println("left");
                 moveLeft();
@@ -189,12 +187,13 @@ public class GameWindowController {
                 //System.out.println("zero");
                 break;
             }
-        }
+        }*/
+        move();
         this.isWall = false;
         if (escPressed) {
             openGameMenu(keyEvent);
         }
-        if(view.getCheeseCount() == 0){
+        if (view.getCheeseCount() == 0) {
             newLevel();
         }
     }
@@ -211,8 +210,44 @@ public class GameWindowController {
         this.keyPressed = value;
     }
 
+    public void move() {
+        //by Cora
+        // checks for walls, then moves mouse in given direction
+        checkWall();
+        if (!isWall) {
+            switch (keyPressed) {
+                case "left": {
+                    view.setmouseDirection("left");
+                    view.setMouseX(view.getMouseX() - 25);
+                    break;
+                }
+                case "right": {
+                    view.setmouseDirection("right");
+                    view.setMouseX(view.getMouseX() + 25);
+                    break;
+                }
+                case "up": {
+                    view.setmouseDirection("up");
+                    view.setMouseY(view.getMouseY() - 25);
+                    break;
+                }
+                case "down": {
+                    view.setmouseDirection("down");
+                    view.setMouseY(view.getMouseY() + 25);
+                    break;
+                }
+            }
+            view.drawMouse(paneBoard);
+            collectCheese();
+        }
 
+
+    }
+
+
+    //out of order
     public void moveRight() {
+        //by Cora
         checkRightWall();
         if (!isWall) {
             view.setmouseDirection("right");
@@ -222,7 +257,9 @@ public class GameWindowController {
         }
     }
 
+    //out of order
     public void moveLeft() {
+        //by Cora
         checkleftWall();
         if (!isWall) {
             view.setmouseDirection("left");
@@ -233,7 +270,9 @@ public class GameWindowController {
         }
     }
 
+    //out of order
     public void moveUp() {
+        //by Cora
         checkWallAbove();
         if (!isWall) {
             view.setmouseDirection("up");
@@ -244,7 +283,9 @@ public class GameWindowController {
         }
     }
 
+    //out of order
     public void moveDown() {
+        //by Cora
         checkWallBelow();
         if (!isWall) {
             view.setmouseDirection("down");
@@ -255,8 +296,11 @@ public class GameWindowController {
     }
 
     public void newLevel() {
+        //by Cora
+        // gets a new Map from Maps
+        //draws level, cheese and mouse spawn
         Maps map = new Maps();
-        byte [][] newLevelMap = map.getMap();
+        byte[][] newLevelMap = map.getMap();
         this.levelmap = newLevelMap;
         view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
@@ -265,6 +309,8 @@ public class GameWindowController {
     }
 
     public void collectCheese() {
+        //by Cora
+        //checks current position (only full squares) for cheese, updates map and level, adds score
         if ((view.getMouseY() % 50) == 0 && (view.getMouseX() % 50) == 0) {
             int x = view.getMouseX() / 50;
             int y = view.getMouseY() / 50;
@@ -289,6 +335,75 @@ public class GameWindowController {
         }
     }
 
+    private void checkWall() {
+        //by Cora
+        //checks for walls in direction given by key input
+        //on full and half squares
+        int y = view.getMouseY();
+        int x = view.getMouseX();
+
+        switch (keyPressed) {
+            case "left": {
+                if (view.getMouseY() % 50 != 0) {
+                    if ((levelmap[(y - 25) / 50][(x - 25) / 50] == 0) ||
+                            (levelmap[(y + 50) / 50][(x - 25) / 50] == 0)) {
+                        this.isWall = true;
+                        return;
+                    }
+                }
+                if (levelmap[y / 50][(x - 25) / 50] == 0) {
+                    this.isWall = true;
+                    return;
+                }
+                break;
+            }
+            case "right": {
+                if (view.getMouseY() % 50 != 0) {
+                    if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
+                            (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
+                        this.isWall = true;
+                        return;
+                    }
+                }
+                if ((levelmap[y / 50][(x + 50) / 50] == 0)) {
+                    this.isWall = true;
+                    return;
+                }
+                break;
+            }
+
+            case "up": {
+                if (view.getMouseX() % 50 != 0) {
+                    if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
+                            (levelmap[(y - 25) / 50][(x - 25) / 50] == 0)) {
+                        this.isWall = true;
+                        return;
+                    }
+                }
+                if (levelmap[(y - 25) / 50][x / 50] == 0) {
+                    this.isWall = true;
+                    return;
+                }
+                break;
+            }
+            case "down": {
+                if (view.getMouseX() % 50 != 0) {
+                    if ((levelmap[(y + 50) / 50][(x - 25) / 50] == 0) ||
+                            (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
+                        this.isWall = true;
+                        return;
+                    }
+                }
+                if (levelmap[(y + 50) / 50][x / 50] == 0) {
+                    this.isWall = true;
+                    return;
+                }
+                break;
+            }
+        }
+    }
+
+    //out of order
     private void checkleftWall() {
         int y = view.getMouseY();
         int x = view.getMouseX();
@@ -308,6 +423,7 @@ public class GameWindowController {
 
     }
 
+    //out of order
     private void checkRightWall() {
         int y = view.getMouseY();
         int x = view.getMouseX();
@@ -325,6 +441,7 @@ public class GameWindowController {
 
     }
 
+    //out of order
     private void checkWallAbove() {
         int y = view.getMouseY();
         int x = view.getMouseX();
@@ -342,6 +459,7 @@ public class GameWindowController {
 
     }
 
+    //out of order
     private void checkWallBelow() {
         int y = view.getMouseY();
         int x = view.getMouseX();
@@ -359,6 +477,9 @@ public class GameWindowController {
 
 
     private void openGameMenu(KeyEvent keyEvent) {
+        //by Cora
+        // Opens GameMenu and delegates closing- and timerfunction for GameWindow
+
         //setEscPressed(false);
         Node node = (Node) keyEvent.getSource();
         final Stage stage = (Stage) node.getScene().getWindow();
