@@ -260,68 +260,19 @@ public class GameWindowController {
 
     }
 
-
-    //out of order
-    public void moveRight() {
-        //by Cora
-        checkRightWall();
-        if (!isWall) {
-            view.setmouseDirection("right");
-            view.setMouseX(view.getMouseX() + 25);
-            view.drawMouse(paneBoard);
-            collectCheese();
-        }
-    }
-
-    //out of order
-    public void moveLeft() {
-        //by Cora
-        checkleftWall();
-        if (!isWall) {
-            view.setmouseDirection("left");
-            view.setMouseX(view.getMouseX() - 25);
-            view.drawMouse(paneBoard);
-            collectCheese();
-
-        }
-    }
-
-    //out of order
-    public void moveUp() {
-        //by Cora
-        checkWallAbove();
-        if (!isWall) {
-            view.setmouseDirection("up");
-            view.setMouseY(view.getMouseY() - 25);
-            view.drawMouse(paneBoard);
-            collectCheese();
-
-        }
-    }
-
-    //out of order
-    public void moveDown() {
-        //by Cora
-        checkWallBelow();
-        if (!isWall) {
-            view.setmouseDirection("down");
-            view.setMouseY(view.getMouseY() + 25);
-            view.drawMouse(paneBoard);
-            collectCheese();
-        }
-    }
-
     public void newLevel() {
         //by Cora
         // gets a new Map from Maps
         //draws level, cheese and mouse spawn
         Maps map = new Maps();
         byte[][] newLevelMap = map.getMap();
+        //byte[][] newLevelMap = map.getMap16();
         this.levelmap = newLevelMap;
         view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
+        //view.drawCats(paneBoard);
         this.keyPressed = "zero";
     }
 
@@ -356,78 +307,6 @@ public class GameWindowController {
         }
     }
 
-    /*out of order
-    private void checkWall() {
-        //by Cora
-        //checks for walls in direction given by key input
-        //on full and half squares
-        int y = view.getMouseY();
-        int x = view.getMouseX();
-
-        switch (keyPressed) {
-            case "left": {
-                if (view.getMouseY() % 50 != 0) {
-                    if ((levelmap[(y - 25) / 50][(x - 25) / 50] == 0) ||
-                            (levelmap[(y + 50) / 50][(x - 25) / 50] == 0)) {
-                        this.isWall = true;
-                        return;
-                    }
-                }
-                if (levelmap[y / 50][(x - 25) / 50] == 0) {
-                    this.isWall = true;
-                    return;
-                }
-                break;
-            }
-            case "right": {
-                if (view.getMouseY() % 50 != 0) {
-                    if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
-                            (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
-                        this.isWall = true;
-                        return;
-                    }
-                }
-                if ((levelmap[y / 50][(x + 50) / 50] == 0)) {
-                    this.isWall = true;
-                    return;
-                }
-                break;
-            }
-
-            case "up": {
-                if (view.getMouseX() % 50 != 0) {
-                    if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
-                            (levelmap[(y - 25) / 50][(x - 25) / 50] == 0)) {
-                        this.isWall = true;
-                        return;
-                    }
-                }
-                if (levelmap[(y - 25) / 50][x / 50] == 0) {
-                    this.isWall = true;
-                    return;
-                }
-                break;
-            }
-            case "down": {
-                if (view.getMouseX() % 50 != 0) {
-                    if ((levelmap[(y + 50) / 50][(x - 25) / 50] == 0) ||
-                            (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
-                        this.isWall = true;
-                        return;
-                    }
-                }
-                if (levelmap[(y + 50) / 50][x / 50] == 0) {
-                    this.isWall = true;
-                    return;
-                }
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-    }
-     */
 
     private void checkWall() {
         //by Lukas, inspired by Cora
@@ -457,79 +336,6 @@ public class GameWindowController {
             }
         }
     }
-
-    //out of order
-    private void checkleftWall() {
-        int y = view.getMouseY();
-        int x = view.getMouseX();
-
-        if (view.getMouseY() % 50 != 0) {
-            if ((levelmap[(y - 25) / 50][(x - 25) / 50] == 0) ||
-                    (levelmap[(y + 50) / 50][(x - 25) / 50] == 0)) {
-                this.isWall = true;
-                return;
-            }
-        }
-
-        if (levelmap[y / 50][(x - 25) / 50] == 0) {
-            this.isWall = true;
-            return;
-        }
-
-    }
-
-    //out of order
-    private void checkRightWall() {
-        int y = view.getMouseY();
-        int x = view.getMouseX();
-
-        if (view.getMouseY() % 50 != 0) {
-            if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
-                    (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
-                this.isWall = true;
-            }
-        }
-        if ((levelmap[y / 50][(x + 50) / 50] == 0)) {
-            this.isWall = true;
-            return;
-        }
-
-    }
-
-    //out of order
-    private void checkWallAbove() {
-        int y = view.getMouseY();
-        int x = view.getMouseX();
-
-        if (view.getMouseX() % 50 != 0) {
-            if ((levelmap[(y - 25) / 50][(x + 50) / 50] == 0) ||
-                    (levelmap[(y - 25) / 50][(x - 25) / 50] == 0)) {
-                this.isWall = true;
-                return;
-            }
-        }
-        if (levelmap[(y - 25) / 50][x / 50] == 0) {
-            this.isWall = true;
-        }
-
-    }
-
-    //out of order
-    private void checkWallBelow() {
-        int y = view.getMouseY();
-        int x = view.getMouseX();
-        if (view.getMouseX() % 50 != 0) {
-            if ((levelmap[(y + 50) / 50][(x - 25) / 50] == 0) ||
-                    (levelmap[(y + 50) / 50][(x + 50) / 50] == 0)) {
-                this.isWall = true;
-                return;
-            }
-        }
-        if (levelmap[(y + 50) / 50][x / 50] == 0) {
-            this.isWall = true;
-        }
-    }
-
 
     private void openGameMenu(KeyEvent keyEvent) {
         //by Cora

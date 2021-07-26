@@ -15,8 +15,18 @@ public class View {
     //Important
     int mouseX;
     int mouseY;
+    int cat1_X;
+    int cat1_Y;
+    int cat2_X;
+    int cat2_Y;
+    int cat3_X;
+    int cat3_Y;
     int cheeseCount;
     String mouseDirection = "down";
+    String cat1_direction = "down";
+    String cat2_direction = "down";
+    String cat3_direction = "down";
+
 
     public void addCheeseCount() {
         //by Cora
@@ -48,10 +58,34 @@ public class View {
         return mouseX;
     }
 
-    public void setmouseDirection(String state) {
-        //by Cora
-        //sets the direction in which mouse moves and looks
-        this.mouseDirection = state;
+    public void setCat1_X(int x) {
+        //sets Coordinate X of first cat
+        this.cat1_X = x;
+    }
+
+    public int getCat1_X() {
+        //returns Coordinate X of first cat
+        return cat1_X;
+    }
+
+    public void setCat2_X(int x) {
+        //sets Coordinate X of second cat
+        this.cat2_X = x;
+    }
+
+    public int getCat2_X() {
+        //returns Coordinate X of second cat
+        return cat2_X;
+    }
+
+    public void setCat3_X(int x) {
+        //sets Coordinate X of third cat
+        this.cat3_X = x;
+    }
+
+    public int getCat3_X() {
+        //returns Coordinate X of third cat
+        return cat3_X;
     }
 
     public void setMouseY(int y) {
@@ -64,6 +98,58 @@ public class View {
         //by Cora
         //returns Mouse Coordinate Y
         return mouseY;
+    }
+
+    public void setCat1_Y(int y) {
+        //sets Coordinate X of first cat
+        this.cat1_Y = y;
+    }
+
+    public int getCat1_Y() {
+        //returns Coordinate Y of first cat
+        return cat1_Y;
+    }
+
+    public void setCat2_Y(int y) {
+        //sets Coordinate Y of second cat
+        this.cat2_Y = y;
+    }
+
+    public int getCat2_Y() {
+        //returns Coordinate Y of second cat
+        return cat2_Y;
+    }
+
+    public void setCat3_Y(int y) {
+        //sets Coordinate Y of third cat
+        this.cat3_Y = y;
+    }
+
+    public int getCat3_Y() {
+        //returns Coordinate Y of third cat
+        return cat3_Y;
+    }
+
+    public void setmouseDirection(String state) {
+        //by Cora
+        //sets the direction in which mouse moves and looks
+        this.mouseDirection = state;
+    }
+
+    public void setCat1_direction(String state) {
+        //by Cora
+        //sets the direction in which cat 1 moves and looks
+        this.cat1_direction = state;
+    }
+    public void setCat2_direction(String state) {
+        //by Cora
+        //sets the direction in which cat 2 moves and looks
+        this.cat2_direction = state;
+    }
+    public void setCat3_direction(String state) {
+        //by Cora
+        //sets the direction in which cat 3 moves and looks
+        this.cat3_direction = state;
     }
 
     public void drawLvl(Pane root, byte[][] map) {
@@ -98,6 +184,27 @@ public class View {
                     case 3: {
                         addCheeseCount();
                     }
+                    case 5: {
+                        // sets first Cat Coordinates
+                        r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
+                        setCat1_X(cord_x);
+                        setCat1_Y(cord_y);
+                        break;
+                    }
+                    case 6: {
+                        // sets first Cat Coordinates
+                        r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
+                        setCat2_X(cord_x);
+                        setCat2_Y(cord_y);
+                        break;
+                    }
+                    case 7: {
+                        // sets first Cat Coordinates
+                        r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
+                        setCat3_X(cord_x);
+                        setCat3_Y(cord_y);
+                        break;
+                    }
                     default: {
                         // Case for Pathcolor
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
@@ -112,9 +219,9 @@ public class View {
 
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 0) {
-            Object last = list.get(0);
-            if (last.toString().equals("Group[id=level]")) {
-                list.remove(last);
+            Object current = list.get(0);
+            if (current.toString().equals("Group[id=level]")) {
+                list.remove(current);
             }
         }
         root.getChildren().add(0, group);
@@ -174,9 +281,11 @@ public class View {
         mouse.setId("mouse");
 
         ObservableList<Node> list = root.getChildren();
-        Object last = list.get(list.size() - 1);
-        if (last.toString().equals("Group[id=mouse]")) {
-            list.remove(last);
+        if (list.size() > 2) {
+            Object current = list.get(2);
+            if (current.toString().equals("Group[id=mouse]")) {
+                list.remove(current);
+            }
         }
 
         Rectangle r_mouse = new Rectangle(mouseX, mouseY, 50, 50);
@@ -199,11 +308,104 @@ public class View {
         }
         r_mouse.setFill(new ImagePattern(mousepic));
         mouse.getChildren().add(r_mouse);
-        list.add(mouse);
+        list.add(2, mouse);
     }
 
 
-    public void clear(AnchorPane root){
+    public void drawCats(Pane root) {
+        int cat1_x = getCat1_X();
+        int cat1_y = getCat1_Y();
+        int cat2_x = getCat2_X();
+        int cat2_y = getCat2_Y();
+        int cat3_x = getCat3_X();
+        int cat3_y = getCat3_Y();
+
+        Group cats = new Group();
+        cats.setId("cats");
+
+        ObservableList<Node> list = root.getChildren();
+        if (list.size() > 3) {
+            Object current = list.get(3);
+            if (current.toString().equals("Group[id=cat]")) {
+                list.remove(current);
+            }
+        }
+        Rectangle cat_1 = new Rectangle(cat1_x, cat1_y, 50, 50);
+        Rectangle cat_2 = new Rectangle(cat2_x, cat2_y, 50, 50);
+        Rectangle cat_3 = new Rectangle(cat3_x, cat3_y, 50, 50);
+        Image cat_1_pic = new Image("./View/images/Projekt_-_Katze1Down.png");
+        Image cat_2_pic =  new Image("./View/images/Projekt_-_Katze2Down.png");
+        Image cat_3_pic = new Image("./View/images/Projekt_-_Katze3Down.png");
+        checkCat1Direction(cat_1_pic);
+        checkCat2Direction(cat_2_pic);
+        checkCat3Direction(cat_3_pic);
+        cat_1.setFill(new ImagePattern(cat_1_pic));
+        cat_2.setFill(new ImagePattern(cat_2_pic));
+        cat_3.setFill(new ImagePattern(cat_3_pic));
+        cats.getChildren().add(cat_1);
+        cats.getChildren().add(cat_2);
+        cats.getChildren().add(cat_3);
+        list.add(3,cats);
+    }
+
+    public Image checkCat1Direction(Image pic) {
+        switch (cat1_direction) {
+            case "left":
+                pic = new Image("./View/images/Projekt_-_Katze1.png");
+                return pic;
+            case "right":
+                pic = new Image("./View/images/Projekt_-_Katze1R.png");
+                return pic;
+            case "up":
+                pic = new Image("./View/images/Projekt_-_Katze1Up.png");
+                return pic;
+            case "down":
+                pic = new Image("./View/images/Projekt_-_Katze1Down.png");
+                return pic;
+            default:
+                throw new IllegalStateException("Unexpected value: " + cat1_direction);
+        }
+    }
+
+    public Image checkCat2Direction(Image pic) {
+        switch (cat2_direction) {
+            case "left":
+                pic = new Image("./View/images/Projekt_-Katze2.png");
+                return pic;
+            case "right":
+                pic = new Image("./View/images/Projekt_-_Katze2R.png");
+                return pic;
+            case "up":
+                pic = new Image("./View/images/Projekt_-_Katze2p.png");
+                return pic;
+            case "down":
+                pic = new Image("./View/images/Projekt_-_Katze2Down.png");
+                return pic;
+            default:
+                throw new IllegalStateException("Unexpected value: " + cat2_direction);
+        }
+    }
+
+    public Image checkCat3Direction(Image pic) {
+        switch (cat3_direction) {
+            case "left":
+                pic = new Image("./View/images/Projekt_-Katze3.png");
+                return pic;
+            case "right":
+                pic = new Image("./View/images/Projekt_-_Katze3R.png");
+                return pic;
+            case "up":
+                pic = new Image("./View/images/Projekt_-_Katze3Up.png");
+                return pic;
+            case "down":
+                pic = new Image("./View/images/Projekt_-_Katze3Down.png");
+                return pic;
+            default:
+                throw new IllegalStateException("Unexpected value: " + cat3_direction);
+        }
+    }
+
+    public void clear(AnchorPane root) {
         //by Cora
         //removes former layers
         root.getChildren().removeAll();
