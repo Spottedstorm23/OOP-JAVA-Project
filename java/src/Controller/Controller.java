@@ -1,6 +1,6 @@
 package Controller;
 
-import Music.*;
+import Music.Music2;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +18,6 @@ import javafx.stage.StageStyle;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import java.awt.*;
 import java.io.IOException;
 
 public class Controller {
@@ -102,7 +98,7 @@ public class Controller {
     }
 
     // Menu
-    public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+    public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../View/tutorial.fxml"));
         Parent root = fxmlLoader.load();

@@ -25,12 +25,9 @@ public class TutorialController {
 
     public void initialize(){
         // TODO
-        /*
-        Stage stage = (Stage) tutorialPane.getScene().getWindow();
-        stage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((tutorialPane.getPrefHeight()) / 2));
-        stage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((tutorialPane.getPrefWidth()) / 2));
-
-         */
+        //stage.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((tutorialPane.getPrefHeight()) / 2));
+        //stage.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((tutorialPane.getPrefWidth()) / 2));
+        //
     }
 
     // Tutorial
@@ -39,4 +36,6 @@ public class TutorialController {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
+
+
 }
