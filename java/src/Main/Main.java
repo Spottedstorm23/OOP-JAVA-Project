@@ -1,6 +1,5 @@
 package Main;
 
-import Other.Highscore;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,20 +21,11 @@ public class Main extends Application {
 
         primaryStage.show();
 
-        /*
-        Highscore highscoreObject = new Highscore();
-        highscoreObject.writeHighscore(500);
-        System.out.println("huuh");
-        */
-
-
     }
 
     public static void main(String[] args) {
 
         launch(args);
-
-
 
     }
 }

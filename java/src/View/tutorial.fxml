@@ -17,7 +17,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fill="#bfbfbf" layoutX="227.0" layoutY="263.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Harrington;" text="Each Pile of Cheese will add 100 Points to your score, smaller ones give you 50 points.Are you able to collect everything and beat the highscore?" textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
+            <Text fill="#bfbfbf" layoutX="227.0" layoutY="263.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Harrington;" text="Each Pile of Cheese will add 100 Points to your score, smaller ones give you 50 points. Are you able to collect everything and beat the highscore?" textAlignment="JUSTIFY" wrappingWidth="341.40423583984375">
                <font>
                   <Font name="Harrington" size="20.0" />
                </font>
