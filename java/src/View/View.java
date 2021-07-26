@@ -19,44 +19,56 @@ public class View {
     String mouseDirection = "down";
 
     public void addCheeseCount() {
+        //by Cora
+        //increases number of cheese
         cheeseCount = cheeseCount + 1;
     }
 
     public void reduceCheeseCount() {
+        //by Cora
+        //decreases number of cheese
         cheeseCount = cheeseCount - 1;
     }
 
     public int getCheeseCount() {
+        //by Cora
+        //returns current number of cheese
         return cheeseCount;
     }
 
     public void setMouseX(int x) {
+        //by Cora
         //sets Mouse Coordinate X
         this.mouseX = x;
     }
 
     public int getMouseX() {
+        //by Cora
         //returns Mouse Coordinate X
         return mouseX;
     }
 
     public void setmouseDirection(String state) {
+        //by Cora
+        //sets the direction in which mouse moves and looks
         this.mouseDirection = state;
     }
 
     public void setMouseY(int y) {
+        //by Cora
         //sets Mouse Coordinate X
         this.mouseY = y;
     }
 
     public int getMouseY() {
+        //by Cora
         //returns Mouse Coordinate Y
         return mouseY;
     }
 
     public void drawLvl(Pane root, byte[][] map) {
-        //Draws Level -> only Path and Wall
         //by Cora
+        //Draws Level -> only Path and Wall
         Group group = new Group();
         group.setId("level");
         this.cheeseCount = 0;
@@ -109,8 +121,8 @@ public class View {
     }
 
     public void updateCheese(Pane root, byte[][] map) {
-        //Updates Cheespiles on the Map
         //by Cora
+        //Updates Cheespiles on the Map
         Group groupCheese = new Group();
         groupCheese.setId("cheese");
 
@@ -154,8 +166,8 @@ public class View {
 
 
     public void drawMouse(Pane root) {
-        // Draws the Mouse on Current position
         //by Cora
+        // Draws the Mouse on Current position
         int mouseX = getMouseX();
         int mouseY = getMouseY();
         Group mouse = new Group();
@@ -192,6 +204,8 @@ public class View {
 
 
     public void clear(AnchorPane root){
+        //by Cora
+        //removes former layers
         root.getChildren().removeAll();
     }
 }

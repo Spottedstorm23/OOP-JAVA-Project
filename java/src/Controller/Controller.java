@@ -4,6 +4,7 @@ import Music.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -61,31 +62,6 @@ public class Controller {
     public void initialize(){
     }
 
-// Game Menu
-    public void keyTyped(KeyEvent w) {}
-
-    public void keyPressed(KeyEvent w) throws IOException {
-        if (w.getKeyCode()==KeyEvent.VK_ESCAPE){
-
-            VBox tutorialVBox = FXMLLoader.load(getClass().getResource("../View/GameMenu.fxml"));
-
-            Scene sceneTutorial = new Scene(tutorialVBox);
-
-            Stage tutorial = new Stage();
-            tutorial.setTitle("Tutorial");
-            tutorial.setResizable(false);
-            tutorial.initModality(Modality.APPLICATION_MODAL);
-            tutorial.setScene(sceneTutorial);
-            tutorial.initStyle(StageStyle.TRANSPARENT);
-
-            tutorial.setX(((Toolkit.getDefaultToolkit().getScreenSize().width) / 2) - ((tutorialVBox.getPrefWidth()) / 2));//verschiebung auf X-Achse
-            tutorial.setY(((Toolkit.getDefaultToolkit().getScreenSize().height) / 2) - ((tutorialVBox.getPrefHeight()) / 2));//verschiebung auf Y- Achse
-            tutorial.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
-            tutorial.show();
-
-        }
-    };
-
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -142,7 +118,8 @@ public class Controller {
 
     // Menu
     public void exitButtonClicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
         System.exit(0);
     }

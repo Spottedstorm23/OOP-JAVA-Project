@@ -2,6 +2,7 @@ package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -33,11 +34,9 @@ public class TutorialController {
     }
 
     // Tutorial
-    public void exitTutorialButtonClicked(ActionEvent actionEvent) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
-        //music.playMusic(false);
-        //this.music.stop();
-        // close  stage
-        Stage stage = (Stage) exitTutorialButton.getScene().getWindow();
+    public void exitTutorialButtonClicked(ActionEvent actionEvent){
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
 }

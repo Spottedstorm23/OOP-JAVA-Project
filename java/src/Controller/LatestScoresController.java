@@ -5,6 +5,7 @@ import Other.Timer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -56,7 +57,8 @@ public class LatestScoresController {
 
     // LatestScores
     public void closeScoresButtonClicked(ActionEvent actionEvent) {
-        Stage stage = (Stage) closeScoresButton.getScene().getWindow();
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
 
