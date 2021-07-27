@@ -54,7 +54,7 @@ public class GameWindowController {
     byte[][] levelmap;
 
     boolean escPressed = false;
-    String[] keyPressed = {"zero","zero","zero","zero"};
+    String[] keyPressed = {"zero","down","down","down"};
     /*
     0 Maus
     1 Katze 1
@@ -104,8 +104,11 @@ public class GameWindowController {
 
                     timer_count--;
 
-                    if (keyPressed != null) {
+                    if (keyPressed[0] != "zero") {
                         moveMouse();
+                    }
+                    if (keyPressed[1] != "zero") {
+                        moveCats(1);
                     }
 
                     //Aktualisiert den Timer aller 5 Durchgänge
@@ -197,9 +200,9 @@ public class GameWindowController {
 
     public void resetKeyPressed() {
         this.keyPressed[0] = "zero";
-        this.keyPressed[1] = "zero";
-        this.keyPressed[2] = "zero";
-        this.keyPressed[3] = "zero";
+        this.keyPressed[1] = "down";
+        this.keyPressed[2] = "down";
+        this.keyPressed[3] = "down";
     }
 
     public void moveMouse() {
@@ -264,12 +267,12 @@ public class GameWindowController {
                 }
                 case "up": {
                     view.setCatDirections(number, "up");
-                    view.setCatsYCord(number, y- 25);
+                    view.setCatsYCord(number, y - 25);
                     break;
                 }
                 case "down": {
                     view.setCatDirections(number,"down");
-                    view.setCatsYCord(number, + 25);
+                    view.setCatsYCord(number,y + 25);
                     break;
                 }
                 default: {
@@ -290,14 +293,14 @@ public class GameWindowController {
         // gets a new Map from Maps
         //draws level, cheese and mouse spawn
         Maps map = new Maps();
-        byte[][] newLevelMap = map.getMap();
-        //byte[][] newLevelMap = map.getMap16();
+        //byte[][] newLevelMap = map.getMap();
+        byte[][] newLevelMap = map.getMap16();
         this.levelmap = newLevelMap;
         view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
-        //view.drawCats(paneBoard);
+        view.drawCats(paneBoard);
         resetKeyPressed();
     }
 
