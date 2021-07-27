@@ -334,7 +334,7 @@ public class View {
         Rectangle cat_2 = new Rectangle(cat2_x, cat2_y, 50, 50);
         Rectangle cat_3 = new Rectangle(cat3_x, cat3_y, 50, 50);
         Image cat_1_pic = new Image("./View/images/Projekt_-_Katze1Down.png");
-        Image cat_2_pic =  new Image("./View/images/Projekt_-_Katze2Down.png");
+        Image cat_2_pic = new Image("./View/images/Projekt_-_Katze2Down.png");
         Image cat_3_pic = new Image("./View/images/Projekt_-_Katze3Down.png");
         checkCat1Direction(cat_1_pic);
         checkCat2Direction(cat_2_pic);
