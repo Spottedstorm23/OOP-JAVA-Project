@@ -55,6 +55,12 @@ public class GameWindowController {
 
     boolean escPressed = false;
     String[] keyPressed = {"zero","zero","zero","zero"};
+    /*
+    0 Maus
+    1 Katze 1
+    2 Katze 2
+    3 Katze 3
+     */
 
     public static int timer_count;  //Zählt die Ticks für den Timer
 
@@ -359,8 +365,23 @@ public class GameWindowController {
     }
 
     public void setLabelHighscore() {
+        //by Lukas
         Highscore highscoreObject = new Highscore();
         short scores[] = highscoreObject.readHighscore();
         labelHighscore.setText(String.valueOf(scores[0]));
+    }
+
+    private String randomDirection() {
+        //by Lukas
+        //gives you a random direction back
+        byte x = (byte)(Math.random() * 4);
+        String result = "zero";
+        switch(x){
+            case 0: result = "up";    break;
+            case 1: result = "right"; break;
+            case 2: result = "down";  break;
+            case 3: result = "left";  break;
+        }
+        return result;
     }
 }
