@@ -102,11 +102,6 @@ public class GameWindowController {
                         return;
                     }
 
-                    //Aktualisiert den Timer aller 5 Durchgänge
-                    if (timer_count % 5 == 0){
-                        String display = timerObject.SecToDisplay(timer_count/5);
-                        setLabelTimerText(display);
-                    }
                     if (timer_count % 2 == 0){
                         byte number = 1;
                         short x = (short)view.getCatsXCord(number);
@@ -116,6 +111,12 @@ public class GameWindowController {
                     moveCats(1);
 
                     timer_count--;
+
+                    //Aktualisiert den Timer aller 5 Durchgänge
+                    if (timer_count % 5 == 0){
+                        String display = timerObject.SecToDisplay(timer_count/5);
+                        setLabelTimerText(display);
+                    }
 
                     if (keyPressed[0] != "zero") {
                         moveMouse();
