@@ -54,17 +54,14 @@ public class GameWindowController {
     byte[][] levelmap;
 
     boolean escPressed = false;
-    boolean isWall = false;
-    String keyPressed;
+    String[] keyPressed = {"zero","zero","zero","zero"};
 
     public static int timer_count;  //Zählt die Ticks für den Timer
-    // public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
     int score = 0;
 
     public void initialize() throws IOException {
         newLevel();
-        //setLabelTimerText("" + timer_count);
         timer_count = 1500; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count/5));
@@ -77,10 +74,7 @@ public class GameWindowController {
         //by Lukas, Label by Selina
         //Der globale Timer, welcher beim GameStart gestartet wird
 
-        // neu , test
-        java.util.Timer t = new java.util.Timer();
-
-
+        java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         TimerTask tt = new TimerTask() {
@@ -144,26 +138,26 @@ public class GameWindowController {
         switch (keyEvent.getCode()) {
             case A:
             case LEFT: {
-                setKeyPressed("left");
+                setKeyPressed("left",0);
                 break;
             }
             case S:
             case DOWN: {
-                setKeyPressed("down");
+                setKeyPressed("down",0);
                 break;
             }
             case D:
             case RIGHT: {
-                setKeyPressed("right");
+                setKeyPressed("right",0);
                 break;
             }
             case W:
             case UP: {
-                setKeyPressed("up");
+                setKeyPressed("up",0);
                 break;
             }
             default: {
-                setKeyPressed("zero");
+                setKeyPressed("zero",0);
                 break;
             }
         }
@@ -177,35 +171,7 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        //works with keyvariable -> executes movement & pause
-        /*switch (keyPressed) {
-            case "left": {
-                //System.out.println("left");
-                moveLeft();
-                break;
-            }
-            case "right": {
-                //System.out.println("right");
-                moveRight();
-                break;
-            }
-            case "down": {
-                //System.out.println("down");
-                moveDown();
-                break;
-            }
-            case "up": {
-                //System.out.println("up");
-                moveUp();
-                break;
-            }
-            case "zero": {
-                //System.out.println("zero");
-                break;
-            }
-        }*/
-        //move();
-        this.isWall = false;
+        //this.isWall = false;
         if (escPressed) {
             openGameMenu(keyEvent);
         }
@@ -219,34 +185,39 @@ public class GameWindowController {
         return escPressed;
     }
 
-    public void setKeyPressed(String value) {
-        this.keyPressed = value;
+    public void setKeyPressed(String value, int number) {
+        this.keyPressed[number] = value;
     }
 
     public void move() {
         //by Cora
         // checks for walls, then moves mouse in given direction
-        checkWall();
+
+        short x = (short)view.getMouseX();
+        short y = (short)view.getMouseY();
+
+        boolean isWall = checkWall(x,y,(byte)0);
+
         if (!isWall) {
-            switch (keyPressed) {
+            switch (keyPressed[0]) {
                 case "left": {
                     view.setmouseDirection("left");
-                    view.setMouseX(view.getMouseX() - 25);
+                    view.setMouseX(x - 25);
                     break;
                 }
                 case "right": {
                     view.setmouseDirection("right");
-                    view.setMouseX(view.getMouseX() + 25);
+                    view.setMouseX(x + 25);
                     break;
                 }
                 case "up": {
                     view.setmouseDirection("up");
-                    view.setMouseY(view.getMouseY() - 25);
+                    view.setMouseY(y - 25);
                     break;
                 }
                 case "down": {
                     view.setmouseDirection("down");
-                    view.setMouseY(view.getMouseY() + 25);
+                    view.setMouseY(y + 25);
                     break;
                 }
                 default: {
@@ -273,7 +244,8 @@ public class GameWindowController {
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
         //view.drawCats(paneBoard);
-        this.keyPressed = "zero";
+        //this.keyPressed = "zero";
+        //this.keyPressed[0] = "zero";
     }
 
     public void collectCheese() {
@@ -308,33 +280,35 @@ public class GameWindowController {
     }
 
 
-    private void checkWall() {
+    private boolean checkWall(short x, short y, byte id) {
         //by Lukas, inspired by Cora
         //prüft, ob eine Wand im Weg ist
-        int y = view.getMouseY();
-        int x = view.getMouseX();
 
-        switch (keyPressed) {
+        boolean isWall = false;
+
+        switch (keyPressed[id]) {
             case "left": {
-                if (levelmap[y/50][(x-25)/50] == 0 || levelmap[(y+49)/50][(x-25)/50] == 0) { this.isWall = true; }
+                if (levelmap[y/50][(x-25)/50] == 0 || levelmap[(y+49)/50][(x-25)/50] == 0) { isWall = true; }
                 break;
             }
             case "right": {
-                if (levelmap[y/50][(x+50)/50] == 0 || levelmap[(y+49)/50][(x+50)/50] == 0) { this.isWall = true; }
+                if (levelmap[y/50][(x+50)/50] == 0 || levelmap[(y+49)/50][(x+50)/50] == 0) { isWall = true; }
                 break;
             }
             case "up": {
-                if (levelmap[(y-25)/50][x/50] == 0 || levelmap[(y-25)/50][(x+49)/50] == 0) { this.isWall = true; }
+                if (levelmap[(y-25)/50][x/50] == 0 || levelmap[(y-25)/50][(x+49)/50] == 0) { isWall = true; }
                 break;
             }
             case "down": {
-                if (levelmap[(y+50)/50][x/50] == 0 || levelmap[(y+50)/50][(x+49)/50] == 0) { this.isWall = true; }
+                if (levelmap[(y+50)/50][x/50] == 0 || levelmap[(y+50)/50][(x+49)/50] == 0) { isWall = true; }
                 break;
             }
             default: {
+                isWall = false;
                 break;
             }
         }
+        return isWall;
     }
 
     private void openGameMenu(KeyEvent keyEvent) {
