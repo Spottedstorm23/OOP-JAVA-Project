@@ -76,10 +76,11 @@ public class View {
         this.mouseDirection = state;
     }
 
+
     public void setCatDirections(int cat, String state) {
         //by Cora
         //sets the direction in which a given cat moves and looks
-        switch (cat){
+        switch (cat) {
             case 1: {
                 this.cat1_direction = state;
                 break;
@@ -98,7 +99,7 @@ public class View {
     public void setCatsXCord(int cat, int x) {
         //by Cora
         //sets x Coordinate for a given cat
-        switch (cat){
+        switch (cat) {
             case 1: {
                 this.cat1_X = x;
                 break;
@@ -114,10 +115,11 @@ public class View {
         }
 
     }
+
     public void setCatsYCord(int cat, int y) {
         //by Cora
         //sets y Coordinate for a given cat
-        switch (cat){
+        switch (cat) {
             case 1: {
                 this.cat1_Y = y;
                 break;
@@ -132,10 +134,11 @@ public class View {
             }
         }
     }
+
     public int getCatsXCord(int cat) {
         //by Cora
         //gets x Coordinate for a given cat
-        switch (cat){
+        switch (cat) {
             case 1: {
                 return cat1_X;
             }
@@ -150,10 +153,11 @@ public class View {
         }
 
     }
+
     public int getCatsYCord(int cat) {
         //by Cora
         //gets y Coordinate for a given cat
-        switch (cat){
+        switch (cat) {
             case 1: {
                 return cat1_Y;
             }
@@ -204,22 +208,22 @@ public class View {
                     case 5: {
                         // sets first Cat Coordinates
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
-                        setCatsXCord(1,cord_x);
-                        setCatsYCord(1,cord_y);
+                        setCatsXCord(1, cord_x);
+                        setCatsYCord(1, cord_y);
                         break;
                     }
                     case 6: {
                         // sets first Cat Coordinates
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
-                        setCatsXCord(2,cord_x);
-                        setCatsYCord(2,cord_y);
+                        setCatsXCord(2, cord_x);
+                        setCatsYCord(2, cord_y);
                         break;
                     }
                     case 7: {
                         // sets first Cat Coordinates
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
-                        setCatsXCord(3,cord_x);
-                        setCatsYCord(3,cord_y);
+                        setCatsXCord(3, cord_x);
+                        setCatsYCord(3, cord_y);
                         break;
                     }
                     default: {
@@ -362,7 +366,7 @@ public class View {
         cats.getChildren().add(cat_1);
         //cats.getChildren().add(cat_2);
         //cats.getChildren().add(cat_3);
-        list.add(3,cats);
+        list.add(3, cats);
     }
 
     public Image checkCat1Direction(Image pic) {
