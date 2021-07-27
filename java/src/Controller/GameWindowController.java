@@ -105,7 +105,7 @@ public class GameWindowController {
                     timer_count--;
 
                     if (keyPressed != null) {
-                        move();
+                        moveMouse();
                     }
 
                     //Aktualisiert den Timer aller 5 Durchgänge
@@ -195,7 +195,14 @@ public class GameWindowController {
         this.keyPressed[number] = value;
     }
 
-    public void move() {
+    public void resetKeyPressed() {
+        this.keyPressed[0] = "zero";
+        this.keyPressed[1] = "zero";
+        this.keyPressed[2] = "zero";
+        this.keyPressed[3] = "zero";
+    }
+
+    public void moveMouse() {
         //by Cora
         // checks for walls, then moves mouse in given direction
 
@@ -236,6 +243,47 @@ public class GameWindowController {
 
 
     }
+    public void moveCats(int number) {
+        //by Cora
+        // checks for walls, then moves cats in given direction
+        short x = (short)view.getCatsXCord(number);
+        short y = (short)view.getCatsYCord(number);
+
+        boolean isWall = checkWall(x,y, (byte) number);
+        if (!isWall) {
+            switch (keyPressed[number]) {
+                case "left": {
+                    view.setCatDirections(number,"left");
+                    view.setCatsXCord(1,x - 25);
+                    break;
+                }
+                case "right": {
+                    view.setCatDirections(number,"right");
+                    view.setCatsXCord(number,x + 25);
+                    break;
+                }
+                case "up": {
+                    view.setCatDirections(number, "up");
+                    view.setCatsYCord(number, y- 25);
+                    break;
+                }
+                case "down": {
+                    view.setCatDirections(number,"down");
+                    view.setCatsYCord(number, + 25);
+                    break;
+                }
+                default: {
+                    return;
+                }
+            }
+            view.drawCats(paneBoard);
+        }
+        else {
+            setKeyPressed(randomDirection(),number);
+        }
+
+
+    }
 
     public void newLevel() {
         //by Cora
@@ -250,8 +298,7 @@ public class GameWindowController {
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
         //view.drawCats(paneBoard);
-        //this.keyPressed = "zero";
-        //this.keyPressed[0] = "zero";
+        resetKeyPressed();
     }
 
     public void collectCheese() {
