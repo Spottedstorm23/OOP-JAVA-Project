@@ -51,11 +51,12 @@ public class Controller {
 
     private Music2 music = new Music2();
     private GameWindowController gwc = new GameWindowController();
+    private int modus = 1;
 
     public Controller() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
     }
 
-    public void initialize(){
+    public void initialize() {
     }
 
     // Menu
@@ -70,6 +71,9 @@ public class Controller {
         gameStage.initStyle(StageStyle.TRANSPARENT);
         gameStage.setScene(gameScene);
         gameStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+
+        GameWindowController gameWindowController = fxmlLoader.getController();
+        //TODO Mode in GWC übertragen
         gameStage.show();
     }
 
@@ -90,11 +94,12 @@ public class Controller {
 
     // Menu
     public void chaseModeButtonClicked(ActionEvent actionEvent) {
-
+        this.modus = 1;
     }
 
     // Menu
     public void escapeModeButtonClicked(ActionEvent actionEvent) {
+        this.modus = 2;
     }
 
     // Menu
@@ -121,7 +126,7 @@ public class Controller {
     }
 
     public void musicButtonClicked(ActionEvent actionEvent) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        switch (status){
+        switch (status) {
             case 1: {
                 this.music.stop();
                 status = 0;

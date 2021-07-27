@@ -52,24 +52,27 @@ public class GameWindowController {
 
     View view = new View();
     byte[][] levelmap;
+    private Mode mode = new Mode();
 
     boolean escPressed = false;
-    boolean isWall = false;
-    String keyPressed;
+    String[] keyPressed = {"zero", "down", "down", "down"};
+    /*
+    0 Maus
+    1 Katze 1
+    2 Katze 2
+    3 Katze 3
+     */
 
     public static int timer_count;  //Zählt die Ticks für den Timer
-    // public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
     int score = 0;
 
     public void initialize() throws IOException {
         newLevel();
-        //setLabelTimerText("" + timer_count);
         timer_count = 1500; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
-        setLabelTimerText(timerObject.SecToDisplay(timer_count/5));
+        setLabelTimerText(timerObject.SecToDisplay(timer_count / 5));
         timer();
-
         setLabelHighscore();
     }
 
@@ -77,10 +80,7 @@ public class GameWindowController {
         //by Lukas, Label by Selina
         //Der globale Timer, welcher beim GameStart gestartet wird
 
-        // neu , test
-        java.util.Timer t = new java.util.Timer();
-
-
+        java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         TimerTask tt = new TimerTask() {
@@ -102,19 +102,24 @@ public class GameWindowController {
                         return;
                     }
 
+                    if (timer_count % 2 == 0){
+                        byte number = 1;
+                        short x = (short)view.getCatsXCord(number);
+                        short y = (short)view.getCatsYCord(number);
+                        catAI(x,y,number);
+                    }
+                    moveCats(1);
+
                     timer_count--;
 
-                    if (keyPressed != null) {
-                        move();
-                    }
-
                     //Aktualisiert den Timer aller 5 Durchgänge
-                    if (timer_dummy == 4){
+                    if (timer_count % 5 == 0){
                         String display = timerObject.SecToDisplay(timer_count/5);
                         setLabelTimerText(display);
-                        timer_dummy = 0;
-                    } else {
-                        timer_dummy ++;
+                    }
+
+                    if (keyPressed[0] != "zero") {
+                        moveMouse();
                     }
                 });
             }
@@ -144,26 +149,26 @@ public class GameWindowController {
         switch (keyEvent.getCode()) {
             case A:
             case LEFT: {
-                setKeyPressed("left");
+                setKeyPressed("left", 0);
                 break;
             }
             case S:
             case DOWN: {
-                setKeyPressed("down");
+                setKeyPressed("down", 0);
                 break;
             }
             case D:
             case RIGHT: {
-                setKeyPressed("right");
+                setKeyPressed("right", 0);
                 break;
             }
             case W:
             case UP: {
-                setKeyPressed("up");
+                setKeyPressed("up", 0);
                 break;
             }
             default: {
-                setKeyPressed("zero");
+                setKeyPressed("zero", 0);
                 break;
             }
         }
@@ -177,35 +182,7 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        //works with keyvariable -> executes movement & pause
-        /*switch (keyPressed) {
-            case "left": {
-                //System.out.println("left");
-                moveLeft();
-                break;
-            }
-            case "right": {
-                //System.out.println("right");
-                moveRight();
-                break;
-            }
-            case "down": {
-                //System.out.println("down");
-                moveDown();
-                break;
-            }
-            case "up": {
-                //System.out.println("up");
-                moveUp();
-                break;
-            }
-            case "zero": {
-                //System.out.println("zero");
-                break;
-            }
-        }*/
-        //move();
-        this.isWall = false;
+        //this.isWall = false;
         if (escPressed) {
             openGameMenu(keyEvent);
         }
@@ -219,34 +196,46 @@ public class GameWindowController {
         return escPressed;
     }
 
-    public void setKeyPressed(String value) {
-        this.keyPressed = value;
+    public void setKeyPressed(String value, int number) {
+        this.keyPressed[number] = value;
     }
 
-    public void move() {
+    public void resetKeyPressed() {
+        this.keyPressed[0] = "zero";
+        this.keyPressed[1] = "down";
+        this.keyPressed[2] = "down";
+        this.keyPressed[3] = "down";
+    }
+
+    public void moveMouse() {
         //by Cora
         // checks for walls, then moves mouse in given direction
-        checkWall();
+
+        short x = (short) view.getMouseX();
+        short y = (short) view.getMouseY();
+
+        boolean isWall = checkWall(x, y, (byte) 0);
+
         if (!isWall) {
-            switch (keyPressed) {
+            switch (keyPressed[0]) {
                 case "left": {
                     view.setmouseDirection("left");
-                    view.setMouseX(view.getMouseX() - 25);
+                    view.setMouseX(x - 25);
                     break;
                 }
                 case "right": {
                     view.setmouseDirection("right");
-                    view.setMouseX(view.getMouseX() + 25);
+                    view.setMouseX(x + 25);
                     break;
                 }
                 case "up": {
                     view.setmouseDirection("up");
-                    view.setMouseY(view.getMouseY() - 25);
+                    view.setMouseY(y - 25);
                     break;
                 }
                 case "down": {
                     view.setmouseDirection("down");
-                    view.setMouseY(view.getMouseY() + 25);
+                    view.setMouseY(y + 25);
                     break;
                 }
                 default: {
@@ -260,20 +249,61 @@ public class GameWindowController {
 
     }
 
+    public void moveCats(int number) {
+        //by Cora
+        // checks for walls, then moves cats in given direction
+        short x = (short) view.getCatsXCord(number);
+        short y = (short) view.getCatsYCord(number);
+
+        boolean isWall = checkWall(x, y, (byte) number);
+        if (!isWall) {
+            switch (keyPressed[number]) {
+                case "left": {
+                    view.setCatDirections(number, "left");
+                    view.setCatsXCord(1, x - 25);
+                    break;
+                }
+                case "right": {
+                    view.setCatDirections(number, "right");
+                    view.setCatsXCord(number, x + 25);
+                    break;
+                }
+                case "up": {
+                    view.setCatDirections(number, "up");
+                    view.setCatsYCord(number, y - 25);
+                    break;
+                }
+                case "down": {
+                    view.setCatDirections(number, "down");
+                    view.setCatsYCord(number, y + 25);
+                    break;
+                }
+                default: {
+                    return;
+                }
+            }
+            view.drawCats(paneBoard);
+        } else {
+            //setKeyPressed(randomDirection(), number);
+        }
+
+
+    }
+
     public void newLevel() {
         //by Cora
         // gets a new Map from Maps
         //draws level, cheese and mouse spawn
         Maps map = new Maps();
-        byte[][] newLevelMap = map.getMap();
-        //byte[][] newLevelMap = map.getMap16();
+        //byte[][] newLevelMap = map.getMap();
+        byte[][] newLevelMap = map.getMap16();
         this.levelmap = newLevelMap;
         view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
-        //view.drawCats(paneBoard);
-        this.keyPressed = "zero";
+        view.drawCats(paneBoard);
+        resetKeyPressed();
     }
 
     public void collectCheese() {
@@ -308,33 +338,43 @@ public class GameWindowController {
     }
 
 
-    private void checkWall() {
+    private boolean checkWall(short x, short y, byte id) {
         //by Lukas, inspired by Cora
         //prüft, ob eine Wand im Weg ist
-        int y = view.getMouseY();
-        int x = view.getMouseX();
 
-        switch (keyPressed) {
+        boolean isWall = false;
+
+        switch (keyPressed[id]) {
             case "left": {
-                if (levelmap[y/50][(x-25)/50] == 0 || levelmap[(y+49)/50][(x-25)/50] == 0) { this.isWall = true; }
+                if (levelmap[y / 50][(x - 25) / 50] == 0 || levelmap[(y + 49) / 50][(x - 25) / 50] == 0) {
+                    isWall = true;
+                }
                 break;
             }
             case "right": {
-                if (levelmap[y/50][(x+50)/50] == 0 || levelmap[(y+49)/50][(x+50)/50] == 0) { this.isWall = true; }
+                if (levelmap[y / 50][(x + 50) / 50] == 0 || levelmap[(y + 49) / 50][(x + 50) / 50] == 0) {
+                    isWall = true;
+                }
                 break;
             }
             case "up": {
-                if (levelmap[(y-25)/50][x/50] == 0 || levelmap[(y-25)/50][(x+49)/50] == 0) { this.isWall = true; }
+                if (levelmap[(y - 25) / 50][x / 50] == 0 || levelmap[(y - 25) / 50][(x + 49) / 50] == 0) {
+                    isWall = true;
+                }
                 break;
             }
             case "down": {
-                if (levelmap[(y+50)/50][x/50] == 0 || levelmap[(y+50)/50][(x+49)/50] == 0) { this.isWall = true; }
+                if (levelmap[(y + 50) / 50][x / 50] == 0 || levelmap[(y + 50) / 50][(x + 49) / 50] == 0) {
+                    isWall = true;
+                }
                 break;
             }
             default: {
+                isWall = false;
                 break;
             }
         }
+        return isWall;
     }
 
     private void openGameMenu(KeyEvent keyEvent) {
@@ -385,8 +425,68 @@ public class GameWindowController {
     }
 
     public void setLabelHighscore() {
+        //by Lukas
         Highscore highscoreObject = new Highscore();
         short scores[] = highscoreObject.readHighscore();
         labelHighscore.setText(String.valueOf(scores[0]));
+    }
+
+    private String randomDirection() {
+        //by Lukas
+        //gives you a random direction back
+        byte x = (byte) (Math.random() * 4);
+        String result = "zero";
+        switch (x) {
+            case 0:
+                result = "up";
+                break;
+            case 1:
+                result = "right";
+                break;
+            case 2:
+                result = "down";
+                break;
+            case 3:
+                result = "left";
+                break;
+        }
+        return result;
+    }
+
+    private void catAI(short x, short y, byte number) {
+        //by Lukas
+        //THE CATAI -> CAT Artificial Intelligence
+
+        boolean[] catRadar = {true, true, true, true}; //Ob Wand in jeder Richtung
+        String[] directions = {"up","right","down","left"};
+        byte noWall = 0; //Zählt diejenigen Möglichkeiten, wo es Wege gibt
+
+        //Checke alle vier Himmelsrichtungen nach Wänden
+        for (byte i = 0; i < 4 ; i++) {
+            keyPressed[number] = directions[i];
+            catRadar[i] = checkWall(x,y,number);
+            if (catRadar[i] == false) {
+                noWall ++;
+            }
+        }
+
+        //Erstelle neuen Array nur mit möglichen Wegen
+        String[] newdirections = new String[noWall];
+        byte noWallCount = 0;
+
+        for (byte i = 0; i < 4; i++) {
+            if (catRadar[i] == false) {
+                newdirections[noWallCount] = directions[i];
+                System.out.println(newdirections[noWallCount]);
+                noWallCount++;
+            }
+        }
+
+        //Generiere Zufallsnummer von den ausgewählten Wegen
+        byte random = (byte)(Math.random() * noWall);
+
+        //Setze keyPressed auf neuen Wert
+        keyPressed[number] = newdirections[random];
+        System.out.println(keyPressed[number]);
     }
 }
