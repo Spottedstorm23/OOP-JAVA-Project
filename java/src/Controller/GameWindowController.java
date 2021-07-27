@@ -102,22 +102,23 @@ public class GameWindowController {
                         return;
                     }
 
+                    //Aktualisiert den Timer aller 5 Durchgänge
+                    if (timer_count % 5 == 0){
+                        String display = timerObject.SecToDisplay(timer_count/5);
+                        setLabelTimerText(display);
+                    }
+                    if (timer_count % 2 == 0){
+                        byte number = 1;
+                        short x = (short)view.getCatsXCord(number);
+                        short y = (short)view.getCatsYCord(number);
+                        catAI(x,y,number);
+                    }
+                    moveCats(1);
+
                     timer_count--;
 
                     if (keyPressed[0] != "zero") {
                         moveMouse();
-                    }
-                    if (keyPressed[1] != "zero") {
-                        moveCats(1);
-                    }
-
-                    //Aktualisiert den Timer aller 5 Durchgänge
-                    if (timer_dummy == 4) {
-                        String display = timerObject.SecToDisplay(timer_count / 5);
-                        setLabelTimerText(display);
-                        timer_dummy = 0;
-                    } else {
-                        timer_dummy++;
                     }
                 });
             }
@@ -282,7 +283,7 @@ public class GameWindowController {
             }
             view.drawCats(paneBoard);
         } else {
-            setKeyPressed(randomDirection(), number);
+            //setKeyPressed(randomDirection(), number);
         }
 
 
@@ -449,5 +450,42 @@ public class GameWindowController {
                 break;
         }
         return result;
+    }
+
+    private void catAI(short x, short y, byte number) {
+        //by Lukas
+        //THE CATAI -> CAT Artificial Intelligence
+
+        boolean[] catRadar = {true, true, true, true}; //Ob Wand in jeder Richtung
+        String[] directions = {"up","right","down","left"};
+        byte noWall = 0; //Zählt diejenigen Möglichkeiten, wo es Wege gibt
+
+        //Checke alle vier Himmelsrichtungen nach Wänden
+        for (byte i = 0; i < 4 ; i++) {
+            keyPressed[number] = directions[i];
+            catRadar[i] = checkWall(x,y,number);
+            if (catRadar[i] == false) {
+                noWall ++;
+            }
+        }
+
+        //Erstelle neuen Array nur mit möglichen Wegen
+        String[] newdirections = new String[noWall];
+        byte noWallCount = 0;
+
+        for (byte i = 0; i < 4; i++) {
+            if (catRadar[i] == false) {
+                newdirections[noWallCount] = directions[i];
+                System.out.println(newdirections[noWallCount]);
+                noWallCount++;
+            }
+        }
+
+        //Generiere Zufallsnummer von den ausgewählten Wegen
+        byte random = (byte)(Math.random() * noWall);
+
+        //Setze keyPressed auf neuen Wert
+        keyPressed[number] = newdirections[random];
+        System.out.println(keyPressed[number]);
     }
 }
