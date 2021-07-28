@@ -505,6 +505,7 @@ public class GameWindowController {
         boolean[] catRadar = {true, true, true, true}; //Ob Wand in jeder Richtung
         String[] directions = {"up", "right", "down", "left"};
         byte noWall = 0; //Zählt diejenigen Möglichkeiten, wo es Wege gibt
+        String oldkeyPressed = keyPressed[number]; //Speichert den alten Keypressed ab
 
         //Checke alle vier Himmelsrichtungen nach Wänden
         for (byte i = 0; i < 4; i++) {
@@ -516,7 +517,7 @@ public class GameWindowController {
         }
 
         //Erstelle neuen Array nur mit möglichen Wegen
-        String[] newdirections = new String[noWall];
+        String[] newdirections = new String[noWall + 1];
         byte noWallCount = 0;
 
         for (byte i = 0; i < 4; i++) {
@@ -526,11 +527,42 @@ public class GameWindowController {
             }
         }
 
+        //CATAI 2.0 - Es wird je nach Anzahl der möglichen Wege strategisch entschieden wie vorgegangen wird:
+        switch (noWall) {
+            case 0: {
+                //Es gibt nur ein Weg: Dieser wird genommen
+                keyPressed[number] = newdirections[0];
+                break;
+            }
+            case 1: {
+                //Es gibt 2 Wege, hier soll es erst überprüft werden, ob die Katze ihren Weg nicht einfach fortsetzen kann
+                if(oldkeyPressed == newdirections[0]) { keyPressed[number] = newdirections[0]; }
+                else if (oldkeyPressed == newdirections[1]) { keyPressed[number] = newdirections[1];}
+                else {
+                    byte random = (byte) (Math.random() * noWall);
+                    keyPressed[number] = newdirections[random];
+                }
+                //todo: Es soll nach Möglichkeit nicht nach hinten gegangen werden
+                //todo: SwitchCase verbauen???
+                break;
+            }
+            case 2:
+            case 3: {
+                byte random = (byte) (Math.random() * noWall);
+                keyPressed[number] = newdirections[random];
+                break;
+            }
+            default: {
+                System.out.println("Das sollte nicht passieren...");
+                break;
+            }
+        }
+
         //Generiere Zufallsnummer von den ausgewählten Wegen
-        byte random = (byte) (Math.random() * noWall);
+        //byte random = (byte) (Math.random() * noWall);
 
         //Setze keyPressed auf neuen Wert
-        keyPressed[number] = newdirections[random];
+        //keyPressed[number] = newdirections[random];
     }
 
     public void setLivesVisible(boolean state) {
