@@ -347,7 +347,6 @@ public class GameWindowController {
         }
     }
 
-
     private boolean checkWall(short x, short y, byte id) {
         //by Lukas, inspired by Cora
         //prüft, ob eine Wand im Weg ist
@@ -431,6 +430,41 @@ public class GameWindowController {
         gameMenuController.setReturnMenuCallback(closeGameCallback);
         gameMenuController.setTimerCallback(timerCallback);
         gameMenuStage.show();
+
+    }
+
+    private void openGameOver(KeyEvent keyEvent) {
+        //by Cora
+        // Opens GameMenu and delegates closing- and timerfunction for GameWindow
+        Node node = (Node) keyEvent.getSource();
+        final Stage stage = (Stage) node.getScene().getWindow();
+
+        Runnable closeGameCallback = new Runnable() {
+            @Override
+            public void run() {
+                stage.close();
+            }
+        };
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../View/GameOver.fxml"));
+        Parent root;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException eo) {
+            eo.printStackTrace();
+            throw new RuntimeException("Could not load GameOver", eo);
+        }
+        Scene gameOverScene = new Scene(root);
+        Stage gameOverStage = new Stage();
+        gameOverStage.initStyle(StageStyle.TRANSPARENT);
+        gameOverStage.setResizable(false);
+        gameOverStage.initModality(Modality.APPLICATION_MODAL);
+        gameOverStage.setScene(gameOverScene);
+        gameOverStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        GameMenuController gameMenuController = fxmlLoader.getController();
+        gameMenuController.setReturnMenuCallback(closeGameCallback);
+        gameMenuController.setGameOverText();
+        gameOverStage.show();
 
     }
 

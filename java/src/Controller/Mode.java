@@ -1,7 +1,7 @@
 package Controller;
 
 public class Mode {
-    private static String mode= "EscapeCats";
+    private static String mode= "CheeseChase";
 
     public static void setMode(int number) {
         switch (number) {

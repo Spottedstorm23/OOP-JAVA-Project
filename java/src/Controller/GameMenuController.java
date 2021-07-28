@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class GameMenuController {
@@ -20,9 +21,20 @@ public class GameMenuController {
     @FXML
     private Button exitGameMenuButton;
 
+    @FXML
+    private Button returnButton;
+
+    @FXML
+    private Button exitGameOverButton;
+
+    @FXML
+    private Label gameOverText;
+
+
     private Runnable returnMenuCallback;
     private boolean exitPressed;
     private Runnable timerCallback;
+    private Mode mode = new Mode();
 
     public void resumeGameButtonClicked(ActionEvent actionEvent) {
         timerCallback.run();
@@ -49,6 +61,15 @@ public class GameMenuController {
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
+    }
+
+    public void setGameOverText(){
+        if(mode.getMode().equals("CheeseChase")){
+            gameOverText.setText("You ran out of Time.");
+        }
+        else{
+            gameOverText.setText("You have no lives left.");
+        }
     }
 
     public void setExitPressed(boolean exitPressed) {

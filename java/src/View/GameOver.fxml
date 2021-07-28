@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="600.0" stylesheets="@harrington.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameMenuController">
+   <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="600.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;">
+         <children>
+            <Label alignment="CENTER" layoutX="170.0" layoutY="29.0" prefHeight="54.0" prefWidth="260.0" style="-fx-font-family: Harrington; -fx-font-size: 34;" text="GAME OVER" textAlignment="CENTER" textFill="#bfbfbf" AnchorPane.topAnchor="29.0">
+               <font>
+                  <Font name="Harrington" size="34.0" />
+               </font>
+            </Label>
+            <Button fx:id="returnButton" cancelButton="true" layoutX="71.0" layoutY="212.0" mnemonicParsing="false" onAction="#returnMenuButtonClicked" prefHeight="43.0" prefWidth="198.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5; -fx-font-family: Harrington; -fx-font-size: 18;" text="Menu" textFill="#bfbfbf">
+               <font>
+                  <Font name="Harrington" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitGameOverButton" cancelButton="true" layoutX="331.0" layoutY="212.0" mnemonicParsing="false" onAction="#exitGameMenuButtonClicked" prefHeight="43.0" prefWidth="198.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-border-radius: 5; -fx-font-family: Harrington; -fx-font-size: 18;" text="Exit" textFill="#bfbfbf">
+               <font>
+                  <Font name="Harrington" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="135.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Projekt_-_Kaese.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="395.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Projekt_-_Kaese.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="gameOverText" alignment="CENTER" layoutX="120.0" layoutY="112.0" prefHeight="70.0" prefWidth="361.0" style="-fx-font-family: harrington; -fx-font-size: 25;" text="You ran out of time." textFill="#bfbfbf">
+               <font>
+                  <Font name="Harrington (Plain):001.001" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
