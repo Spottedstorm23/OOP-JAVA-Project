@@ -70,19 +70,18 @@ public class GameWindowController {
     boolean timerMode; //True für Katzen, False für CheseChase
 
     public void initialize() throws IOException {
-        if(mode.getMode().equals("CheeseChase")){
+        if (mode.getMode().equals("CheeseChase")) {
             setLivesVisible(false);
             labelCurrentMode.setText("Cheese Chase");
             //TODO put CheeseChase Stuff in here (timer etc)
             timerMode = false;
-        }
-        else {
+        } else {
             //TODO put Escape Mode stuff in here
             labelCurrentMode.setText("Escape the Cats");
             timerMode = true;
         }
         newLevel();
-        timer_count = 300; //In Sekunden * 5
+        timer_count = 1500; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count / 5));
         timer();
@@ -123,7 +122,7 @@ public class GameWindowController {
                             short y = (short) view.getCatsYCord(number);
                             catAI(x, y, number);
                         }
-                       moveCats(1);
+                        moveCats(1);
                     }
 
                     timer_count--;
@@ -307,8 +306,8 @@ public class GameWindowController {
         // gets a new Map from Maps
         //draws level, cheese and mouse spawn
         Maps map = new Maps();
-        //byte[][] newLevelMap = map.getMap();
-        byte[][] newLevelMap = map.getMap16();
+        byte[][] newLevelMap = map.getMap();
+        //byte[][] newLevelMap = map.getMap16();
         this.levelmap = newLevelMap;
         view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
@@ -333,6 +332,7 @@ public class GameWindowController {
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
+                    System.out.println("auf 1 gesetzt:" + y + " " + x);
                     break;
                 }
                 case 3: {
@@ -340,12 +340,13 @@ public class GameWindowController {
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
+                    System.out.println("auf 1 gesetzt:" + y + " " + x);
                     break;
                 }
             }
             labelScore.setText(String.valueOf(score));
 
-            if (view.getCheeseCount() == 0) {
+            if (view.getCurentCheeseCount() == 0) {
                 newLevel();
             }
         }
@@ -538,9 +539,11 @@ public class GameWindowController {
             }
             case 1: {
                 //Es gibt 2 Wege, hier soll es erst überprüft werden, ob die Katze ihren Weg nicht einfach fortsetzen kann
-                if(oldkeyPressed == newdirections[0]) { keyPressed[number] = newdirections[0]; }
-                else if (oldkeyPressed == newdirections[1]) { keyPressed[number] = newdirections[1];}
-                else {
+                if (oldkeyPressed == newdirections[0]) {
+                    keyPressed[number] = newdirections[0];
+                } else if (oldkeyPressed == newdirections[1]) {
+                    keyPressed[number] = newdirections[1];
+                } else {
                     byte random = (byte) (Math.random() * noWall);
                     keyPressed[number] = newdirections[random];
                 }
@@ -574,32 +577,51 @@ public class GameWindowController {
 
     }
 
-    public void removeLive1(){
+    public void removeLive1() {
         imageMouse1.setVisible(false);
     }
-    public void removeLive2(){
+
+    public void removeLive2() {
         imageMouse2.setVisible(false);
     }
-    public void removeLive3(){
+
+    public void removeLive3() {
         imageMouse3.setVisible(false);
     }
 
-    public void reduceLives(){
+    public void reduceLives() {
         this.mouseLives = (short) (mouseLives - 1);
     }
 
-    public boolean checkCatAndMouse(){
+    public void checkCatAndMouse() {
         short x_mouse = (short) view.getMouseX();
         short y_mouse = (short) view.getMouseY();
         short x_cat1 = (short) view.getCatsXCord(1);
         short y_cat1 = (short) view.getCatsYCord(1);
-        short x_cat2 = (short) view.getCatsXCord(2);
-        short y_cat2 = (short) view.getCatsYCord(2);
-        short x_cat3 = (short) view.getCatsXCord(3);
-        short y_cat3 = (short) view.getCatsYCord(3);
+        //short x_cat2 = (short) view.getCatsXCord(2);
+        //short y_cat2 = (short) view.getCatsYCord(2);
+        //short x_cat3 = (short) view.getCatsXCord(3);
+        //short y_cat3 = (short) view.getCatsYCord(3);
 
-        return ((x_mouse == x_cat1 && y_mouse == y_cat1) ||
+        if ((x_mouse == x_cat1 && y_mouse == y_cat1) /*||
                 (x_mouse == x_cat2 && y_mouse == y_cat2) ||
-                (x_mouse == x_cat3 && y_mouse == y_cat3));
+                (x_mouse == x_cat3 && y_mouse == y_cat3)*/) {
+            reduceLives();
+            switch (mouseLives) {
+                case 0: {
+                    removeLive3();
+                    break;
+                }
+                case 1: {
+                    removeLive2();
+                    break;
+                }
+                case 2: {
+                    removeLive1();
+                    break;
+                }
+            }
+
+        }
     }
 }
