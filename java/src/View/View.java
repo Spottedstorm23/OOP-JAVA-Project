@@ -26,6 +26,7 @@ public class View {
     String cat1_direction = "down";
     String cat2_direction = "down";
     String cat3_direction = "down";
+    int[][] cheeseArray = new int[20][2];
 
 
     public void addCheeseCount() {
@@ -203,6 +204,8 @@ public class View {
                     }
                     case 2:
                     case 3: {
+                        cheeseArray[cheeseCount][0] = x;
+                        cheeseArray[cheeseCount][1] = y;
                         addCheeseCount();
                     }
                     case 5: {
@@ -253,8 +256,6 @@ public class View {
         //Updates Cheespiles on the Map
         Group groupCheese = new Group();
         groupCheese.setId("cheese");
-
-
         int y = 0;
         for (y = 0; y < 13; y++) {
             int x = 0;
@@ -279,17 +280,42 @@ public class View {
                     }
                 }
             }
-            System.out.println("");
-        }
-
-        ObservableList<Node> list = root.getChildren();
-        if (list.size() > 1) {
-            Object last = list.get(1);
-            if (last.toString().equals("Group[id=cheese]")) {
-                list.remove(last);
+        /*
+        for (int i = 0; i < cheeseCount; i++) {
+            int y = cheeseArray[i][1];
+            int x = cheeseArray[i][0];
+            int cord_y = y * 50;
+            int cord_x = x * 50;
+            switch (map[y][x]) {
+                case 2: {
+                    Rectangle r_cheese = new Rectangle(cord_x, cord_y, 50, 50);
+                    Image cheese = new Image("./View/images/Projekt_-_Kaese.png");
+                    r_cheese.setFill(new ImagePattern(cheese));
+                    groupCheese.getChildren().add(r_cheese);
+                    break;
+                }
+                case 3: {
+                    Rectangle r_cheese = new Rectangle(cord_x, cord_y, 50, 50);
+                    Image cheesepile = new Image("./View/images/Projekt_-_Kaesehaufen.png");
+                    r_cheese.setFill(new ImagePattern(cheesepile));
+                    groupCheese.getChildren().add(r_cheese);
+                    break;
+                }
+                default: {
+                    break;
+                }
             }
+        }*/
+
+            ObservableList<Node> list = root.getChildren();
+            if (list.size() > 1) {
+                Object last = list.get(1);
+                if (last.toString().equals("Group[id=cheese]")) {
+                    list.remove(last);
+                }
+            }
+            root.getChildren().add(1, groupCheese);
         }
-        root.getChildren().add(1, groupCheese);
     }
 
 
@@ -366,7 +392,7 @@ public class View {
         cats.getChildren().add(cat_1);
         cats.getChildren().add(cat_2);
         cats.getChildren().add(cat_3);
-        list.add(3,cats);
+        list.add(3, cats);
     }
 
     public Image checkCat1Direction(Image pic) {

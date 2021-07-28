@@ -72,11 +72,13 @@ public class GameWindowController {
     public void initialize() throws IOException {
         if(mode.getMode().equals("CheeseChase")){
             setLivesVisible(false);
+            labelCurrentMode.setText("Cheese Chase");
             //TODO put CheeseChase Stuff in here (timer etc)
             timerMode = false;
         }
         else {
             //TODO put Escape Mode stuff in here
+            labelCurrentMode.setText("Escape the Cats");
             timerMode = true;
         }
         newLevel();
@@ -121,7 +123,7 @@ public class GameWindowController {
                             short y = (short) view.getCatsYCord(number);
                             catAI(x, y, number);
                         }
-                        moveCats(1);
+                       moveCats(1);
                     }
 
                     timer_count--;
@@ -437,7 +439,7 @@ public class GameWindowController {
 
     private void openGameOver() {
         //by Cora
-        // Opens GameMenu and delegates closing- and timerfunction for GameWindow
+        // Opens GameOverScreen and delegates closingfct for GameWindow
         final Stage stage = (Stage) exitButton.getScene().getWindow();
 
         Runnable closeGameCallback = new Runnable() {
