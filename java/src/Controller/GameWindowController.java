@@ -74,12 +74,10 @@ public class GameWindowController {
             setLivesVisible(false);
             labelCurrentMode.setText("Cheese Chase");
             //TODO put CheeseChase Stuff in here (timer etc)
-            timerMode = false;
         }
         else {
             //TODO put Escape Mode stuff in here
             labelCurrentMode.setText("Escape the Cats");
-            timerMode = true;
         }
         newLevel();
         timer_count = 300; //In Sekunden * 5
@@ -98,12 +96,10 @@ public class GameWindowController {
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         TimerTask tt = new TimerTask() {
 
-            byte timer_dummy = 4;  //Damit der Timer sekündlich herunterzählt
-
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    if (timer_count <= 0) {
+                    if (timer_count <= 0 || mouseLives == 0) {
                         Highscore highscoreObject = new Highscore();
                         highscoreObject.writeHighscore(score);
                         t.cancel();
@@ -116,7 +112,7 @@ public class GameWindowController {
                         return;
                     }
 
-                    if (timerMode) {
+                    if (mode.getMode().equals("EscapeCats")) {
                         if (timer_count % 2 == 0) {
                             byte number = 1;
                             short x = (short) view.getCatsXCord(number);
