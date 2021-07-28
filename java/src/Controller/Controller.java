@@ -71,9 +71,6 @@ public class Controller {
         gameStage.initStyle(StageStyle.TRANSPARENT);
         gameStage.setScene(gameScene);
         gameStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
-
-        GameWindowController gameWindowController = fxmlLoader.getController();
-        //TODO Mode in GWC übertragen
         gameStage.show();
     }
 
@@ -94,12 +91,16 @@ public class Controller {
 
     // Menu
     public void chaseModeButtonClicked(ActionEvent actionEvent) {
-        this.modus = 1;
+        Mode.setMode(1);
+        chaseModeButton.setDisable(true);
+        escapeModeButton.setDisable(false);
     }
 
     // Menu
     public void escapeModeButtonClicked(ActionEvent actionEvent) {
-        this.modus = 2;
+        Mode.setMode(2);
+        escapeModeButton.setDisable(true);
+        chaseModeButton.setDisable(false);
     }
 
     // Menu

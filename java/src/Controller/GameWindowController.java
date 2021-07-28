@@ -54,6 +54,8 @@ public class GameWindowController {
     byte[][] levelmap;
     private Mode mode = new Mode();
 
+    short mouseLives = 3;
+
     boolean escPressed = false;
     String[] keyPressed = {"zero", "down", "down", "down"};
     /*
@@ -64,10 +66,10 @@ public class GameWindowController {
      */
 
     public static int timer_count;  //Zählt die Ticks für den Timer
-
     int score = 0;
 
     public void initialize() throws IOException {
+        System.out.println(mode.getMode());
         newLevel();
         timer_count = 1500; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
@@ -102,19 +104,19 @@ public class GameWindowController {
                         return;
                     }
 
-                    if (timer_count % 2 == 0){
+                    if (timer_count % 2 == 0) {
                         byte number = 1;
-                        short x = (short)view.getCatsXCord(number);
-                        short y = (short)view.getCatsYCord(number);
-                        catAI(x,y,number);
+                        short x = (short) view.getCatsXCord(number);
+                        short y = (short) view.getCatsYCord(number);
+                        catAI(x, y, number);
                     }
                     moveCats(1);
 
                     timer_count--;
 
                     //Aktualisiert den Timer aller 5 Durchgänge
-                    if (timer_count % 5 == 0){
-                        String display = timerObject.SecToDisplay(timer_count/5);
+                    if (timer_count % 5 == 0) {
+                        String display = timerObject.SecToDisplay(timer_count / 5);
                         setLabelTimerText(display);
                     }
 
@@ -124,7 +126,7 @@ public class GameWindowController {
                 });
             }
         };
-        t.schedule(tt, 1000, 200); //Der eigentliche Timer
+        t.schedule(tt, 1000, 500); //Der eigentliche Timer
     }
 
     public String getLabelTimerText() {
@@ -302,7 +304,9 @@ public class GameWindowController {
         view.drawLvl(paneBoard, newLevelMap);
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
-        view.drawCats(paneBoard);
+        if (mode.getMode().equals("EscapeCats")) {
+            view.drawCats(paneBoard);
+        }
         resetKeyPressed();
     }
 
@@ -427,7 +431,7 @@ public class GameWindowController {
     public void setLabelHighscore() {
         //by Lukas
         Highscore highscoreObject = new Highscore();
-        short scores[] = highscoreObject.readHighscore();
+        short[] scores = highscoreObject.readHighscore();
         labelHighscore.setText(String.valueOf(scores[0]));
     }
 
@@ -458,15 +462,15 @@ public class GameWindowController {
         //THE CATAI -> CAT Artificial Intelligence
 
         boolean[] catRadar = {true, true, true, true}; //Ob Wand in jeder Richtung
-        String[] directions = {"up","right","down","left"};
+        String[] directions = {"up", "right", "down", "left"};
         byte noWall = 0; //Zählt diejenigen Möglichkeiten, wo es Wege gibt
 
         //Checke alle vier Himmelsrichtungen nach Wänden
-        for (byte i = 0; i < 4 ; i++) {
+        for (byte i = 0; i < 4; i++) {
             keyPressed[number] = directions[i];
-            catRadar[i] = checkWall(x,y,number);
-            if (catRadar[i] == false) {
-                noWall ++;
+            catRadar[i] = checkWall(x, y, number);
+            if (!catRadar[i]) {
+                noWall++;
             }
         }
 
@@ -475,18 +479,16 @@ public class GameWindowController {
         byte noWallCount = 0;
 
         for (byte i = 0; i < 4; i++) {
-            if (catRadar[i] == false) {
+            if (!catRadar[i]) {
                 newdirections[noWallCount] = directions[i];
-                System.out.println(newdirections[noWallCount]);
                 noWallCount++;
             }
         }
 
         //Generiere Zufallsnummer von den ausgewählten Wegen
-        byte random = (byte)(Math.random() * noWall);
+        byte random = (byte) (Math.random() * noWall);
 
         //Setze keyPressed auf neuen Wert
         keyPressed[number] = newdirections[random];
-        System.out.println(keyPressed[number]);
     }
 }

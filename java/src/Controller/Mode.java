@@ -1,18 +1,16 @@
 package Controller;
 
 public class Mode {
-    String mode;
+    private static String mode= "EscapeCats";
 
-    public void setMode(int mode) {
-        //by Cora
-        //sets the direction in which mouse moves and looks
-        switch (mode){
+    public static void setMode(int number) {
+        switch (number) {
             case 1: {
-                this.mode = "CheeseChase";
+                mode = "CheeseChase";
                 break;
             }
             case 2: {
-                this.mode = "EscapeCats";
+                mode = "EscapeCats";
                 break;
             }
         }
