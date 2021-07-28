@@ -69,7 +69,13 @@ public class GameWindowController {
     int score = 0;
 
     public void initialize() throws IOException {
-        System.out.println(mode.getMode());
+        if(mode.getMode().equals("CheeseChase")){
+            setLivesVisible(false);
+            //TODO put CheeseChase Stuff in here (timer etc)
+        }
+        else {
+            //TODO put Escape Mode stuff in here
+        }
         newLevel();
         timer_count = 1500; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
@@ -490,5 +496,35 @@ public class GameWindowController {
 
         //Setze keyPressed auf neuen Wert
         keyPressed[number] = newdirections[random];
+    }
+
+    public void setLivesVisible(boolean state) {
+        imageMouse1.setVisible(state);
+        imageMouse2.setVisible(state);
+        imageMouse3.setVisible(state);
+
+    }
+
+    public void removeLive1(){
+        imageMouse1.setVisible(false);
+    }
+    public void removeLive2(){
+        imageMouse2.setVisible(false);
+    }
+    public void removeLive3(){
+        imageMouse3.setVisible(false);
+    }
+
+    public void reduceLives(){
+        this.mouseLives = (short) (mouseLives - 1);
+    }
+
+    public boolean checkCatAndMouse(int cat){
+        short x_mouse = (short) view.getMouseX();
+        short y_mouse = (short) view.getMouseY();
+        short x_cat = (short) view.getCatsXCord(cat);
+        short y_cat = (short) view.getCatsYCord(cat);
+
+        return ((x_mouse == x_cat) && (y_mouse == y_cat);
     }
 }
