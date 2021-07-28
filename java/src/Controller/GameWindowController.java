@@ -527,12 +527,12 @@ public class GameWindowController {
 
         //CATAI 2.0 - Es wird je nach Anzahl der möglichen Wege strategisch entschieden wie vorgegangen wird:
         switch (noWall) {
-            case 0: {
+            case 1: {
                 //Es gibt nur ein Weg: Dieser wird genommen
                 keyPressed[number] = newdirections[0];
                 break;
             }
-            case 1: {
+            case 2: {
                 //Es gibt 2 Wege, hier soll es erst überprüft werden, ob die Katze ihren Weg nicht einfach fortsetzen kann
                 if (oldkeyPressed == newdirections[0]) {
                     keyPressed[number] = newdirections[0];
@@ -546,8 +546,8 @@ public class GameWindowController {
                 //todo: SwitchCase verbauen???
                 break;
             }
-            case 2:
-            case 3: {
+            case 3:
+            case 4: {
                 byte random = (byte) (Math.random() * noWall);
                 keyPressed[number] = newdirections[random];
                 break;
