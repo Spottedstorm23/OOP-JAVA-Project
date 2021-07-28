@@ -67,17 +67,20 @@ public class GameWindowController {
 
     public static int timer_count;  //Zählt die Ticks für den Timer
     int score = 0;
+    boolean timerMode; //True für Katzen, False für CheseChase
 
     public void initialize() throws IOException {
         if(mode.getMode().equals("CheeseChase")){
             setLivesVisible(false);
             //TODO put CheeseChase Stuff in here (timer etc)
+            timerMode = false;
         }
         else {
             //TODO put Escape Mode stuff in here
+            timerMode = true;
         }
         newLevel();
-        timer_count = 1500; //In Sekunden * 5
+        timer_count = 300; //In Sekunden * 5
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count / 5));
         timer();
@@ -103,6 +106,7 @@ public class GameWindowController {
                         highscoreObject.writeHighscore(score);
                         t.cancel();
                         t.purge();
+                        openGameOver();
                         return;
                     } else if (getEscPressedStatus()) {
                         t.cancel();
@@ -110,13 +114,15 @@ public class GameWindowController {
                         return;
                     }
 
-                    if (timer_count % 2 == 0) {
-                        byte number = 1;
-                        short x = (short) view.getCatsXCord(number);
-                        short y = (short) view.getCatsYCord(number);
-                        catAI(x, y, number);
+                    if (timerMode) {
+                        if (timer_count % 2 == 0) {
+                            byte number = 1;
+                            short x = (short) view.getCatsXCord(number);
+                            short y = (short) view.getCatsYCord(number);
+                            catAI(x, y, number);
+                        }
+                        moveCats(1);
                     }
-                    moveCats(1);
 
                     timer_count--;
 
@@ -132,7 +138,7 @@ public class GameWindowController {
                 });
             }
         };
-        t.schedule(tt, 1000, 500); //Der eigentliche Timer
+        t.schedule(tt, 1000, 200); //Der eigentliche Timer
     }
 
     public String getLabelTimerText() {
@@ -291,11 +297,7 @@ public class GameWindowController {
                 }
             }
             view.drawCats(paneBoard);
-        } else {
-            //setKeyPressed(randomDirection(), number);
         }
-
-
     }
 
     public void newLevel() {
@@ -433,11 +435,10 @@ public class GameWindowController {
 
     }
 
-    private void openGameOver(KeyEvent keyEvent) {
+    private void openGameOver() {
         //by Cora
         // Opens GameMenu and delegates closing- and timerfunction for GameWindow
-        Node node = (Node) keyEvent.getSource();
-        final Stage stage = (Stage) node.getScene().getWindow();
+        final Stage stage = (Stage) exitButton.getScene().getWindow();
 
         Runnable closeGameCallback = new Runnable() {
             @Override
