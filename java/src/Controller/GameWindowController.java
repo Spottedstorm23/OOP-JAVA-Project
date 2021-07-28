@@ -519,12 +519,18 @@ public class GameWindowController {
         this.mouseLives = (short) (mouseLives - 1);
     }
 
-    public boolean checkCatAndMouse(int cat){
+    public boolean checkCatAndMouse(){
         short x_mouse = (short) view.getMouseX();
         short y_mouse = (short) view.getMouseY();
-        short x_cat = (short) view.getCatsXCord(cat);
-        short y_cat = (short) view.getCatsYCord(cat);
+        short x_cat1 = (short) view.getCatsXCord(1);
+        short y_cat1 = (short) view.getCatsYCord(1);
+        short x_cat2 = (short) view.getCatsXCord(2);
+        short y_cat2 = (short) view.getCatsYCord(2);
+        short x_cat3 = (short) view.getCatsXCord(3);
+        short y_cat3 = (short) view.getCatsYCord(3);
 
-        return ((x_mouse == x_cat) && (y_mouse == y_cat);
+        return ((x_mouse == x_cat1 && y_mouse == y_cat1) ||
+                (x_mouse == x_cat2 && y_mouse == y_cat2) ||
+                (x_mouse == x_cat3 && y_mouse == y_cat3));
     }
 }
