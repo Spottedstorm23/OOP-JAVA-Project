@@ -68,6 +68,7 @@ public class GameWindowController {
 
     public static int timer_count;  //Zählt die Ticks für den Timer
     int score = 0;
+    boolean quited;
 
     public void initialize() throws IOException {
         if (mode.getMode().equals("CheeseChase")) {
@@ -80,6 +81,7 @@ public class GameWindowController {
         }
         newLevel();
         timer_count = 1500; //In Sekunden * 5
+        quited = false;
         Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count / 5));
         timer();
@@ -105,7 +107,7 @@ public class GameWindowController {
                         t.purge();
                         openGameOver();
                         return;
-                    } else if (getEscPressedStatus()) {
+                    } else if (getEscPressedStatus() || quited) {
                         t.cancel();
                         t.purge();
                         return;
@@ -148,6 +150,7 @@ public class GameWindowController {
     }
 
     public void quitButtonClicked(ActionEvent actionEvent) {
+        quited = true;
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
@@ -275,7 +278,7 @@ public class GameWindowController {
             switch (keyPressed[number]) {
                 case "left": {
                     view.setCatDirections(number, "left");
-                    view.setCatsXCord(1, x - 25);
+                    view.setCatsXCord(number, x - 25);
                     break;
                 }
                 case "right": {
@@ -568,6 +571,7 @@ public class GameWindowController {
                 for (byte i = 0; i < 4; i++) {
                     if (!catRadar[i]) {
                         newdirections[noWallCount] = directions[i];
+                        //System.out.println(directions[i]);
                         noWallCount++;
                     }
                 }

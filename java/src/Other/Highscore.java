@@ -94,7 +94,7 @@ public class Highscore {
                 for (byte i = 0; i < (byte)(Score.length); i++) {
                     scoreWriter.write(String.valueOf(Score[i]));
                     scoreWriter.write("\n");
-                    System.out.println(Score[i]);
+                    //System.out.println(Score[i]);
                 }
                 scoreWriter.close();
             } catch (IOException e) {
