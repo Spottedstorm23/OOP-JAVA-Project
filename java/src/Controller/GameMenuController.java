@@ -37,11 +37,13 @@ public class GameMenuController {
     private Mode mode = new Mode();
 
     public void resumeGameButtonClicked(ActionEvent actionEvent) {
+        //resumes to game
         timerCallback.run();
         closeMe(actionEvent);
     }
 
     public void returnMenuButtonClicked(ActionEvent actionEvent) {
+        // returns to menu
         closeMe(actionEvent);
         if(returnMenuCallback == null){
             throw new IllegalStateException("returnMenuCallback is null. Set with setReturnMenuCallback before showing the stage");
@@ -58,12 +60,14 @@ public class GameMenuController {
     }
 
     private void closeMe(ActionEvent actionEvent){
+        //closes current window
         Node node = (Node) actionEvent.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
 
     public void setGameOverText(){
+        //sets GameOver Message
         if(mode.getMode().equals("CheeseChase")){
             gameOverText.setText("You ran out of Time.");
         }

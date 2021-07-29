@@ -197,18 +197,20 @@ public class View {
                         r.setFill(Color.color(20 / 255.0F, 47 / 255.0F, 82 / 255.0F));
                         break;
                     }
+                    case 2:
+                    case 3: {
+                        //counts amount of cheese
+                        cheeseArray[curentCheeseCount][0] = x;
+                        cheeseArray[curentCheeseCount][1] = y;
+                        addCheeseCount();
+                        break;
+                    }
                     case 4: {
                         // sets first Mouse Coordinates
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
                         setMouseX(cord_x);
                         setMouseY(cord_y);
                         break;
-                    }
-                    case 2:
-                    case 3: {
-                        cheeseArray[curentCheeseCount][0] = x;
-                        cheeseArray[curentCheeseCount][1] = y;
-                        addCheeseCount();
                     }
                     case 5: {
                         // sets first Cat Coordinates
@@ -218,14 +220,14 @@ public class View {
                         break;
                     }
                     case 6: {
-                        // sets first Cat Coordinates
+                        // sets second Cat Coordinates
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
                         setCatsXCord(2, cord_x);
                         setCatsYCord(2, cord_y);
                         break;
                     }
                     case 7: {
-                        // sets first Cat Coordinates
+                        // sets third Cat Coordinates
                         r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
                         setCatsXCord(3, cord_x);
                         setCatsYCord(3, cord_y);
@@ -242,6 +244,7 @@ public class View {
             }
         }
         cheeseCount = curentCheeseCount;
+        //checks for old layer and removes it
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 0) {
             Object current = list.get(0);
@@ -283,6 +286,7 @@ public class View {
                 }
             }
         }
+        //checks for old layer and removes it
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 1) {
             Object last = list.get(1);
@@ -302,6 +306,7 @@ public class View {
         Group mouse = new Group();
         mouse.setId("mouse");
 
+        //checks for old layer and removes it
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 2) {
             Object current = list.get(2);
@@ -335,10 +340,12 @@ public class View {
 
 
     public void drawCats(Pane root, short cat) {
+        //by Cora
         Group cats = new Group();
         cats.setId("cats");
         switch (cat) {
             case 1: {
+                // case for first cat
                 int cat1_x = getCatsXCord(1);
                 int cat1_y = getCatsYCord(1);
                 Rectangle cat_1 = new Rectangle(cat1_x, cat1_y, 50, 50);
@@ -349,6 +356,7 @@ public class View {
                 break;
             }
             case 2:
+                // case for second cat
                 int cat2_x = getCatsXCord(2);
                 int cat2_y = getCatsYCord(2);
                 Rectangle cat_2 = new Rectangle(cat2_x, cat2_y, 50, 50);
@@ -359,6 +367,7 @@ public class View {
                 break;
 
             case 3:
+                // case for third cat
                 int cat3_x = getCatsXCord(3);
                 int cat3_y = getCatsYCord(3);
                 Rectangle cat_3 = new Rectangle(cat3_x, cat3_y, 50, 50);
@@ -369,6 +378,7 @@ public class View {
                 break;
 
         }
+        //checks for old layer and removes it
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 3) {
             Object current = list.get(3);
@@ -380,6 +390,8 @@ public class View {
     }
 
     public Image checkCat1Direction(Image pic) {
+        //by Cora
+        //choses in which cat is shown
         switch (cat1_direction) {
             case "left":
                 pic = new Image("./View/images/Projekt_-_Katze1.png");
@@ -399,6 +411,8 @@ public class View {
     }
 
     public Image checkCat2Direction(Image pic) {
+        //by Cora
+        //choses in which cat is shown
         switch (cat2_direction) {
             case "left":
                 pic = new Image("./View/images/Projekt_-_Katze2.png");
@@ -418,6 +432,8 @@ public class View {
     }
 
     public Image checkCat3Direction(Image pic) {
+        //by Cora
+        //choses in which cat is shown
         switch (cat3_direction) {
             case "left":
                 pic = new Image("./View/images/Projekt_-_Katze3.png");

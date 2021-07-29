@@ -2,3 +2,4 @@
     font-family: 'Harrington';
     src: url('HARRINGT.TTF') format("opentype");
 }
+/* sets Font if its not installed on System */

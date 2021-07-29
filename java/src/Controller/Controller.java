@@ -91,6 +91,7 @@ public class Controller {
 
     // Menu
     public void chaseModeButtonClicked(ActionEvent actionEvent) {
+        // sets Mode to Cheese Chase
         Mode.setMode(1);
         chaseModeButton.setDisable(true);
         escapeModeButton.setDisable(false);
@@ -98,6 +99,7 @@ public class Controller {
 
     // Menu
     public void escapeModeButtonClicked(ActionEvent actionEvent) {
+        // sets Mode to Escape the Cats
         Mode.setMode(2);
         escapeModeButton.setDisable(true);
         chaseModeButton.setDisable(false);

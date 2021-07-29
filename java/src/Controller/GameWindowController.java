@@ -194,6 +194,8 @@ public class GameWindowController {
     }
 
     public void randomCat() {
+        //by Cora
+        // choses a random cat out of the 3
         this.randomCat = (short) (Math.random() * 3 + 1);
     }
 
@@ -225,7 +227,6 @@ public class GameWindowController {
     public void moveMouse() {
         //by Cora
         // checks for walls, then moves mouse in given direction
-
         short x = (short) view.getMouseX();
         short y = (short) view.getMouseY();
 
@@ -266,7 +267,7 @@ public class GameWindowController {
 
     public void moveCats(int number) {
         //by Cora
-        // checks for walls, then moves cats in given direction
+        // checks for walls, then moves cat in given direction
         short x = (short) view.getCatsXCord(number);
         short y = (short) view.getCatsYCord(number);
 
@@ -275,7 +276,7 @@ public class GameWindowController {
             switch (keyPressed[number]) {
                 case "left": {
                     view.setCatDirections(number, "left");
-                    view.setCatsXCord(1, x - 25);
+                    view.setCatsXCord(number, x - 25);
                     break;
                 }
                 case "right": {
@@ -304,10 +305,9 @@ public class GameWindowController {
     public void newLevel() {
         //by Cora
         // gets a new Map from Maps
-        //draws level, cheese and mouse spawn
+        //draws level, cheese and mouse spawn, if necessary also cat
         Maps map = new Maps();
         byte[][] newLevelMap = map.getMap();
-        //byte[][] newLevelMap = map.getMap16();
         this.levelmap = newLevelMap;
         view.clear(paneBoard);
         view.drawLvl(paneBoard, newLevelMap);
@@ -319,6 +319,7 @@ public class GameWindowController {
         }
         resetKeyPressed();
     }
+
 
     public void collectCheese() {
         //by Cora
@@ -354,7 +355,6 @@ public class GameWindowController {
     private boolean checkWall(short x, short y, byte id) {
         //by Lukas, inspired by Cora
         //prüft, ob eine Wand im Weg ist
-
         boolean isWall = false;
 
         switch (keyPressed[id]) {
@@ -393,8 +393,6 @@ public class GameWindowController {
     private void openGameMenu(KeyEvent keyEvent) {
         //by Cora
         // Opens GameMenu and delegates closing- and timerfunction for GameWindow
-
-        //setEscPressed(false);
         Node node = (Node) keyEvent.getSource();
         final Stage stage = (Stage) node.getScene().getWindow();
 
@@ -628,6 +626,8 @@ public class GameWindowController {
     }
 
     public void reduceLives() {
+        //by Cora
+        //checks curent amount of lives, removes the pictures
         this.mouseLives = (short) (mouseLives - 1);
         switch (mouseLives) {
             case 0: {
@@ -646,6 +646,8 @@ public class GameWindowController {
     }
 
     public void checkCatAndMouse(short cat) {
+        //by Cora
+        // checks if cat and mouse are on the same field, removes a live if so
         short x_mouse = (short) view.getMouseX();
         short y_mouse = (short) view.getMouseY();
         switch (cat) {

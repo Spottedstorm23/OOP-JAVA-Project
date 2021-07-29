@@ -1,6 +1,8 @@
 package Controller;
 
 public class Mode {
+    //by Cora
+    // responsible for the Mode of the Game
     private static String mode= "CheeseChase";
 
     public static void setMode(int number) {
