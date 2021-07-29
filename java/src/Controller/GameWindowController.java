@@ -300,7 +300,7 @@ public class GameWindowController {
                     return;
                 }
             }
-            view.drawCats(paneBoard, randomCat);
+            view.drawCats(paneBoard, (short) number);
         }
     }
 
