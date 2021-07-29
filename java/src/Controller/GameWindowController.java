@@ -52,7 +52,7 @@ public class GameWindowController {
 
     View view = new View();
     byte[][] levelmap;
-    private Mode mode = new Mode();
+    private final Mode mode = new Mode();
 
     short mouseLives = 3;
     short randomCat = 1;
@@ -113,12 +113,13 @@ public class GameWindowController {
 
                     if (mode.getMode().equals("EscapeCats")) {
                         if (timer_count % 2 == 0) {
-                            byte number = 1;
+                            byte number = (byte) randomCat;
                             short x = (short) view.getCatsXCord(number);
                             short y = (short) view.getCatsYCord(number);
                             catAI(x, y, number);
                         }
                         moveCats(randomCat);
+                        checkCatAndMouse(randomCat);
                     }
 
                     timer_count--;
@@ -510,11 +511,21 @@ public class GameWindowController {
         String result;
 
         switch (direction) {
-            case "up":    result = "down";  break;
-            case "down":  result = "up";    break;
-            case "right": result = "left";  break;
-            case "left":  result = "right"; break;
-            default:      result = "zero";  break;
+            case "up":
+                result = "down";
+                break;
+            case "down":
+                result = "up";
+                break;
+            case "right":
+                result = "left";
+                break;
+            case "left":
+                result = "right";
+                break;
+            default:
+                result = "zero";
+                break;
         }
         return result;
     }
@@ -543,7 +554,9 @@ public class GameWindowController {
             case 1: {
                 //Es gibt nur ein Weg: Dieser wird genommen
                 for (byte i = 0; i < 4; i++) {
-                    if (!catRadar[i]) { keyPressed[number] = directions[i]; }
+                    if (!catRadar[i]) {
+                        keyPressed[number] = directions[i];
+                    }
                 }
                 break;
             }
@@ -575,7 +588,8 @@ public class GameWindowController {
                 //Aus den 2/3 übrigen Wegen soll der Weg zufällig ausgesucht werden
 
                 //Erstelle neuen Array nur mit möglichen Wegen, sowie die Zufallszahl
-                String[] newdirections = new String[noWall];;
+                String[] newdirections = new String[noWall];
+                ;
                 byte random = (byte) (Math.random() * (noWall - 1));
                 byte noWallCount = 0;
 
@@ -617,37 +631,51 @@ public class GameWindowController {
 
     public void reduceLives() {
         this.mouseLives = (short) (mouseLives - 1);
+        switch (mouseLives) {
+            case 0: {
+                removeLive3();
+                break;
+            }
+            case 1: {
+                removeLive2();
+                break;
+            }
+            case 2: {
+                removeLive1();
+                break;
+            }
+        }
     }
 
-    public void checkCatAndMouse() {
+    public void checkCatAndMouse(short cat) {
         short x_mouse = (short) view.getMouseX();
         short y_mouse = (short) view.getMouseY();
-        short x_cat1 = (short) view.getCatsXCord(1);
-        short y_cat1 = (short) view.getCatsYCord(1);
-        //short x_cat2 = (short) view.getCatsXCord(2);
-        //short y_cat2 = (short) view.getCatsYCord(2);
-        //short x_cat3 = (short) view.getCatsXCord(3);
-        //short y_cat3 = (short) view.getCatsYCord(3);
-
-        if ((x_mouse == x_cat1 && y_mouse == y_cat1) /*||
-                (x_mouse == x_cat2 && y_mouse == y_cat2) ||
-                (x_mouse == x_cat3 && y_mouse == y_cat3)*/) {
-            reduceLives();
-            switch (mouseLives) {
-                case 0: {
-                    removeLive3();
-                    break;
+        switch (cat) {
+            case 1: {
+                short x_cat1 = (short) view.getCatsXCord(1);
+                short y_cat1 = (short) view.getCatsYCord(1);
+                if (x_mouse == x_cat1 && y_mouse == y_cat1) {
+                    reduceLives();
                 }
-                case 1: {
-                    removeLive2();
-                    break;
-                }
-                case 2: {
-                    removeLive1();
-                    break;
-                }
+                break;
             }
+            case 2:
+                short x_cat2 = (short) view.getCatsXCord(2);
+                short y_cat2 = (short) view.getCatsYCord(2);
+                if (x_mouse == x_cat2 && y_mouse == y_cat2) {
+                    reduceLives();
+                }
+                break;
+
+            case 3:
+                short x_cat3 = (short) view.getCatsXCord(3);
+                short y_cat3 = (short) view.getCatsYCord(3);
+                if (x_mouse == x_cat3 && y_mouse == y_cat3) {
+                    reduceLives();
+                }
+                break;
 
         }
     }
 }
+

@@ -402,13 +402,13 @@ public class View {
     public Image checkCat2Direction(Image pic) {
         switch (cat2_direction) {
             case "left":
-                pic = new Image("./View/images/Projekt_-Katze2.png");
+                pic = new Image("./View/images/Projekt_-_Katze2.png");
                 return pic;
             case "right":
                 pic = new Image("./View/images/Projekt_-_Katze2R.png");
                 return pic;
             case "up":
-                pic = new Image("./View/images/Projekt_-_Katze2p.png");
+                pic = new Image("./View/images/Projekt_-_Katze2Up.png");
                 return pic;
             case "down":
                 pic = new Image("./View/images/Projekt_-_Katze2Down.png");
@@ -421,7 +421,7 @@ public class View {
     public Image checkCat3Direction(Image pic) {
         switch (cat3_direction) {
             case "left":
-                pic = new Image("./View/images/Projekt_-Katze3.png");
+                pic = new Image("./View/images/Projekt_-_Katze3.png");
                 return pic;
             case "right":
                 pic = new Image("./View/images/Projekt_-_Katze3R.png");
