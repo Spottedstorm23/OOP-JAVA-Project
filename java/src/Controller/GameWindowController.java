@@ -97,7 +97,7 @@ public class GameWindowController {
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    if (timer_count <= 0 || mouseLives == 0) {
+                    if (timer_count < 0 || mouseLives == 0) {
                         Highscore highscoreObject = new Highscore();
                         highscoreObject.writeHighscore(score);
                         t.cancel();
@@ -192,7 +192,6 @@ public class GameWindowController {
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
-        //this.isWall = false;
         if (escPressed) {
             openGameMenu(keyEvent);
         }
@@ -474,6 +473,7 @@ public class GameWindowController {
         labelHighscore.setText(String.valueOf(scores[0]));
     }
 
+    //out of order
     private String randomDirection() {
         //by Lukas
         //gives you a random direction back
@@ -496,6 +496,23 @@ public class GameWindowController {
         return result;
     }
 
+    private String dontLookBack(String direction) {
+        //by Lukas
+        //For CATAI 3.0 -> DIE ULTIMATIVE KATZEN KI !!!
+        //#MakeCatsGreatAgain #BrainsForCats #CatsForFuture
+        //Suchst du noch oder miaust du schon?
+        String result;
+
+        switch (direction) {
+            case "up":    result = "down";  break;
+            case "down":  result = "up";    break;
+            case "right": result = "left";  break;
+            case "left":  result = "right"; break;
+            default:      result = "zero";  break;
+        }
+        return result;
+    }
+
     private void catAI(short x, short y, byte number) {
         //by Lukas
         //THE CATAI -> CAT Artificial Intelligence
@@ -505,7 +522,8 @@ public class GameWindowController {
         byte noWall = 0; //Zählt diejenigen Möglichkeiten, wo es Wege gibt
         String oldkeyPressed = keyPressed[number]; //Speichert den alten Keypressed ab
 
-        //Checke alle vier Himmelsrichtungen nach Wänden
+        //Zähle, wie viele mögliche Wege es gibt (noWall)
+        //Aktualisiert catRadar (true für mögliche Wege)
         for (byte i = 0; i < 4; i++) {
             keyPressed[number] = directions[i];
             catRadar[i] = checkWall(x, y, number);
@@ -514,55 +532,62 @@ public class GameWindowController {
             }
         }
 
-        //Erstelle neuen Array nur mit möglichen Wegen
-        String[] newdirections = new String[noWall + 1];
-        byte noWallCount = 0;
-
-        for (byte i = 0; i < 4; i++) {
-            if (!catRadar[i]) {
-                newdirections[noWallCount] = directions[i];
-                noWallCount++;
-            }
-        }
-
         //CATAI 2.0 - Es wird je nach Anzahl der möglichen Wege strategisch entschieden wie vorgegangen wird:
         switch (noWall) {
             case 1: {
                 //Es gibt nur ein Weg: Dieser wird genommen
-                keyPressed[number] = newdirections[0];
+                for (byte i = 0; i < 4; i++) {
+                    if (!catRadar[i]) { keyPressed[number] = directions[i]; }
+                }
                 break;
             }
             case 2: {
-                //Es gibt 2 Wege, hier soll es erst überprüft werden, ob die Katze ihren Weg nicht einfach fortsetzen kann
-                if (oldkeyPressed == newdirections[0]) {
-                    keyPressed[number] = newdirections[0];
-                } else if (oldkeyPressed == newdirections[1]) {
+                //Es gibt 2 Wege, die Katze soll sich für den Weg entscheiden, aus dem sie NICHT gekommen ist
+
+                //Erstelle neuen Array nur mit möglichen Wegen
+                String[] newdirections = new String[noWall + 1];
+                byte noWallCount = 0;
+
+                for (byte i = 0; i < 4; i++) {
+                    if (!catRadar[i]) {
+                        newdirections[noWallCount] = directions[i];
+                        noWallCount++;
+                    }
+                }
+
+                //Nehme den Weg, aus dem die Katze nicht gekommen ist
+                if (newdirections[0].equals(dontLookBack(oldkeyPressed))) {
                     keyPressed[number] = newdirections[1];
                 } else {
-                    byte random = (byte) (Math.random() * noWall);
-                    keyPressed[number] = newdirections[random];
+                    keyPressed[number] = newdirections[0];
                 }
-                //todo: Es soll nach Möglichkeit nicht nach hinten gegangen werden
-                //todo: SwitchCase verbauen???
                 break;
             }
             case 3:
             case 4: {
-                byte random = (byte) (Math.random() * noWall);
+                //Es gibt 3/4 Wege, hier soll die Katze nicht wieder zurück laufen.
+                //Aus den 2/3 übrigen Wegen soll der Weg zufällig ausgesucht werden
+
+                //Erstelle neuen Array nur mit möglichen Wegen, sowie die Zufallszahl
+                String[] newdirections = new String[noWall];;
+                byte random = (byte) (Math.random() * (noWall - 1));
+                byte noWallCount = 0;
+
+                for (byte i = 0; i < 4; i++) {
+                    if (!catRadar[i] && !directions[i].equals(dontLookBack(oldkeyPressed))) {
+                        newdirections[noWallCount] = directions[i];
+                        noWallCount++;
+                    }
+                }
+
                 keyPressed[number] = newdirections[random];
                 break;
             }
             default: {
-                System.out.println("Das sollte nicht passieren...");
+                System.out.println("Wenn die Map nicht mehr als 2 Dimensionen hat ist hier ein Fehler passiert :(");
                 break;
             }
         }
-
-        //Generiere Zufallsnummer von den ausgewählten Wegen
-        //byte random = (byte) (Math.random() * noWall);
-
-        //Setze keyPressed auf neuen Wert
-        //keyPressed[number] = newdirections[random];
     }
 
     public void setLivesVisible(boolean state) {
