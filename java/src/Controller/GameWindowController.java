@@ -55,6 +55,7 @@ public class GameWindowController {
     private Mode mode = new Mode();
 
     short mouseLives = 3;
+    short randomCat = 1;
 
     boolean escPressed = false;
     String[] keyPressed = {"zero", "down", "down", "down"};
@@ -117,7 +118,7 @@ public class GameWindowController {
                             short y = (short) view.getCatsYCord(number);
                             catAI(x, y, number);
                         }
-                        moveCats(1);
+                        moveCats(randomCat);
                     }
 
                     timer_count--;
@@ -189,6 +190,10 @@ public class GameWindowController {
 
     public void handleOnKeyReleased(KeyEvent keyEvent) {
 
+    }
+
+    public void randomCat() {
+        this.randomCat = (short) (Math.random() * 3 + 1);
     }
 
     public void handleOnKeyTyped(KeyEvent keyEvent) {
@@ -291,7 +296,7 @@ public class GameWindowController {
                     return;
                 }
             }
-            view.drawCats(paneBoard);
+            view.drawCats(paneBoard, randomCat);
         }
     }
 
@@ -308,7 +313,8 @@ public class GameWindowController {
         view.updateCheese(paneBoard, newLevelMap);
         view.drawMouse(paneBoard);
         if (mode.getMode().equals("EscapeCats")) {
-            view.drawCats(paneBoard);
+            randomCat();
+            view.drawCats(paneBoard, randomCat);
         }
         resetKeyPressed();
     }

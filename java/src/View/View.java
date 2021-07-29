@@ -334,17 +334,42 @@ public class View {
     }
 
 
-    public void drawCats(Pane root) {
-        int cat1_x = getCatsXCord(1);
-        int cat1_y = getCatsYCord(1);
-        //int cat2_x = getCatsXCord(2);
-        //int cat2_y = getCatsYCord(2);
-        //int cat3_x = getCatsXCord(3);
-        //int cat3_y = getCatsYCord(3);
-
+    public void drawCats(Pane root, short cat) {
         Group cats = new Group();
         cats.setId("cats");
+        switch (cat) {
+            case 1: {
+                int cat1_x = getCatsXCord(1);
+                int cat1_y = getCatsYCord(1);
+                Rectangle cat_1 = new Rectangle(cat1_x, cat1_y, 50, 50);
+                Image cat_1_pic = new Image("./View/images/Projekt_-_Katze1Down.png");
+                checkCat1Direction(cat_1_pic);
+                cat_1.setFill(new ImagePattern(cat_1_pic));
+                cats.getChildren().add(cat_1);
 
+                break;
+            }
+            case 2:
+                int cat2_x = getCatsXCord(2);
+                int cat2_y = getCatsYCord(2);
+                Rectangle cat_2 = new Rectangle(cat2_x, cat2_y, 50, 50);
+                Image cat_2_pic = new Image("./View/images/Projekt_-_Katze2Down.png");
+                checkCat2Direction(cat_2_pic);
+                cat_2.setFill(new ImagePattern(cat_2_pic));
+                cats.getChildren().add(cat_2);
+                break;
+
+            case 3:
+                int cat3_x = getCatsXCord(3);
+                int cat3_y = getCatsYCord(3);
+                Rectangle cat_3 = new Rectangle(cat3_x, cat3_y, 50, 50);
+                Image cat_3_pic = new Image("./View/images/Projekt_-_Katze3Down.png");
+                checkCat3Direction(cat_3_pic);
+                cat_3.setFill(new ImagePattern(cat_3_pic));
+                cats.getChildren().add(cat_3);
+                break;
+
+        }
         ObservableList<Node> list = root.getChildren();
         if (list.size() > 3) {
             Object current = list.get(3);
@@ -352,21 +377,6 @@ public class View {
                 list.remove(current);
             }
         }
-        Rectangle cat_1 = new Rectangle(cat1_x, cat1_y, 50, 50);
-        //Rectangle cat_2 = new Rectangle(cat2_x, cat2_y, 50, 50);
-        //Rectangle cat_3 = new Rectangle(cat3_x, cat3_y, 50, 50);
-        Image cat_1_pic = new Image("./View/images/Projekt_-_Katze1Down.png");
-        //Image cat_2_pic = new Image("./View/images/Projekt_-_Katze2Down.png");
-        //Image cat_3_pic = new Image("./View/images/Projekt_-_Katze3Down.png");
-        checkCat1Direction(cat_1_pic);
-        //checkCat2Direction(cat_2_pic);
-        //checkCat3Direction(cat_3_pic);
-        cat_1.setFill(new ImagePattern(cat_1_pic));
-        //cat_2.setFill(new ImagePattern(cat_2_pic));
-        //cat_3.setFill(new ImagePattern(cat_3_pic));
-        cats.getChildren().add(cat_1);
-        //cats.getChildren().add(cat_2);
-        //cats.getChildren().add(cat_3);
         list.add(3, cats);
     }
 
