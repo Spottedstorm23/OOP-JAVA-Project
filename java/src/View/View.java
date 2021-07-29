@@ -181,6 +181,7 @@ public class View {
         Group group = new Group();
         group.setId("level");
         this.curentCheeseCount = 0;
+        this.cheeseCount = 0;
 
         int y = 0;
         for (y = 0; y < 13; y++) {
@@ -262,7 +263,6 @@ public class View {
             int x = cheeseArray[i][0];
             int cord_y = y * 50;
             int cord_x = x * 50;
-            System.out.println("x:" + x + ", y:" + y + "map:" + map[y][x]);
             switch (map[y][x]) {
                 case 2: {
                     Rectangle r_cheese = new Rectangle(cord_x, cord_y, 50, 50);
@@ -346,7 +346,6 @@ public class View {
                 checkCat1Direction(cat_1_pic);
                 cat_1.setFill(new ImagePattern(cat_1_pic));
                 cats.getChildren().add(cat_1);
-
                 break;
             }
             case 2:

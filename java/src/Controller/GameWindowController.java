@@ -333,7 +333,6 @@ public class GameWindowController {
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
-                    System.out.println("auf 1 gesetzt:" + y + " " + x);
                     break;
                 }
                 case 3: {
@@ -341,7 +340,6 @@ public class GameWindowController {
                     this.levelmap[y][x] = 1;
                     view.reduceCheeseCount();
                     view.updateCheese(paneBoard, levelmap);
-                    System.out.println("auf 1 gesetzt:" + y + " " + x);
                     break;
                 }
             }
@@ -672,6 +670,7 @@ public class GameWindowController {
                 short y_cat3 = (short) view.getCatsYCord(3);
                 if (x_mouse == x_cat3 && y_mouse == y_cat3) {
                     reduceLives();
+                    break;
                 }
                 break;
 

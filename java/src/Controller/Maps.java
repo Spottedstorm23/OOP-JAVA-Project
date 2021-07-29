@@ -358,7 +358,7 @@ public class Maps {
     };
 
     private byte[][] chooseRandomMap() {
-        int x = (int) (Math.random() * 12 + 1);
+        int x = (int) (Math.random() * 20 + 1);
         switch (x) {
             case 1: {
                 return map1;
@@ -377,7 +377,6 @@ public class Maps {
             }
             case 6: {
                 return map6;
-
             }
             case 7: {
                 return map7;
@@ -415,7 +414,6 @@ public class Maps {
             case 18: {
                 return map18;
             }
-
             case 19: {
                 return map19;
             }
