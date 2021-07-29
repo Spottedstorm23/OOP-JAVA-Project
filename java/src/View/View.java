@@ -27,7 +27,7 @@ public class View {
     String cat1_direction = "down";
     String cat2_direction = "down";
     String cat3_direction = "down";
-    int[][] cheeseArray = new int[20][2];
+    int[][] cheeseArray = new int[30][2];
 
 
     public void addCheeseCount() {
