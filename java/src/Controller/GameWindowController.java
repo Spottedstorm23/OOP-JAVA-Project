@@ -121,7 +121,7 @@ public class GameWindowController {
                             catAI(x, y, number);
                         }
                         moveCats(randomCat);
-                        checkCatAndMouse(randomCat);
+                        //checkCatAndMouse(randomCat);
                     }
 
                     timer_count--;
@@ -302,6 +302,7 @@ public class GameWindowController {
                 }
             }
             view.drawCats(paneBoard, (short) number);
+            checkCatAndMouse((short) number);
         }
     }
 

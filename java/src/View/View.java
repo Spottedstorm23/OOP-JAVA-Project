@@ -200,6 +200,7 @@ public class View {
                     case 2:
                     case 3: {
                         //counts amount of cheese
+                        r.setFill(Color.color(221 / 255.0F, 227 / 255.0F, 236 / 255.0F));
                         cheeseArray[curentCheeseCount][0] = x;
                         cheeseArray[curentCheeseCount][1] = y;
                         addCheeseCount();
