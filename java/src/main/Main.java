@@ -9,10 +9,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Menu.fxml")); // Geht aus dem Main-Package raus und dann ins View-Package rein
+        Parent root = FXMLLoader.load(getClass().getResource("../view/Menu.fxml"));
         primaryStage.setTitle("Cheesy Chase");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
