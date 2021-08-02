@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 public class Maps {
     //Gibt dir bei Aufruf den entsprechenden Map-Array zurück

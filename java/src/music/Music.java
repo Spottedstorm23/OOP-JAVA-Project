@@ -1,20 +1,17 @@
-package Music;
-
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+package music;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
 
 
-public class Music2 {
+public class Music {
 
     AudioInputStream inputStream;
     Clip clip;
 
     // Constructor
-    public Music2() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        inputStream = AudioSystem.getAudioInputStream(Music2.class.getResourceAsStream("data/Here_Come_The_Raindrops_-_Reed_Mathis.wav"));
+    public Music() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        inputStream = AudioSystem.getAudioInputStream(Music.class.getResourceAsStream("data/Here_Come_The_Raindrops_-_Reed_Mathis.wav"));
         this.clip = AudioSystem.getClip();
         clip.open(inputStream);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -61,7 +58,7 @@ public class Music2 {
     }
 
     public void setInputStream() throws UnsupportedAudioFileException, IOException {
-        this.inputStream = AudioSystem.getAudioInputStream(Music2.class.getResourceAsStream("data/Here_Come_The_Raindrops_-_Reed_Mathis.wav"));
+        this.inputStream = AudioSystem.getAudioInputStream(Music.class.getResourceAsStream("data/Here_Come_The_Raindrops_-_Reed_Mathis.wav"));
     }
 
     public AudioInputStream getInputStream() {

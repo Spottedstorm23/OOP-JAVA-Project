@@ -9,7 +9,7 @@
             onKeyPressed="#handleOnKeyPressed" onKeyReleased="#handleOnKeyReleased" onKeyTyped="#handleOnKeyTyped"
             prefHeight="875.0" prefWidth="1100.0" style="-fx-background-color: #2c2f33;" stylesheets="@harrington.css"
             xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.GameWindowController">
+            fx:controller="controller.GameWindowController">
     <children>
         <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                   AnchorPane.topAnchor="0.0">

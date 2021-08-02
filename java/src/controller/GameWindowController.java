@@ -1,8 +1,8 @@
-package Controller;
+package controller;
 
-import Other.Highscore;
-import Other.Timer;
-import View.View;
+import other.Highscore;
+import other.Timer;
+import view.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Music.Music2;
+import music.Music;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +49,7 @@ public class Controller {
 
     private int status = 1;
 
-    private Music2 music = new Music2();
+    private Music music = new Music();
     private GameWindowController gwc = new GameWindowController();
     private int modus = 1;
 
@@ -133,13 +133,13 @@ public class Controller {
             case 1: {
                 this.music.stop();
                 status = 0;
-                musicImage.setImage(new Image("View/images/Projekt_-_MusicOff.png"));
+                musicImage.setImage(new Image("view/images/Projekt_-_MusicOff.png"));
                 break;
             }
             case 0: {
                 this.music.start();
                 status = 1;
-                musicImage.setImage(new Image("View/images/Projekt_-_MusicOn.png"));
+                musicImage.setImage(new Image("view/images/Projekt_-_MusicOn.png"));
                 break;
             }
         }

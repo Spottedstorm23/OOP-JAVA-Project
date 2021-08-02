@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,11 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.awt.*;
-import java.io.IOException;
 
 public class TutorialController {
 

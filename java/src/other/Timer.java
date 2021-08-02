@@ -1,9 +1,4 @@
-package Other;
-
-import Controller.GameWindowController;
-import javafx.scene.control.Label;
-
-import java.util.TimerTask;
+package other;
 
 public class Timer {
 //by Lukas

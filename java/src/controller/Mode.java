@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 public class Mode {
     //by Cora

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="600.0" stylesheets="@harrington.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="600.0" stylesheets="@harrington.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameMenuController">
    <children>
       <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="600.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf;">
          <children>
