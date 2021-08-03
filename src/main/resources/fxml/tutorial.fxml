@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="tutorialVBox" prefHeight="400.0" prefWidth="640.0" stylesheets="@harrington.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TutorialController">
+<VBox fx:id="tutorialVBox" prefHeight="400.0" prefWidth="640.0" stylesheets="@harrington.css" xmlns="http://javafx.com/javafx/8.0.202" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TutorialController">
   <children>
     <AnchorPane fx:id="tutorialPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-font-family: Harrington" VBox.vgrow="ALWAYS">
       <children>

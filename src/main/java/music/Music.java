@@ -8,7 +8,7 @@ public class Music {
     Clip clip;
 
     public Music() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        inputStream = AudioSystem.getAudioInputStream(Music.class.getResourceAsStream("data/Here_Come_The_Raindrops_-_Reed_Mathis.wav"));
+        inputStream = AudioSystem.getAudioInputStream(Music.class.getClassLoader().getResourceAsStream("music/Here_Come_The_Raindrops_-_Reed_Mathis.wav"));
         this.clip = AudioSystem.getClip();
         clip.open(inputStream);
         clip.loop(Clip.LOOP_CONTINUOUSLY);
