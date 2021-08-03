@@ -30,12 +30,12 @@
             </Button>
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="135.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Kaese.png" />
+                  <Image url="@../images/Projekt_-_Kaese.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="395.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Kaese.png" />
+                  <Image url="@../images/Projekt_-_Kaese.png" />
                </image>
             </ImageView>
             <Label fx:id="gameOverText" alignment="CENTER" layoutX="120.0" layoutY="112.0" prefHeight="70.0" prefWidth="361.0" style="-fx-font-family: harrington; -fx-font-size: 25;" text="You ran out of time." textFill="#bfbfbf">

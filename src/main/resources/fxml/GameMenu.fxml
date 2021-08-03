@@ -34,12 +34,12 @@
             </Button>
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="140.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Kaese.png" />
+                  <Image url="@../images/Projekt_-_Kaese.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="390.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Kaese.png" />
+                  <Image url="@../images/Projekt_-_Kaese.png" />
                </image>
             </ImageView>
          </children>

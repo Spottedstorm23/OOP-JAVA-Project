@@ -270,14 +270,16 @@ public class View {
             switch (map[y][x]) {
                 case 2: {
                     Rectangle r_cheese = new Rectangle(cord_x, cord_y, 50, 50);
-                    Image cheese = new Image("view/images/Projekt_-_Kaese.png");
+                    //Image cheese = new Image("images/Projekt_-_Kaese.png");
+                    Image cheese = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaese.png"));
                     r_cheese.setFill(new ImagePattern(cheese));
                     groupCheese.getChildren().add(r_cheese);
                     break;
                 }
                 case 3: {
                     Rectangle r_cheese = new Rectangle(cord_x, cord_y, 50, 50);
-                    Image cheesepile = new Image("view/images/Projekt_-_Kaesehaufen.png");
+                    //Image cheesepile = new Image("src/main/java/view/images/Projekt_-_Kaesehaufen.png");
+                    Image cheesepile = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png"));
                     r_cheese.setFill(new ImagePattern(cheesepile));
                     groupCheese.getChildren().add(r_cheese);
                     break;
@@ -320,16 +322,21 @@ public class View {
         Image mousepic;
         switch (mouseDirection) {
             case "left":
-                mousepic = new Image("view/images/Projekt_-_Maus.png");
+                //mousepic = new Image("src/main/java/view/images/Projekt_-_Maus.png");
+                mousepic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Maus.png"));
+
                 break;
             case "right":
-                mousepic = new Image("view/images/Projekt_-_MausR.png");
+                //mousepic = new Image("src/main/java/view/images/Projekt_-_MausR.png");
+                mousepic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_MausR.png"));
                 break;
             case "up":
-                mousepic = new Image("view/images/Projekt_-_MausUp.png");
+                //mousepic = new Image("src/main/java/view/images/Projekt_-_MausUp.png");
+                mousepic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_MausUp.png"));
                 break;
             case "down":
-                mousepic = new Image("view/images/Projekt_-_MausDown.png");
+                //mousepic = new Image("src/main/java/view/images/Projekt_-_MausDown.png");
+                mousepic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_MausDown.png"));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + mouseDirection);
@@ -350,7 +357,8 @@ public class View {
                 int cat1_x = getCatsXCord(1);
                 int cat1_y = getCatsYCord(1);
                 Rectangle cat_1 = new Rectangle(cat1_x, cat1_y, 50, 50);
-                Image cat_1_pic = new Image("view/images/Projekt_-_Katze1Down.png");
+                //Image cat_1_pic = new Image("src/main/java/view/images/Projekt_-_Katze1Down.png");
+                Image cat_1_pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze1Down.png"));
                 checkCat1Direction(cat_1_pic);
                 cat_1.setFill(new ImagePattern(cat_1_pic));
                 cats.getChildren().add(cat_1);
@@ -361,7 +369,8 @@ public class View {
                 int cat2_x = getCatsXCord(2);
                 int cat2_y = getCatsYCord(2);
                 Rectangle cat_2 = new Rectangle(cat2_x, cat2_y, 50, 50);
-                Image cat_2_pic = new Image("view/images/Projekt_-_Katze2Down.png");
+                //Image cat_2_pic = new Image("src/main/java/view/images/Projekt_-_Katze2Down.png");
+                Image cat_2_pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze2Down.png"));
                 checkCat2Direction(cat_2_pic);
                 cat_2.setFill(new ImagePattern(cat_2_pic));
                 cats.getChildren().add(cat_2);
@@ -372,7 +381,8 @@ public class View {
                 int cat3_x = getCatsXCord(3);
                 int cat3_y = getCatsYCord(3);
                 Rectangle cat_3 = new Rectangle(cat3_x, cat3_y, 50, 50);
-                Image cat_3_pic = new Image("view/images/Projekt_-_Katze3Down.png");
+                //Image cat_3_pic = new Image("src/main/java/view/images/Projekt_-_Katze3Down.png");
+                Image cat_3_pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze3Down.png"));
                 checkCat3Direction(cat_3_pic);
                 cat_3.setFill(new ImagePattern(cat_3_pic));
                 cats.getChildren().add(cat_3);
@@ -395,16 +405,20 @@ public class View {
         //choses in which cat is shown
         switch (cat1_direction) {
             case "left":
-                pic = new Image("view/images/Projekt_-_Katze1.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze1.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze1.png"));
                 return pic;
             case "right":
-                pic = new Image("view/images/Projekt_-_Katze1R.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze1R.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze1R.png"));
                 return pic;
             case "up":
-                pic = new Image("view/images/Projekt_-_Katze1Up.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze1Up.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze1Up.png"));
                 return pic;
             case "down":
-                pic = new Image("view/images/Projekt_-_Katze1Down.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze1Down.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze1Down.png"));
                 return pic;
             default:
                 throw new IllegalStateException("Unexpected value: " + cat1_direction);
@@ -416,16 +430,20 @@ public class View {
         //choses in which cat is shown
         switch (cat2_direction) {
             case "left":
-                pic = new Image("view/images/Projekt_-_Katze2.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze2.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze2.png"));
                 return pic;
             case "right":
-                pic = new Image("view/images/Projekt_-_Katze2R.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze2R.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze2R.png"));
                 return pic;
             case "up":
-                pic = new Image("view/images/Projekt_-_Katze2Up.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze2Up.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze2Up.png"));
                 return pic;
             case "down":
-                pic = new Image("view/images/Projekt_-_Katze2Down.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze2Down.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze2Down.png"));
                 return pic;
             default:
                 throw new IllegalStateException("Unexpected value: " + cat2_direction);
@@ -437,16 +455,20 @@ public class View {
         //choses in which cat is shown
         switch (cat3_direction) {
             case "left":
-                pic = new Image("view/images/Projekt_-_Katze3.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze3.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze3.png"));
                 return pic;
             case "right":
-                pic = new Image("view/images/Projekt_-_Katze3R.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze3R.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze3R.png"));
                 return pic;
             case "up":
-                pic = new Image("view/images/Projekt_-_Katze3Up.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze3Up.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze3Up.png"));
                 return pic;
             case "down":
-                pic = new Image("view/images/Projekt_-_Katze3Down.png");
+                //pic = new Image("src/main/java/view/images/Projekt_-_Katze3Down.png");
+                pic = new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Katze3Down.png"));
                 return pic;
             default:
                 throw new IllegalStateException("Unexpected value: " + cat3_direction);

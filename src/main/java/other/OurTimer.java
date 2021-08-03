@@ -1,6 +1,6 @@
 package other;
 
-public class Timer {
+public class OurTimer {
 //by Lukas
     /*public static int timer_count;  //Zählt die Ticks für den Timer
     public static java.util.Timer t = new java.util.Timer(); //Definiert den Timer

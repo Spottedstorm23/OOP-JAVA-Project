@@ -1,7 +1,6 @@
 package controller;
-
+import other.OurTimer;
 import other.Highscore;
-import other.Timer;
 import view.View;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -82,7 +81,7 @@ public class GameWindowController {
         newLevel();
         timer_count = 1500; //In Sekunden * 5
         quited = false;
-        Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
+        OurTimer timerObject = new OurTimer();  //Deklaration der Klasse Timer, für Funktionen
         setLabelTimerText(timerObject.SecToDisplay(timer_count / 5));
         timer();
         setLabelHighscore();
@@ -94,7 +93,7 @@ public class GameWindowController {
 
         java.util.Timer t = new java.util.Timer(); //Definiert den Timer
 
-        Timer timerObject = new Timer();  //Deklaration der Klasse Timer, für Funktionen
+        OurTimer timerObject = new OurTimer();  //Deklaration der Klasse Timer, für Funktionen
         TimerTask tt = new TimerTask() {
 
             @Override
@@ -417,7 +416,7 @@ public class GameWindowController {
         };
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../View/GameMenu.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("fxml/GameMenu.fxml"));
         Parent root;
         try {
             root = fxmlLoader.load();
@@ -431,7 +430,7 @@ public class GameWindowController {
         gameMenuStage.setResizable(false);
         gameMenuStage.initModality(Modality.APPLICATION_MODAL);
         gameMenuStage.setScene(gameMenuScene);
-        gameMenuStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        gameMenuStage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png")));
         GameMenuController gameMenuController = fxmlLoader.getController();
         gameMenuController.setReturnMenuCallback(closeGameCallback);
         gameMenuController.setTimerCallback(timerCallback);
@@ -451,7 +450,7 @@ public class GameWindowController {
             }
         };
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../View/GameOver.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("fxml/GameOver.fxml"));
         Parent root;
         try {
             root = fxmlLoader.load();
@@ -465,7 +464,7 @@ public class GameWindowController {
         gameOverStage.setResizable(false);
         gameOverStage.initModality(Modality.APPLICATION_MODAL);
         gameOverStage.setScene(gameOverScene);
-        gameOverStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        gameOverStage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png")));
         GameMenuController gameMenuController = fxmlLoader.getController();
         gameMenuController.setReturnMenuCallback(closeGameCallback);
         gameMenuController.setGameOverText();

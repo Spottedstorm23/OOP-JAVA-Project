@@ -202,7 +202,7 @@
                   </GridPane>
                   <ImageView fitHeight="213.0" fitWidth="687.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <image>
-                        <Image url="@images/Projekt_-_Logo.png" />
+                        <Image url="@../images/Projekt_-_Logo.png" />
                      </image>
                      <GridPane.margin>
                         <Insets top="18.0" />
@@ -217,7 +217,7 @@
                <graphic>
                   <ImageView fx:id="musicImage" fitHeight="59.0" fitWidth="59.0">
                      <image>
-                        <Image url="@images/Projekt_-_MusicOn.png" />
+                        <Image url="@../images/Projekt_-_MusicOn.png" />
                      </image>
                   </ImageView>
                </graphic>

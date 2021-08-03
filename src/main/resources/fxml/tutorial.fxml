@@ -24,17 +24,17 @@
             </Text>
             <ImageView fitHeight="140.0" fitWidth="138.0" layoutX="35.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Kaesehaufen.png" />
+                  <Image url="@../images/Projekt_-_Kaesehaufen.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="459.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Maus.png" />
+                  <Image url="@../images/Projekt_-_Maus.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="72.0" fitWidth="72.0" layoutX="413.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Projekt_-_Kaese.png" />
+                  <Image url="@../images/Projekt_-_Kaese.png" />
                </image>
             </ImageView>
             <Text fill="#bfbfbf" layoutX="17.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Harrington;" text="Tutorial">

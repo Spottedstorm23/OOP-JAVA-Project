@@ -1,6 +1,5 @@
 package controller;
-
-import music.Music;
+import music.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,7 +61,7 @@ public class Controller {
     // Menu
     public void startButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../View/GameWindow.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("fxml/GameWindow.fxml"));
         Parent rootGame = fxmlLoader.load();
         Scene gameScene = new Scene(rootGame);
         Stage gameStage = new Stage();
@@ -70,14 +69,14 @@ public class Controller {
         gameStage.initModality(Modality.APPLICATION_MODAL);
         gameStage.initStyle(StageStyle.TRANSPARENT);
         gameStage.setScene(gameScene);
-        gameStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        gameStage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png")));
         gameStage.show();
     }
 
     // Menu
     public void latestScoresButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../View/LatestScores.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("fxml/LatestScores.fxml"));
         Parent root = fxmlLoader.load();
         Scene latestScoresScene = new Scene(root);
         Stage latestScoresStage = new Stage();
@@ -85,7 +84,7 @@ public class Controller {
         latestScoresStage.setResizable(false);
         latestScoresStage.initModality(Modality.APPLICATION_MODAL);
         latestScoresStage.setScene(latestScoresScene);
-        latestScoresStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        latestScoresStage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png")));
         latestScoresStage.show();
     }
 
@@ -108,7 +107,7 @@ public class Controller {
     // Menu
     public void tutorialButtonClicked(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("../View/tutorial.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("fxml/tutorial.fxml"));
         Parent root = fxmlLoader.load();
         Scene tutorialScene = new Scene(root);
         Stage tutorialStage = new Stage();
@@ -116,7 +115,7 @@ public class Controller {
         tutorialStage.setResizable(false);
         tutorialStage.initModality(Modality.APPLICATION_MODAL);
         tutorialStage.setScene(tutorialScene);
-        tutorialStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        tutorialStage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png")));
         tutorialStage.show();
     }
 
@@ -131,15 +130,16 @@ public class Controller {
     public void musicButtonClicked(ActionEvent actionEvent) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         switch (status) {
             case 1: {
-                this.music.stop();
+                music.stop();
                 status = 0;
-                musicImage.setImage(new Image("view/images/Projekt_-_MusicOff.png"));
+                musicImage.setImage(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_MusicOff.png")));
                 break;
             }
             case 0: {
-                this.music.start();
+                music.start();
                 status = 1;
-                musicImage.setImage(new Image("view/images/Projekt_-_MusicOn.png"));
+                //musicImage.setImage(new Image("src/main/java/view/images/Projekt_-_MusicOn.png"));
+                musicImage.setImage(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_MusicOn.png")));
                 break;
             }
         }

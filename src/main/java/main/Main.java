@@ -11,12 +11,12 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/Menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Menu.fxml"));
         primaryStage.setTitle("Cheesy Chase");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.getIcons().add(new Image(this.getClass().getResourceAsStream("../View/images/Projekt_-_Kaesehaufen.png")));
+        primaryStage.getIcons().add(new Image(this.getClass().getClassLoader().getResourceAsStream("images/Projekt_-_Kaesehaufen.png")));
         primaryStage.show();
     }
 
