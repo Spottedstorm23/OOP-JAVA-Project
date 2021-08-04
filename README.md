@@ -8,6 +8,7 @@
 ## 0 How to start the Game
 Clone the repository to a local directory. 
 Open the project in a Code Editor/ IDE of your choice and start the game.
+Set main/java as src and main/resources as resource root, make sure you have java 1.8 as your working sdk.
 
 ## 1 About the Game
 You are a little mouse trapped in a labyrinth filled with Cheese.
@@ -26,8 +27,8 @@ enter a new map and has to collect more cheese. The timer will still go down, so
 
 ### 1.2 Escape Mode
 Careful about the cats, they don't want you to get your cheese. </br>
-<i>In this mode the mouse has to escape 3 cats while countinuing (?) it's quest to get cheese.
-Three times it may be able to escape it's hunters before the game ends.</i> 
+<i>In this mode the mouse has to escape 1 of 3 cats while countinuing (?) it's quest to get cheese.
+Three times it may be able to escape it's hunter before the game ends.</i> 
 </br>
 <b> -> This mode has yet to be added.</b>
 
