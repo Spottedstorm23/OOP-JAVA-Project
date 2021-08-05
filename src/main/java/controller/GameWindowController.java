@@ -120,7 +120,6 @@ public class GameWindowController {
                             catAI(x, y, number);
                         }
                         moveCats(randomCat);
-                        //checkCatAndMouse(randomCat);
                     }
 
                     timer_count--;
@@ -260,6 +259,7 @@ public class GameWindowController {
                     return;
                 }
             }
+            checkCatAndMouse(randomCat);
             view.drawMouse(paneBoard);
             collectCheese();
         }

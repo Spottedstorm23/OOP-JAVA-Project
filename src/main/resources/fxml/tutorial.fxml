@@ -12,7 +12,7 @@
   <children>
     <AnchorPane fx:id="tutorialPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #2c2f33; -fx-border-color: #bfbfbf; -fx-font-family: Harrington" VBox.vgrow="ALWAYS">
       <children>
-            <Text fill="#bfbfbf" layoutX="37.0" layoutY="79.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Harrington; -fx-line-spacing: 20;" text="The Cheesy Chase is a 2D-Maze Game. You are a little mouse on it's quest to gather all pieces of cheese scattered on the map. To move through the maze use the Arrow Keys or WASD. There is a Timer running down, limiting how long you can run around. So hurry!" textAlignment="JUSTIFY" wrappingWidth="357.33673095703125">
+            <Text fill="#bfbfbf" layoutX="37.0" layoutY="79.0" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Harrington; -fx-line-spacing: 20;" text="The Cheesy Chase is a 2D-Maze Game. You are a little mouse on it's quest to gather all pieces of cheese scattered on the map. To move through the maze use the Arrow Keys or WASD. There is a Timer running down, limiting how long you can run around. So hurry! But be carefull, there might be a cat around!" textAlignment="JUSTIFY" wrappingWidth="357.33673095703125">
                <font>
                   <Font size="20.0" />
                </font>
@@ -22,7 +22,7 @@
                   <Font name="Harrington" size="20.0" />
                </font>
             </Text>
-            <ImageView fitHeight="140.0" fitWidth="138.0" layoutX="35.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="123.0" fitWidth="125.0" layoutX="48.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Projekt_-_Kaesehaufen.png" />
                </image>
