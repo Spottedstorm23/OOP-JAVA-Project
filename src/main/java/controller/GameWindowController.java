@@ -1,4 +1,5 @@
 package controller;
+
 import other.OurTimer;
 import other.Highscore;
 import view.View;
@@ -26,7 +27,6 @@ import java.util.TimerTask;
 public class GameWindowController {
 
 
-    /* GameWindow.fxml */
     @FXML
     private ImageView imageMouse1;
     @FXML
@@ -37,8 +37,7 @@ public class GameWindowController {
     private Label labelCurrentMode;
     @FXML
     private AnchorPane paneBoard;
-    @FXML
-    private AnchorPane gameBoardPane;
+
     @FXML
     private Label labelTimer;
     @FXML
@@ -65,7 +64,7 @@ public class GameWindowController {
     3 Katze 3
      */
 
-    public static int timer_count;  //Zählt die Ticks für den Timer
+    public static int timerCount;  //counts tics for timer
     int score = 0;
     boolean quited;
 
@@ -73,33 +72,30 @@ public class GameWindowController {
         if (mode.getMode().equals("CheeseChase")) {
             setLivesVisible(false);
             labelCurrentMode.setText("Cheese Chase");
-            //TODO put CheeseChase Stuff in here (timer etc)
         } else {
-            //TODO put Escape Mode stuff in here
             labelCurrentMode.setText("Escape the Cats");
         }
         newLevel();
-        timer_count = 1500; //In Sekunden * 5
+        timerCount = 1500; //In secs*5
         quited = false;
-        OurTimer timerObject = new OurTimer();  //Deklaration der Klasse Timer, für Funktionen
-        setLabelTimerText(timerObject.SecToDisplay(timer_count / 5));
+        OurTimer timerObject = new OurTimer();  //declaring the class Timer, for a function
+        setLabelTimerText(timerObject.SecToDisplay(timerCount / 5));
         timer();
         setLabelHighscore();
     }
 
     public void timer() {
         //by Lukas, Label by Selina
-        //Der globale Timer, welcher beim GameStart gestartet wird
+        //the global timer starts with Gamestart
+        java.util.Timer t = new java.util.Timer(); //define Timer
 
-        java.util.Timer t = new java.util.Timer(); //Definiert den Timer
-
-        OurTimer timerObject = new OurTimer();  //Deklaration der Klasse Timer, für Funktionen
+        OurTimer timerObject = new OurTimer();  //declaring the class Timer, for a function
         TimerTask tt = new TimerTask() {
 
             @Override
             public void run() {
                 Platform.runLater(() -> {
-                    if (timer_count < 0 || mouseLives == 0) {
+                    if (timerCount < 0 || mouseLives == 0) {
                         Highscore highscoreObject = new Highscore();
                         highscoreObject.writeHighscore(score);
                         t.cancel();
@@ -113,7 +109,7 @@ public class GameWindowController {
                     }
 
                     if (mode.getMode().equals("EscapeCats")) {
-                        if (timer_count % 2 == 0) {
+                        if (timerCount % 2 == 0) {
                             byte number = (byte) randomCat;
                             short x = (short) view.getCatsXCord(number);
                             short y = (short) view.getCatsYCord(number);
@@ -122,11 +118,12 @@ public class GameWindowController {
                         moveCats(randomCat);
                     }
 
-                    timer_count--;
+                    timerCount--;
 
-                    //Aktualisiert den Timer aller 5 Durchgänge
-                    if (timer_count % 5 == 0) {
-                        String display = timerObject.SecToDisplay(timer_count / 5);
+
+                    // Updates the timer every 5 passes
+                    if (timerCount % 5 == 0) {
+                        String display = timerObject.SecToDisplay(timerCount / 5);
                         setLabelTimerText(display);
                     }
 
@@ -136,12 +133,9 @@ public class GameWindowController {
                 });
             }
         };
-        t.schedule(tt, 1000, 200); //Der eigentliche Timer
+        t.schedule(tt, 1000, 200); //the actual Timer
     }
 
-    public String getLabelTimerText() {
-        return this.labelTimer.getText();
-    }
 
     public void setLabelTimerText(String labeltext) {
         labelTimer.setText(labeltext);
@@ -357,7 +351,7 @@ public class GameWindowController {
 
     private boolean checkWall(short x, short y, byte id) {
         //by Lukas, inspired by Cora
-        //prüft, ob eine Wand im Weg ist
+        //checks if there is a wall
         boolean isWall = false;
 
         switch (keyPressed[id]) {
@@ -504,9 +498,7 @@ public class GameWindowController {
 
     private String dontLookBack(String direction) {
         //by Lukas
-        //For CATAI 3.0 -> DIE ULTIMATIVE KATZEN KI !!!
-        //#MakeCatsGreatAgain #BrainsForCats #CatsForFuture
-        //Suchst du noch oder miaust du schon?
+        //For CATAI 3.0
         String result;
 
         switch (direction) {
@@ -533,13 +525,13 @@ public class GameWindowController {
         //by Lukas
         //THE CATAI -> CAT Artificial Intelligence
 
-        boolean[] catRadar = {true, true, true, true}; //Ob Wand in jeder Richtung
+        boolean[] catRadar = {true, true, true, true}; //if there is a wall around
         String[] directions = {"up", "right", "down", "left"};
-        byte noWall = 0; //Zählt diejenigen Möglichkeiten, wo es Wege gibt
-        String oldkeyPressed = keyPressed[number]; //Speichert den alten Keypressed ab
+        byte noWall = 0; //counts the possible ways
+        String oldkeyPressed = keyPressed[number]; //Saves the old keypressed
 
-        //Zähle, wie viele mögliche Wege es gibt (noWall)
-        //Aktualisiert catRadar (true für mögliche Wege)
+        //counts the possible ways without a wall
+        //Actualised catRadar (true for possible ways)
         for (byte i = 0; i < 4; i++) {
             keyPressed[number] = directions[i];
             catRadar[i] = checkWall(x, y, number);
@@ -548,10 +540,10 @@ public class GameWindowController {
             }
         }
 
-        //CATAI 2.0 - Es wird je nach Anzahl der möglichen Wege strategisch entschieden wie vorgegangen wird:
+        //CATAI 2.0 - Depending on the number of possible paths, a strategic decision is made as to how to proceed:
         switch (noWall) {
             case 1: {
-                //Es gibt nur ein Weg: Dieser wird genommen
+                //if there is just one way: this way is used
                 for (byte i = 0; i < 4; i++) {
                     if (!catRadar[i]) {
                         keyPressed[number] = directions[i];
@@ -560,21 +552,19 @@ public class GameWindowController {
                 break;
             }
             case 2: {
-                //Es gibt 2 Wege, die Katze soll sich für den Weg entscheiden, aus dem sie NICHT gekommen ist
-
-                //Erstelle neuen Array nur mit möglichen Wegen
+                // There are 2 ways, the cat should choose the way from which it did NOT come
+                //makes a new Array with just new paths
                 String[] newdirections = new String[noWall + 1];
                 byte noWallCount = 0;
 
                 for (byte i = 0; i < 4; i++) {
                     if (!catRadar[i]) {
                         newdirections[noWallCount] = directions[i];
-                        //System.out.println(directions[i]);
                         noWallCount++;
                     }
                 }
 
-                //Nehme den Weg, aus dem die Katze nicht gekommen ist
+                //will use the path she isnt come from
                 if (newdirections[0].equals(dontLookBack(oldkeyPressed))) {
                     keyPressed[number] = newdirections[1];
                 } else {
@@ -584,10 +574,9 @@ public class GameWindowController {
             }
             case 3:
             case 4: {
-                //Es gibt 3/4 Wege, hier soll die Katze nicht wieder zurück laufen.
-                //Aus den 2/3 übrigen Wegen soll der Weg zufällig ausgesucht werden
+                //There are 3 / 4 paths without the path in wich she is coming 2 / 3. she shoud use an random path     //Aus den 2/3 übrigen Wegen soll der Weg zufällig ausgesucht werden
 
-                //Erstelle neuen Array nur mit möglichen Wegen, sowie die Zufallszahl
+                //makes a new Array with the possible paths and the random number
                 String[] newdirections = new String[noWall];
                 ;
                 byte random = (byte) (Math.random() * (noWall - 1));
@@ -604,7 +593,6 @@ public class GameWindowController {
                 break;
             }
             default: {
-                System.out.println("Wenn die Map nicht mehr als 2 Dimensionen hat ist hier ein Fehler passiert :(");
                 break;
             }
         }

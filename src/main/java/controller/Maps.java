@@ -1,11 +1,8 @@
 package controller;
 
 public class Maps {
-    //Gibt dir bei Aufruf den entsprechenden Map-Array zurück
+    //Returns the corresponding map array when called
     //by Lukas
-
-    //Maps newClassObj = new Maps();
-    //byte[][] secondArray = newClassObj.getMap();
 
     /*
     0 Mauer
@@ -292,7 +289,7 @@ public class Maps {
             {0, 1, 1, 4, 0, 2, 0, 1, 1, 2, 1, 1, 0, 2, 0, 1, 5, 2, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
-
+    //Map by Max 17
     private byte[][] map17 = {
 
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -309,6 +306,7 @@ public class Maps {
             {0, 0, 1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 2, 1, 1, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
+    //Map by Max 18
     private byte[][] map18 = {
 
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -326,6 +324,7 @@ public class Maps {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 
     };
+    //Map by Max 19
     private byte[][] map19 = {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 1, 0, 0, 1, 1, 1, 5, 0, 0, 0, 0, 1, 1, 1, 1, 4, 0, 0},
@@ -341,6 +340,7 @@ public class Maps {
             {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 7, 1, 1, 1, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
+    //Map by Max 20
     private byte[][] map20 = {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 7, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0},
@@ -428,7 +428,4 @@ public class Maps {
         return chooseRandomMap().clone();
     }
 
-    public byte[][] getMap16() {
-        return map16.clone();
-    }
 }
