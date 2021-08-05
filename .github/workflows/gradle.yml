@@ -26,9 +26,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-      - name: Upload a Build Artifact
-  uses: actions/upload-artifact@v2.2.4
-  with:
-    name: CheesyChase
-    path: build
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: CheesyChase
+        path: build
 
