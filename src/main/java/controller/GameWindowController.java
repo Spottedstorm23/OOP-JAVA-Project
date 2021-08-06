@@ -91,7 +91,6 @@ public class GameWindowController {
 
         OurTimer timerObject = new OurTimer();  //declaring the class Timer, for a function
         TimerTask tt = new TimerTask() {
-
             @Override
             public void run() {
                 Platform.runLater(() -> {
@@ -119,7 +118,6 @@ public class GameWindowController {
                     }
 
                     timerCount--;
-
 
                     // Updates the timer every 5 passes
                     if (timerCount % 5 == 0) {
@@ -253,7 +251,10 @@ public class GameWindowController {
                     return;
                 }
             }
-            checkCatAndMouse(randomCat);
+            if(mode.getMode().equals("EscapeCats")){
+                checkCatAndMouse(randomCat);
+
+            }
             view.drawMouse(paneBoard);
             collectCheese();
         }
