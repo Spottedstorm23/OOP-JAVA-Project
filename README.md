@@ -34,7 +34,6 @@ Careful about the cats, they don't want you to get your cheese. </br>
 <i>In this mode the mouse has to escape 1 of 3 cats while countinuing (?) it's quest to get cheese.
 Three times it may be able to escape it's hunter before the game ends.</i> 
 </br>
-<b> -> This mode has yet to be added.</b>
 
 ***
 
