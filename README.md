@@ -1,14 +1,18 @@
 # The Cheesy Chase
 
 ## Table of Contents
-0. [How to start the Game](#0-how-to-start)
+0. [How to start the Game](#0-how-to-start-the-game)
 1. [About the Game](#1-about-the-game)
 2. [About the Project](#2-about-the-project)
 
 ## 0 How to start the Game
+### Setup in IDE
 Clone the repository to a local directory. 
 Open the project in a Code Editor/ IDE of your choice and start the game.
 Set main/java as src and main/resources as resource root, make sure you have java 1.8 as your working sdk.
+
+### Start from File
+Download the Version you want to use and start the jar.
 
 ## 1 About the Game
 You are a little mouse trapped in a labyrinth filled with Cheese.
