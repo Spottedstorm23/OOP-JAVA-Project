@@ -51,3 +51,21 @@ Collect small cheese to gain 50 points. A pile of cheese givs you even more. So 
 ### 2.1 .....
 
 ### 2.2 ....
+
+## How to bundle the project
+
+The project compiles into an executable jar. Given a JRE the jar is everything needed to run the game.
+The jar may be renamed.
+
+### Create Jar
+
+```shell
+./gradlew shadowJar
+ls build/libs/OOP-JAVA-Project-1.0.0-all.jar
+```
+
+### start the game
+
+```shell
+java -jar OOP-JAVA-Project-1.0.0-all.jar
+```
